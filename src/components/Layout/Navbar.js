@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image';
 
 const Navbar = () => {
     const router = useRouter();
@@ -14,7 +15,7 @@ const Navbar = () => {
 
     return (
         <nav className='fixed flex items-center justify-between w-full h-16 mb-12 bg-white shadow-lg shadow-slate-200 px-36 text-primaryblack font-poppins'>
-            <img className="w-auto h-8" src="/logo.png" />
+            <Image src="/images/Logo.png" width={130} height={80} />
             <div className="flex items-center gap-16 text-sm font-medium">
                 {keys.map((key, index) => (
                     <div key={index}>
