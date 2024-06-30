@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Dropdown = () => {
-    const [selectedOption, setSelectedOption] = useState('Admin');
+    const [selectedOption, setSelectedOption] = useState('');
     const [selectedOption2, setSelectedOption2] = useState('Admin');
     const [dropDownHidden, setDropDownHidden] = useState(true);
 
@@ -18,12 +18,12 @@ const Dropdown = () => {
 
 
     return (
-        <div className="flex relative bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-[35%]">
-            <a onClick={handleDropDownToggle} className="flex justify-between w-full cursor-pointer text-primaryblack">
+        <div className="flex relative text-[13px] w-full">
+            <a onClick={handleDropDownToggle} className="flex justify-between w-full my-2 px-4 py-[10px] rounded-lg bg-slate-200 cursor-pointer text-primaryblack">
                 <h1>{selectedOption ? `${selectedOption === 'Admin' ? 'Admin' : 'User'}` : 'Select Role'}</h1>
                 <h1><i class="fa-solid fa-caret-down"></i></h1>
             </a>
-            <div className={`absolute w-full z-10 mt-10 -ml-4 bg-slate-200 text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
+            <div className={`absolute w-full z-10 mt-14 bg-slate-200 text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                 <div className="px-2">
                     <button
                         onClick={() => handleOptionChange('Admin')} className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedOption2 === 'Admin' ? 'bg-white' : ''}`}>

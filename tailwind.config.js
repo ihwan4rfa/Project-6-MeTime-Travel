@@ -15,7 +15,9 @@ module.exports = {
         bluehover: "#007798",
         primaryblack: "#212832",
         primaryred: "#DF6951",
-        redhover: "#BF4F39"
+        redhover: "#BF4F39",
+        primaryyellow: '#F1A501',
+        primarygreen: '#10b981'
       }
     }
   }

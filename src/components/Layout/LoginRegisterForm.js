@@ -1,87 +1,29 @@
 import axios from "axios"
 import { useState } from "react"
+import useUpload from "../Hooks/useUpload";
 import { useRouter } from "next/router"
 import Dropdown from "../UI/DropDown";
 
 const LoginRegisterForm = () => {
 
     const router = useRouter();
-    const [emailRegister, setEmailRegister] = useState("");
-    const [passwordRegister, setPasswordRegister] = useState("");
     const [tokenRegister, setTokenRegister] = useState(null);
     const [errorRegister, setErrorRegister] = useState(null);
+    const [profilePictureUrl, setProfilePictureUrl] = useState(null);
 
-    const handleChangeEmailRegister = (event) => {
-        setEmailRegister(event.target.value)
-        setErrorRegister(null)
-    }
+    const handleUpload = async (e) => {
 
-    const handleChangePasswordRegister = (event) => {
-        setPasswordRegister(event.target.value)
-        setErrorRegister(null)
     }
 
     const handleRegister = async () => {
-        const payLoadRegister = {
-            email: emailRegister,
-            password: passwordRegister
-        };
 
-        try {
-            const response = await axios.post(
-                "https://reqres.in/api/register",
-                payLoadRegister
-            );
-            setTokenRegister(response.data.token)
-
-            setTimeout(() => {
-                toggleButton();
-                setLoginClicked(true);
-            }, 1500)
-        } catch (error) {
-            const errorMessageRegister = error.response.data.error;
-            setErrorRegister(errorMessageRegister);
-        }
     };
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [token, setToken] = useState(null);
     const [errorLogin, setErrorLogin] = useState(null);
 
-    const handleChangeEmail = (event) => {
-        setEmail(event.target.value)
-        setErrorLogin(null)
-    }
-
-    const handleChangePassword = (event) => {
-        setPassword(event.target.value)
-        setErrorLogin(null)
-    }
-
     const handleLogin = async () => {
-        const payLoad = {
-            email: email,
-            password: password
-        };
 
-        try {
-            const response = await axios.post(
-                "https://reqres.in/api/login",
-                payLoad
-            );
-            const token = response.data.token
-            setToken(token);
-            localStorage.setItem("access_token", token);
-
-            setTimeout(() => {
-                router.push("/");
-            }, 1500)
-
-        } catch (error) {
-            const errorMessage = error.response.data.error;
-            setErrorLogin(errorMessage)
-        }
     };
 
     const [btnClicked, setBtnClicked] = useState(false);
@@ -94,16 +36,16 @@ const LoginRegisterForm = () => {
         setErrorLogin(null);
         setErrorRegister(null);
         setTokenRegister(null);
-        setEmail('');
-        setEmailRegister('');
-        setPassword('');
-        setPasswordRegister('');
         setSeePassword(false)
     }
 
     const [seePassword, setSeePassword] = useState(false);
+    const [seeRepeatPassword, setSeeRepeatPassword] = useState(false);
     const toggleSeePassword = () => {
         setSeePassword(!seePassword)
+    }
+    const toggleSeeRepeatPassword = () => {
+        setSeeRepeatPassword(!seeRepeatPassword)
     }
 
     return (
@@ -114,24 +56,34 @@ const LoginRegisterForm = () => {
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Create Account</h1>
                         <span className="mb-2 text-xs text-primaryblack">Use your details for registration</span>
                         <div className="flex w-full gap-4">
-                            <input value={emailRegister} onChange={handleChangeEmailRegister} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Email" />
-                            <input value={emailRegister} onChange={handleChangeEmailRegister} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Full Name" />
+                            <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Email" />
+                            <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Full Name" />
                         </div>
                         <div className="flex w-full gap-4">
-                            <input value={emailRegister} onChange={handleChangeEmailRegister} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Phone Number" />
-                            <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                <input value={passwordRegister} onChange={handleChangePasswordRegister} className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Password" />
-                                <button onClick={toggleSeePassword}><i className={`text-slate-400 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
-                            </div>
-                            <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                <input value={passwordRegister} onChange={handleChangePasswordRegister} className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Repeat Password" />
-                                <button onClick={toggleSeePassword}><i className={`text-slate-400 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
-                            </div>
+                            <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Phone Number" />
+                            <h1 class="bg-slate-200 text-slate-400 my-2 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
+                                <label for="fileUpload" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
+                                <span className="px-4 text-ellipsis overflow-hidden">No File Selected</span>
+                            </h1>
+                            <input id="fileUpload" className="hidden" type="file" />
                         </div>
-                        <div className="flex w-[80%] gap-4">
-                            <Dropdown />
-                            <input value={emailRegister} id="fileUpload" onChange={handleChangeEmailRegister} className="hidden" type="file" />
-                            <label for="fileUpload" class="bg-slate-200 text-primaryblack cursor-pointer my-2 py-[10px] px-4 text-[13px] rounded-lg w-[65%]">Choose File</label>
+                        <div className="w-full">
+                            <div className="flex gap-4">
+                                <Dropdown />
+                                <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
+                                    <input className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Password" />
+                                    <button onClick={toggleSeePassword}><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                </div>
+                                <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
+                                    <input className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seeRepeatPassword ? 'text' : 'password'} placeholder="Repeat Password" />
+                                    <button onClick={toggleSeeRepeatPassword}><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                </div>
+                            </div>
+                            <div className="flex gap-4 text-[10px]">
+                                <p className="w-full"></p>
+                                <p className="w-full px-4"></p>
+                                <p className="w-full px-4 text-start text-primaryred"><i class="fa-solid mr-1 fa-circle-xmark"></i>Both passwords didn't match</p>
+                            </div>
                         </div>
                         {tokenRegister ? <h1 className="text-[12px] text-teal-500"><i className="mr-1 fa-solid fa-circle-check"></i>registration success!</h1> : ""}
                         {errorRegister ? <h1 className="text-[12px] text-red-500 text-center"><i className="mr-1 fa-solid fa-triangle-exclamation"></i>{errorRegister}</h1> : ""}
@@ -142,9 +94,9 @@ const LoginRegisterForm = () => {
                     <div className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Log In</h1>
                         <span className="mb-2 text-xs text-primaryblack">Enter your email and password</span>
-                        <input value={email} onChange={handleChangeEmail} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Email" />
+                        <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Email" />
                         <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                            <input value={password} onChange={handleChangePassword} className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Password" />
+                            <input className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Password" />
                             <button onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                         </div>
                         {token ? <h1 className="text-[12px] text-teal-500"><i className="mr-1 fa-solid fa-circle-check"></i>log In success!</h1> : ""}
