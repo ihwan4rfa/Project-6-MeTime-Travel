@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-const Dropdown = () => {
+const Dropdown = ({ selectedOption2, setSelectedOption2 }) => {
     const [selectedOption, setSelectedOption] = useState('');
-    const [selectedOption2, setSelectedOption2] = useState('Admin');
     const [dropDownHidden, setDropDownHidden] = useState(true);
 
     const handleOptionChange = (option) => {

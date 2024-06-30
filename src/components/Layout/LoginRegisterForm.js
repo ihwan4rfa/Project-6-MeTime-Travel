@@ -4,19 +4,68 @@ import useUpload from "../Hooks/useUpload";
 import { useRouter } from "next/router"
 import Dropdown from "../UI/DropDown";
 
-const LoginRegisterForm = () => {
+const LoginRegisterForm = ({ onSubmit }) => {
 
     const router = useRouter();
     const [tokenRegister, setTokenRegister] = useState(null);
     const [errorRegister, setErrorRegister] = useState(null);
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
+    const [message, setMessage] = useState(null);
+    const { upload } = useUpload();
+    const [selectedOption2, setSelectedOption2] = useState('Admin');
 
     const handleUpload = async (e) => {
+        e.preventDefault();
+        const file = e.target.files[0];
+        if (!file.type.startsWith("image/")) {
+            setMessage(
+                "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF"
+            );
+            setTimeout(() => {
+                setMessage(null);
+                e.target.value = null
+            }, 3000)
+            return false;
+        }
+        const formData = new FormData();
+        formData.append("image", file);
+        try {
+            const res = await upload("upload-image", formData);
+            setProfilePictureUrl(res.data.url);
+            setMessage(null);
+            return res.data.url;
+        } catch (error) {
+            setProfilePictureUrl(null);
+            setMessage(
+                "Failed to upload image, Maybe the image is too big, try another image"
+            )
+            console.log(error);
+        }
+    };
 
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const userData = {
+            email: e.target.email.value,
+            name: e.target.name.value,
+            password: e.target.password.value,
+            passwordRepeat: e.target.password.value,
+            role: selectedOption2,
+            profilePictureUrl: profilePictureUrl,
+            phoneNumber: e.target.phoneNumber.value
+        };
 
-    const handleRegister = async () => {
+        for (const key in userData) {
+            if (!userData[key]) {
+                setMessage("Please input all fields");
+                setTimeout(() => {
+                    setMessage(null);
+                }, 3000);
+                return;
+            }
+        }
 
+        onSubmit(userData);
     };
 
     const [token, setToken] = useState(null);
@@ -52,30 +101,30 @@ const LoginRegisterForm = () => {
         <div className="flex items-center justify-center w-full h-screen bg-slate-100 font-poppins">
             <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-xl shadow-slate-300 relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-2/3 w-full ${registerClicked ? 'z-20 md:translate-x-[50%] -translate-x-[0%]' : 'z-10 md:translate-x-[0%] translate-x-[100%]'}`}>
-                    <div className="flex flex-col items-center justify-center h-full px-10 bg-white">
+                    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Create Account</h1>
                         <span className="mb-2 text-xs text-primaryblack">Use your details for registration</span>
                         <div className="flex w-full gap-4">
-                            <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Email" />
-                            <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Full Name" />
+                            <input type="email" name="email" id="email" placeholder="Email" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                            <input type="text" name="name" id="name" placeholder="Full Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                         </div>
                         <div className="flex w-full gap-4">
-                            <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Phone Number" />
+                            <input type="text" name="phoneNumber" id="phone" placeholder="Phone Number" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                             <h1 class="bg-slate-200 text-slate-400 my-2 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
-                                <label for="fileUpload" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
-                                <span className="px-4 text-ellipsis overflow-hidden">No File Selected</span>
+                                <label htmlFor="profilePictureUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
+                                <span className="px-4 overflow-hidden text-ellipsis">{profilePictureUrl === null ? 'No File Selected' : `${profilePictureUrl}`}</span>
                             </h1>
-                            <input id="fileUpload" className="hidden" type="file" />
+                            <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="hidden" />
                         </div>
                         <div className="w-full">
                             <div className="flex gap-4">
-                                <Dropdown />
+                                <Dropdown selectedOption2={selectedOption2} setSelectedOption2={setSelectedOption2} />
                                 <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                    <input className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Password" />
+                                    <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                                     <button onClick={toggleSeePassword}><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                 </div>
                                 <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                    <input className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seeRepeatPassword ? 'text' : 'password'} placeholder="Repeat Password" />
+                                    <input type={seeRepeatPassword ? 'text' : 'password'} name="passwordRepeat" id="passwordRepeat" placeholder="Repeat Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                                     <button onClick={toggleSeeRepeatPassword}><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                 </div>
                             </div>
@@ -87,8 +136,8 @@ const LoginRegisterForm = () => {
                         </div>
                         {tokenRegister ? <h1 className="text-[12px] text-teal-500"><i className="mr-1 fa-solid fa-circle-check"></i>registration success!</h1> : ""}
                         {errorRegister ? <h1 className="text-[12px] text-red-500 text-center"><i className="mr-1 fa-solid fa-triangle-exclamation"></i>{errorRegister}</h1> : ""}
-                        <button onClick={handleRegister} className="bg-primaryred hover:bg-redhover text-white text-[12px] py-[10px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-3">Register</button>
-                    </div>
+                        <button type="submit" className="bg-primaryred hover:bg-redhover text-white text-[12px] py-[10px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-3">Register</button>
+                    </form>
                 </div>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
                     <div className="flex flex-col items-center justify-center h-full px-10 bg-white">
