@@ -1,12 +1,9 @@
-import axios from "axios"
 import { useState } from "react"
 import useUpload from "../Hooks/useUpload";
-import { useRouter } from "next/router"
 import Dropdown from "../UI/DropDown";
 
 const LoginRegisterForm = ({ onSubmit }) => {
 
-    const router = useRouter();
     const [tokenRegister, setTokenRegister] = useState(null);
     const [errorRegister, setErrorRegister] = useState(null);
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
@@ -42,6 +39,15 @@ const LoginRegisterForm = ({ onSubmit }) => {
             console.log(error);
         }
     };
+
+    const [password, setPassword] = useState('');
+    const [passwordRepeat, setPasswordRepeat] = useState('');
+    const handleChangePassword = (e) => {
+        setPassword(e.target.value);
+    }
+    const handleChangePasswordRepeat = (e) => {
+        setPasswordRepeat(e.target.value);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -120,18 +126,18 @@ const LoginRegisterForm = ({ onSubmit }) => {
                             <div className="flex gap-4">
                                 <Dropdown selectedOption2={selectedOption2} setSelectedOption2={setSelectedOption2} />
                                 <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                    <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
+                                    <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" value={password} onChange={handleChangePassword} className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                                     <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                 </div>
                                 <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                    <input type={seeRepeatPassword ? 'text' : 'password'} name="passwordRepeat" id="passwordRepeat" placeholder="Repeat Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
+                                    <input type={seeRepeatPassword ? 'text' : 'password'} name="passwordRepeat" id="passwordRepeat" placeholder="Repeat Password" value={passwordRepeat} onChange={handleChangePasswordRepeat} className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                                     <button type="button" onClick={toggleSeeRepeatPassword}><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                 </div>
                             </div>
                             <div className="flex gap-4 text-[10px]">
                                 <p className="w-full"></p>
                                 <p className="w-full px-4"></p>
-                                <p className="w-full px-4 text-start text-primaryred"><i class="fa-solid mr-1 fa-circle-xmark"></i>Both passwords didn't match</p>
+                                <p className={`w-full px-4 text-start ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
                             </div>
                         </div>
                         {tokenRegister ? <h1 className="text-[12px] text-teal-500"><i className="mr-1 fa-solid fa-circle-check"></i>registration success!</h1> : ""}
