@@ -2,9 +2,13 @@ import { useState } from "react"
 import useUpload from "../Hooks/useUpload";
 import Dropdown from "../UI/DropDown";
 import toast, { Toaster } from "react-hot-toast";
+import useAuth from "../Hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/slice/userLoggedSlice";
 
-const LoginRegisterForm = ({ onSubmit }) => {
+const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
+    // Resgister
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
     const [fileName, setFileName] = useState(null);
     const { upload } = useUpload();
@@ -44,7 +48,7 @@ const LoginRegisterForm = ({ onSubmit }) => {
         setPasswordRepeat(e.target.value);
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmitRegister = async (e) => {
         e.preventDefault();
         const userData = {
             email: e.target.email.value,
@@ -64,7 +68,7 @@ const LoginRegisterForm = ({ onSubmit }) => {
         }
 
         if (password === passwordRepeat) {
-            const res = await onSubmit(userData);
+            const res = await onSubmitRegister(userData);
             if (res?.status === 200) {
                 toast.success("Registration success");
                 setTimeout(() => {
@@ -83,10 +87,6 @@ const LoginRegisterForm = ({ onSubmit }) => {
             toast.error("Please check both passwords \n and make sure they match.");
             return;
         }
-    };
-
-    const handleLogin = async () => {
-
     };
 
     const [seePassword, setSeePassword] = useState(false);
@@ -108,12 +108,36 @@ const LoginRegisterForm = ({ onSubmit }) => {
         setSeeRepeatPassword(!seeRepeatPassword)
     }
 
+    // Login
+    const { userLog } = useAuth();
+    const dispatch = useDispatch();
+
+    const handleSubmitLogin = async (e) => {
+        e.preventDefault();
+        const userData = {
+            email: e.target.emailLogin.value,
+            password: e.target.passwordLogin.value
+        };
+
+        const res = await onSubmitLogin(userData);
+        if (res?.status === 200) {
+            setTimeout(() => {
+                getUserLogged();
+            }, 1500);
+        }
+    };
+
+    const getUserLogged = () => {
+        if (localStorage.getItem("token")) {
+            userLog("user", (res) => dispatch(setUser(res)));
+        }
+    }
+
     return (
         <div className="flex items-center justify-center w-full h-screen bg-slate-100 font-poppins">
             <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-xl shadow-slate-300 relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-2/3 w-full ${registerClicked ? 'z-20 md:translate-x-[50%] -translate-x-[0%]' : 'z-10 md:translate-x-[0%] translate-x-[100%]'}`}>
-
-                    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-full px-10 bg-white">
+                    <form onSubmit={handleSubmitRegister} className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Create Account</h1>
                         <span className="mb-2 text-xs text-primaryblack">Use your details for registration</span>
                         <div className="flex w-full gap-4">
@@ -176,16 +200,16 @@ const LoginRegisterForm = ({ onSubmit }) => {
                     </div>
                 </div>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
-                    <div className="flex flex-col items-center justify-center h-full px-10 bg-white">
+                    <form onSubmit={handleSubmitLogin} className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Log In</h1>
                         <span className="mb-2 text-xs text-primaryblack">Enter your email and password</span>
-                        <input className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" type="text" placeholder="Email" />
+                        <input name="emailLogin" id="emailLogin" type="email" placeholder="Email" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                         <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                            <input className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" type={seePassword ? 'text' : 'password'} placeholder="Password" />
-                            <button onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                            <input name="passwordLogin" id="passwordLogin" type={seePassword ? 'text' : 'password'} placeholder="Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
+                            <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                         </div>
-                        <button onClick={handleLogin} className="bg-primaryred hover:bg-redhover text-white text-[12px] py-[10px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-4">Log In</button>
-                    </div>
+                        <button className="bg-primaryred hover:bg-redhover text-white text-[12px] py-[10px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-4">Log In</button>
+                    </form>
                 </div>
                 <div className={`absolute md:top-0 top-1/2 ${loginClicked ? 'md:w-1/2 md:left-1/2' : 'md:w-1/3 md:left-1/3'}  left-0 w-full md:h-full h-1/3 overflow-hidden transition-all duration-500 ease-in-out z-30 md:translate-y-[0%] translate-y-[50%] rounded-t-[50px] ${btnClicked ? 'md:-translate-x-[100%] md:rounded-r-[100px] md:rounded-tl-[0px] rounded-r-[0px]' : 'md:translate-x-[0%] md:rounded-l-[100px] md:rounded-tr-[0px] rounded-l-[0px]'}`}>
                     <div className={`bg-primaryblack h-full text-white relative -left-[100%] w-[200%] transition-all duration-500 ${btnClicked ? 'translate-x-[50%]' : 'translate-x-[0%]'}`}>
