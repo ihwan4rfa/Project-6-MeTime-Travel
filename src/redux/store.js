@@ -10,4 +10,11 @@ const store = configureStore({
     reducer: rootReducer,
 })
 
+if (typeof window !== 'undefined') {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        store.dispatch(setUser(user));
+    }
+}
+
 export default store;

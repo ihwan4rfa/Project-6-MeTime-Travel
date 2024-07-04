@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userLoggedSlice";
+import Router, { useRouter } from "next/router";
 
 const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
@@ -111,6 +112,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
     // Login
     const { userLog } = useAuth();
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
@@ -123,12 +125,14 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
         if (res?.status === 200) {
             setTimeout(() => {
                 getUserLogged();
+                router.push('/');
             }, 1500);
         }
     };
 
     const getUserLogged = () => {
-        if (localStorage.getItem("token")) {
+        const token = localStorage.getItem("token");
+        if (token) {
             userLog("user", (res) => dispatch(setUser(res)));
         }
     }
