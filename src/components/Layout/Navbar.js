@@ -8,10 +8,9 @@ import { setUser, clearUser } from '@/redux/slice/userLoggedSlice';
 const Navbar = () => {
     const router = useRouter();
     const currentPath = router.pathname;
-    console.log(currentPath);
     const { userLog } = useAuth();
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.userLogged.user)
+    const user = useSelector((state) => state.userLogged.user);
 
     useEffect(() => {
         getUserLogged();

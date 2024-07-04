@@ -14,7 +14,9 @@ export default function useAuth() {
                     }
                 }
             );
-            localStorage.setItem("token", res.data.token)
+            localStorage.setItem("token", res.data.token);
+            document.cookie = `token=${res.data.token}`;
+            document.cookie = `${res.data.data.role}=`;
             return res;
         } catch (error) {
             return error;

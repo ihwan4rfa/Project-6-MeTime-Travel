@@ -1,13 +1,17 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import useUpload from "../Hooks/useUpload";
 import Dropdown from "../UI/DropDown";
 import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userLoggedSlice";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
+
+    useEffect(() => {
+
+    })
 
     // Resgister
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
@@ -123,6 +127,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
         const res = await onSubmitLogin(userData);
         if (res?.status === 200) {
+            toast.success("Login success");
             setTimeout(() => {
                 getUserLogged();
                 if (res.data.data.role === 'admin') {
@@ -131,6 +136,8 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                     router.push('/');
                 }
             }, 1500);
+        } else {
+            toast.error("Login failed. Please try again.");
         }
     };
 
@@ -178,7 +185,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         </div>
                         <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[12px] py-[10px] mt-4 px-8 rounded-lg font-semibold tracking-tight uppercase">Register</button>
                     </form>
-                    <div className="text-[10px] text-left">
+                    <div className={`text-[10px] text-left ${loginClicked ? 'hidden' : ''}`}>
                         <Toaster
                             position="top-right"
                             toastOptions={{
@@ -207,7 +214,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         />
                     </div>
                 </div>
-                <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
+                <div className={`bg-red-500 absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
                     <form onSubmit={handleSubmitLogin} className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Log In</h1>
                         <span className="mb-2 text-xs text-primaryblack">Enter your email and password</span>
@@ -218,6 +225,34 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         </div>
                         <button className="bg-primaryred hover:bg-redhover text-white text-[12px] py-[10px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-4">Log In</button>
                     </form>
+                    <div className="text-[10px] text-left">
+                        <Toaster
+                            position="top-left"
+                            toastOptions={{
+                                duration: 1500,
+                                success: {
+                                    style: {
+                                        background: '#10b981',
+                                        color: 'white'
+                                    },
+                                    iconTheme: {
+                                        primary: 'white',
+                                        secondary: '#10b981'
+                                    }
+                                },
+                                error: {
+                                    style: {
+                                        background: '#DF6951',
+                                        color: 'white',
+                                    },
+                                    iconTheme: {
+                                        primary: 'white',
+                                        secondary: '#DF6951'
+                                    }
+                                }
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className={`absolute md:top-0 top-1/2 ${loginClicked ? 'md:w-1/2 md:left-1/2' : 'md:w-1/3 md:left-1/3'}  left-0 w-full md:h-full h-1/3 overflow-hidden transition-all duration-500 ease-in-out z-30 md:translate-y-[0%] translate-y-[50%] rounded-t-[50px] ${btnClicked ? 'md:-translate-x-[100%] md:rounded-r-[100px] md:rounded-tl-[0px] rounded-r-[0px]' : 'md:translate-x-[0%] md:rounded-l-[100px] md:rounded-tr-[0px] rounded-l-[0px]'}`}>
                     <div className={`bg-primaryblack h-full text-white relative -left-[100%] w-[200%] transition-all duration-500 ${btnClicked ? 'translate-x-[50%]' : 'translate-x-[0%]'}`}>
