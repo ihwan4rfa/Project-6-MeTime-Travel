@@ -17,7 +17,8 @@ module.exports = {
         primaryred: "#DF6951",
         redhover: "#BF4F39",
         primaryyellow: '#F1A501',
-        primarygreen: '#10b981'
+        primarygreen: '#10b981',
+        primarygray: '#5E6282',
       }
     }
   }
