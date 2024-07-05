@@ -15,8 +15,8 @@ export default function useAuth() {
                 }
             );
             localStorage.setItem("token", res.data.token);
-            document.cookie = `token=${res.data.token}`;
-            document.cookie = `${res.data.data.role}=`;
+            document.cookie = `token=${res.data.token}; path=/`;
+            document.cookie = `${res.data.data.role}=; path=/`;
             return res;
         } catch (error) {
             return error;
@@ -37,6 +37,9 @@ export default function useAuth() {
             );
             if (url === "logout") {
                 localStorage.removeItem("token");
+                document.cookie = `token=${res.data.token}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+                document.cookie = `admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+                document.cookie = `user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
                 callback(res);
             } else {
                 callback(res.data.data);

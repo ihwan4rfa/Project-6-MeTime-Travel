@@ -150,7 +150,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
     return (
         <div className="flex items-center justify-center w-full h-screen bg-slate-100 font-poppins">
-            <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-xl shadow-slate-300 relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
+            <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-xl relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-2/3 w-full ${registerClicked ? 'z-20 md:translate-x-[50%] -translate-x-[0%]' : 'z-10 md:translate-x-[0%] translate-x-[100%]'}`}>
                     <form onSubmit={handleSubmitRegister} className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Create Account</h1>
