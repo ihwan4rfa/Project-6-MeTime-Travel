@@ -10,8 +10,11 @@ import { useRouter } from "next/router";
 const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
     useEffect(() => {
-
-    })
+        const token = localStorage.getItem("token");
+        if (token) {
+            router.push("/");
+        }
+    });
 
     // Resgister
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
