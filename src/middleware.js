@@ -8,13 +8,13 @@ export function middleware(req) {
     if (req.nextUrl.pathname.startsWith("/login_register") && token) {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
-    if (req.nextUrl.pathname.startsWith("/dashboard/user") && token && user) {
+    if (req.nextUrl.pathname.startsWith("/dashboard") && token && user) {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
-    if (req.nextUrl.pathname.startsWith("/dashboard/user") && token && admin) {
+    if (req.nextUrl.pathname.startsWith("/dashboard") && token && admin) {
         return NextResponse.next();
     }
-    if (req.nextUrl.pathname.startsWith("/dashboard/user") && !token) {
+    if (req.nextUrl.pathname.startsWith("/dashboard") && !token) {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
 }

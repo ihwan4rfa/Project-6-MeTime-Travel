@@ -127,7 +127,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
             setTimeout(() => {
                 getUserLogged();
                 if (res.data.data.role === 'admin') {
-                    router.push('/dashboard/user');
+                    router.push('/dashboard/users');
                 } else {
                     router.push('/');
                 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '@/components/Layout/Navbar'
-import LoginRegisterForm from '@/components/Layout/LoginRegisterForm'
+import Navbar from '@/components/Fragments/Navbar'
+import LoginRegisterForm from '@/components/Fragments/LoginRegisterForm'
 import useAuth from '@/components/Hooks/useAuth';
 
 const index = () => {

@@ -17,6 +17,7 @@ module.exports = {
         primaryred: "#DF6951",
         redhover: "#BF4F39",
         primaryyellow: '#F1A501',
+        secondaryyellow: '#FFF1DA',
         primarygreen: '#10b981',
         primarygray: '#5E6282',
       }
