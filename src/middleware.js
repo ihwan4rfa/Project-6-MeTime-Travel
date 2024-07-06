@@ -5,17 +5,16 @@ export function middleware(req) {
     const admin = req.cookies.get('admin');
     const user = req.cookies.get('user');
 
-    if (token) {
-        if (admin) {
-            return NextResponse.next();
-        } else if (user) {
-            return NextResponse.redirect(new URL("/", req.nextUrl));
-        }
-    } else {
-        return NextResponse.redirect(new URL("/", req.nextUrl));
+    if (req.nextUrl.pathname.startsWith("/login_register") && token) {
+        return NextResponse.redirect(new URL('/', req.nextUrl));
     }
-}
-
-export const config = {
-    matcher: ["/dashboard/:path*"]
+    if (req.nextUrl.pathname.startsWith("/dashboard/user") && token && user) {
+        return NextResponse.redirect(new URL('/', req.nextUrl));
+    }
+    if (req.nextUrl.pathname.startsWith("/dashboard/user") && token && admin) {
+        return NextResponse.next();
+    }
+    if (req.nextUrl.pathname.startsWith("/dashboard/user") && !token) {
+        return NextResponse.redirect(new URL('/', req.nextUrl));
+    }
 }
