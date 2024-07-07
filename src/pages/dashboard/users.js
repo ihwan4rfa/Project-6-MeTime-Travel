@@ -31,8 +31,9 @@ const Users = () => {
             <Sidebar />
             <div className='w-5/6 px-10 pt-24'>
                 <div className='w-full h-full'>
-                    <h1 className='text-2xl font-bold h-[12%]'>Users</h1>
-                    <div className='flex flex-col w-full h-[88%] overflow-y-scroll no-scrollbar gap-2'>
+                    <h1 className='text-2xl font-bold h-[9.5%]'>Users</h1>
+                    <div className='h-[0.5%] bg-slate-300 bg-opacity-50 rounded-full'></div>
+                    <div className='flex flex-col w-full h-[90%] overflow-y-scroll no-scrollbar gap-2'>
                         {filterUsers.map((user, index) => (
                             <div key={index} className='flex items-center w-full bg-white h-fit rounded-xl'>
                                 <div className='my-2 ml-2 overflow-hidden rounded-lg w-14 h-14'>

@@ -18,7 +18,7 @@ const Dropdown = ({ selectedRole, setSelectedRole, selectedRole2, setSelectedRol
         <div className="flex relative text-[13px] w-full">
             <a onClick={handleDropDownToggle} className="flex justify-between w-full my-2 px-4 py-[10px] rounded-lg bg-slate-200 cursor-pointer text-primaryblack">
                 <h1>{selectedRole ? `${selectedRole === 'Admin' ? 'Admin' : 'User'}` : 'Select Role'}</h1>
-                <h1><i class="fa-solid fa-caret-down"></i></h1>
+                <h1><i class={`fa-solid ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i></h1>
             </a>
             <div className={`absolute w-full z-10 mt-14 bg-slate-200 text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                 <div className="px-2">

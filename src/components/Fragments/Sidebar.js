@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 const Sidebar = () => {
     const router = useRouter();
     const currentPath = router.pathname;
-    console.log(currentPath);
 
     const linkList = {
         Users: "/dashboard/users",

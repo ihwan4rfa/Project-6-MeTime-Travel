@@ -84,7 +84,7 @@ const Navbar = () => {
                             <div className='text-left'>
                                 <div className='flex items-center'>
                                     <h1 className='mr-2'>{getFirstName(user.name)}</h1>
-                                    <i class={`${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'} fa-solid fa-caret-down`}></i>
+                                    <i class={`${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'} fa-solid ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i>
                                 </div>
                                 <p className='text-[10px] leading-3 text-primarygray'>{user.role}</p>
                             </div>
