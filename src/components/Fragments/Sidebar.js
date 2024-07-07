@@ -25,7 +25,7 @@ const Sidebar = () => {
     const keys = Object.keys(linkList);
 
     return (
-        <div className='w-1/6 h-screen bg-white'>
+        <div className='w-1/6 h-screen bg-white text-primaryblack'>
             <div className='flex flex-col gap-3 mt-24 text-[13px] font-medium'>
                 <button onClick={() => router.push("/")} className='flex items-center justify-between px-4 py-2 mx-4 bg-white rounded-lg cursor-pointer hover:bg-slate-200'>
                     <h1>Preview</h1>
