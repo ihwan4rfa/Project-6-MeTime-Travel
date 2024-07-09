@@ -56,7 +56,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
             name: e.target.name.value,
             password: e.target.password.value,
             passwordRepeat: e.target.password.value,
-            role: selectedRole2.toLowerCase(),
+            role: selectedRole2,
             profilePictureUrl: profilePictureUrl,
             phoneNumber: e.target.phoneNumber.value
         };
@@ -149,8 +149,8 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
             <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-xl relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-2/3 w-full ${registerClicked ? 'z-20 md:translate-x-[50%] -translate-x-[0%]' : 'z-10 md:translate-x-[0%] translate-x-[100%]'}`}>
                     <form onSubmit={handleSubmitRegister} className="flex flex-col items-center justify-center h-full px-10 bg-white">
-                        <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Create Account</h1>
-                        <span className="mb-2 text-xs text-primaryblack">Use your details for registration</span>
+                        <h1 className="text-2xl font-semibold text-primaryblack">Create Account</h1>
+                        <span className="mb-2 text-[13px] text-primaryblack">Use your details for registration</span>
                         <div className="flex w-full gap-4">
                             <input type="email" name="email" id="email" placeholder="Email" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                             <input type="text" name="name" id="name" placeholder="Full Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
@@ -177,11 +177,11 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                                     <button type="button" onClick={toggleSeeRepeatPassword}><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                 </div>
                             </div>
-                            <p className={`absolute text-[10px] w-full px-4 text-end ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
+                            <p className={`absolute text-[11px] w-full px-4 text-end ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
                         </div>
-                        <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[12px] py-[10px] mt-4 px-8 rounded-lg font-semibold tracking-tight uppercase">Register</button>
+                        <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium uppercase">Register</button>
                     </form>
-                    <div className={`text-[10px] text-left ${loginClicked ? 'hidden' : ''}`}>
+                    <div className={`text-[11px] text-left ${loginClicked ? 'hidden' : ''}`}>
                         <Toaster
                             position="top-right"
                             toastOptions={{
@@ -212,16 +212,16 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                 </div>
                 <div className={`bg-red-500 absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
                     <form onSubmit={handleSubmitLogin} className="flex flex-col items-center justify-center h-full px-10 bg-white">
-                        <h1 className="text-2xl font-semibold tracking-tight text-primaryblack">Log In</h1>
-                        <span className="mb-2 text-xs text-primaryblack">Enter your email and password</span>
+                        <h1 className="text-2xl font-semibold text-primaryblack">Log In</h1>
+                        <span className="mb-2 text-[13px] text-primaryblack">Enter your email and password</span>
                         <input name="emailLogin" id="emailLogin" type="email" placeholder="Email" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                         <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
                             <input name="passwordLogin" id="passwordLogin" type={seePassword ? 'text' : 'password'} placeholder="Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                             <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                         </div>
-                        <button className="bg-primaryred hover:bg-redhover text-white text-[12px] py-[10px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-4">Log In</button>
+                        <button className="bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium uppercase mt-4">Log In</button>
                     </form>
-                    <div className="text-[10px] text-left">
+                    <div className="text-[11px] text-left">
                         <Toaster
                             position="top-left"
                             toastOptions={{
@@ -253,14 +253,14 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                 <div className={`absolute md:top-0 top-1/2 ${loginClicked ? 'md:w-1/2 md:left-1/2' : 'md:w-1/3 md:left-1/3'}  left-0 w-full md:h-full h-1/3 overflow-hidden transition-all duration-500 ease-in-out z-30 md:translate-y-[0%] translate-y-[50%] rounded-t-[50px] ${btnClicked ? 'md:-translate-x-[100%] md:rounded-r-[100px] md:rounded-tl-[0px] rounded-r-[0px]' : 'md:translate-x-[0%] md:rounded-l-[100px] md:rounded-tr-[0px] rounded-l-[0px]'}`}>
                     <div className={`bg-primaryblack h-full text-white relative -left-[100%] w-[200%] transition-all duration-500 ${btnClicked ? 'translate-x-[50%]' : 'translate-x-[0%]'}`}>
                         <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[0%]`}>
-                            <h1 className="text-xl font-semibold tracking-tight md:text-2xl">Welcome Back!</h1>
-                            <p className="md:text-sm text-xs md:my-5 my-1 mx-[25px]">Log in with email and password to start your travel adventure!</p>
-                            <button onClick={toggleButton} className="text-white md:text-[12px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-3 border hover:bg-white hover:text-primaryred">Log In</button>
+                            <h1 className="text-xl font-medium md:text-2xl">Welcome Back!</h1>
+                            <p className="md:text-sm text-[13px] md:my-5 my-1 mx-[25px]">Log in with email and password to start your travel adventure!</p>
+                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium uppercase mt-3 border hover:bg-white hover:text-primaryred">Log In</button>
                         </div>
                         <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[100%]`}>
-                            <h1 className="text-xl font-semibold tracking-tight md:text-2xl">New here?</h1>
-                            <p className="md:text-sm text-xs md:my-5 my-1 md:mx-[80px] mx-[25px]">Register now and connect with fellow travelers to explore new horizons!</p>
-                            <button onClick={toggleButton} className="text-white md:text-[12px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-semibold tracking-tight uppercase mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
+                            <h1 className="text-xl font-medium md:text-2xl">New here?</h1>
+                            <p className="md:text-sm text-[13px] md:my-5 my-1 md:mx-[80px] mx-[25px]">Register now and connect with fellow travelers to explore new horizons!</p>
+                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium uppercase mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
                         </div>
                     </div>
                 </div>
