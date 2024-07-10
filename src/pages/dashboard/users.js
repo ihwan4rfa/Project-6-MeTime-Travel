@@ -11,9 +11,7 @@ const Users = () => {
 
     const [users, setUsers] = useState([]);
     const { userLog } = useAuth();
-    const [filterUsers, setFilterUsers] = useState([]);
     const [search, setSearch] = useState("");
-    const [user, setUser] = useState({});
     const [displayedUser, setDisplayedUser] = useState([]);
     const [currentUserBatchIndex, setCurrentUserBatchIndex] = useState(0);
     const containerRef = useRef(null);
@@ -43,9 +41,9 @@ const Users = () => {
         return () => container.removeEventListener("scroll", handleScroll);
     }, [currentUserBatchIndex, users]);
 
-    // Load user data on scroll 
+    // Load users on scroll 
     const loadMoreData = () => {
-        if (currentUserBatchIndex < users.length) {
+        if (currentUserBatchIndex < users.length) { // users changed every search changed and role updated
             setDisplayedUser((prevDisplayedUser) => [
                 ...prevDisplayedUser,
                 ...users.slice(currentUserBatchIndex, currentUserBatchIndex + displayedUserPerBatch)
@@ -54,26 +52,46 @@ const Users = () => {
         }
     };
 
+    // Event every search changed
     useEffect(() => {
-        setFilterUsers(
-            users.filter((user) =>
+        userLog("all-user", (data) => { // must be refetch every load new data
+            const filtered = data.filter((user) =>
                 user.name.toLowerCase().includes(search.toLowerCase())
             )
-        );
-    }, [users, search]);
+            setUsers(filtered); // update users every search changed
 
+            setDisplayedUser(filtered.slice(0, displayedUserPerBatch));
+            setCurrentUserBatchIndex(displayedUserPerBatch);
+        });
+    }, [search]);
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    }
+
+    // Handle update role
     const handleUpdateRole = async (user, role) => {
         const roleInputAPI = {
             role: role
         }
         const res = await update(`update-user-role/${user.id}`, roleInputAPI);
 
+        // Event every role updated
         if (res.status === 200) {
-            userLog("all-user", (data) => {
-                setUsers(data);
-                setDisplayedUser(data.slice(0, displayedUserPerBatch));
-                setCurrentUserBatchIndex(displayedUserPerBatch);
-            }, []);
+            userLog("all-user", (data) => { // must be refetch every load new data
+                const filtered = data.filter((user) =>
+                    user.name.toLowerCase().includes(search.toLowerCase())
+                )
+                setUsers(filtered); // update users every updated role
+
+                if (search === "") {
+                    setDisplayedUser(data.slice(0, displayedUserPerBatch));
+                    setCurrentUserBatchIndex(displayedUserPerBatch);
+                } else {
+                    setDisplayedUser(filtered.slice(0, displayedUserPerBatch));
+                    setCurrentUserBatchIndex(displayedUserPerBatch);
+                }
+            });
             toast.success(<span>Updated <b>{user.name}</b> to <b className={`${role === "admin" ? 'text-primaryblue' : 'text-primaryred'}`}>{role}</b></span>);
         } else {
             toast.error(`Failed to update ${user.name}`);
@@ -92,7 +110,16 @@ const Users = () => {
             <Sidebar />
             <div className='w-5/6 px-10 pt-24'>
                 <div className='flex flex-col w-full h-full'>
-                    <h1 className='h-12 text-2xl font-semibold'>Users</h1>
+                    <div className='flex justify-between h-14'>
+                        <h1 className='text-2xl font-semibold'>Users</h1>
+                        <div className='flex items-center text-[13px] my-2'>
+                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{users.length}</b> users found</h1>
+                            <div className='flex py-2 bg-white rounded-lg text-primaryblack'>
+                                <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <input onChange={handleSearch} type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
+                            </div>
+                        </div>
+                    </div>
                     <div className='h-[2px] bg-opacity-50 rounded-full bg-slate-300'></div>
                     <div ref={containerRef} className='flex flex-col flex-1 w-full gap-2 overflow-y-scroll no-scrollbar'>
                         {displayedUser.map((user, index) => (
@@ -143,7 +170,7 @@ const Users = () => {
                         ))}
                         <div className="text-[11px] text-left">
                             <Toaster
-                                position="bottom-right"
+                                position="top-center"
                                 toastOptions={{
                                     duration: 3000,
                                     success: {
