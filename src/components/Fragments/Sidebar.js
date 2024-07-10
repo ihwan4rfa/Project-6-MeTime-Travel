@@ -32,7 +32,7 @@ const Sidebar = () => {
                         <h1><i class='fa-solid fa-globe text-primaryred'></i></h1>
                     </div>
                 </button>
-                <div className='h-[2px] mx-4 bg-secondaryyellow rounded-full'></div>
+                <div className='h-[2px] mx-4 my-2 bg-secondaryyellow rounded-full'></div>
                 {keys.map((key, index) => (
                     <button key={index} onClick={() => router.push(linkList[key])} className={`flex items-center justify-between px-4 py-2 mx-4 rounded-lg cursor-pointer hover:bg-slate-200 ${currentPath === linkList[key] ? 'bg-slate-200' : ''}`}>
                         <h1>{key}</h1>

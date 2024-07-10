@@ -9,7 +9,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
             <>
                 <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showProfile === true ? '' : 'hidden'}`}></div>
                 <div className={`${showProfile === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
-                    <div className='bg-white h-[220px] w-[450px] rounded-lg text-[13px] flex justify-center relative text-primaryblack font-medium'>
+                    <div className='bg-white shadow-lg h-[220px] w-[450px] rounded-lg text-[13px] flex justify-center relative text-primaryblack font-medium'>
                         <div className='absolute flex justify-end w-full p-2'>
                             <button onClick={handleShowProfile} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                         </div>
