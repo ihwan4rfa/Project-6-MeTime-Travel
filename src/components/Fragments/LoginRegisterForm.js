@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
-import useUpload from "../Hooks/useUpload";
-import Dropdown from "../UI/DropDown";
+import useUpload from "../../Hooks/useUpload";
+import Dropdown from "../Elements/DropDown";
 import toast, { Toaster } from "react-hot-toast";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../../Hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userLoggedSlice";
 import { useRouter } from "next/router";

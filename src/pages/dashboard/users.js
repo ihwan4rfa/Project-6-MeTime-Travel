@@ -2,9 +2,9 @@ import Navbar from '@/components/Fragments/Navbar'
 import Sidebar from '@/components/Fragments/Sidebar'
 import React from 'react'
 import { useEffect, useState, useRef } from 'react'
-import useAuth from '@/components/Hooks/useAuth'
+import useAuth from '@/Hooks/useAuth'
 import Image from 'next/image'
-import useUpdate from '@/components/Hooks/useUpdate'
+import useUpdate from '@/Hooks/useUpdate'
 import toast, { Toaster } from "react-hot-toast";
 
 const Users = () => {
@@ -135,14 +135,8 @@ const Users = () => {
                                     <div className='flex flex-col gap-1 ml-3'>
                                         <h1 className='text-[13px] font-semibold'>{user.name}</h1>
                                         <div className='flex text-[11px] gap-3 text-primarygray'>
-                                            <div className='flex'>
-                                                <h1><i class='fa-regular fa-envelope'></i></h1>
-                                                <h1 className='ml-1'>{user.email}</h1>
-                                            </div>
-                                            <div className='flex'>
-                                                <h1><i class="fa-brands fa-whatsapp"></i></h1>
-                                                <h1 className='ml-1'>{user.phoneNumber}</h1>
-                                            </div>
+                                            <h1 className='flex items-center'><i class='mr-1 mt-[2px] fa-regular fa-envelope'></i>{user.email}</h1>
+                                            <h1 className='flex items-center'><i class='mr-1 mt-[2px] fa-brands fa-whatsapp'></i>{user.phoneNumber}</h1>
                                         </div>
                                     </div>
                                     <div className='relative flex justify-end w-full mr-4 text-[11px]'>

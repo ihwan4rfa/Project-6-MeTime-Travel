@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '@/components/Fragments/Navbar'
 import LoginRegisterForm from '@/components/Fragments/LoginRegisterForm'
-import useAuth from '@/components/Hooks/useAuth';
+import useAuth from '@/Hooks/useAuth';
 
 const index = () => {
   const { auth } = useAuth();
