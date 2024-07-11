@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../Hooks/useAuth';
 import { setUser, clearUser } from '@/redux/slice/userLoggedSlice';
 import ModalProfile from '../Elements/ModalProfile';
+import { setShowModal } from '@/redux/slice/showModalSlice';
 
 const Navbar = () => {
     const router = useRouter();
@@ -44,6 +45,7 @@ const Navbar = () => {
 
     const handleShowProfile = () => {
         setShowProfile(!showProfile);
+        dispatch(setShowModal(!showProfile));
         showProfile === true ? setDropDownHidden(true) : setDropDownHidden(!dropDownHidden);
     }
 

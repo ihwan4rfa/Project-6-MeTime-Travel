@@ -6,6 +6,7 @@ import useAuth from '@/Hooks/useAuth'
 import Image from 'next/image'
 import useUpdate from '@/Hooks/useUpdate'
 import toast, { Toaster } from "react-hot-toast";
+import { useSelector } from 'react-redux'
 
 const Users = () => {
 
@@ -18,6 +19,7 @@ const Users = () => {
     const displayedUserPerBatch = 15;
     const [activeIndex, setActiveIndex] = useState(null);
     const { update } = useUpdate();
+    const showModal = useSelector((state) => state.showModal.modal);
 
     // Display first 15 users from API in initial load
     useEffect(() => {
@@ -162,7 +164,7 @@ const Users = () => {
                                 </div>
                             </div>
                         ))}
-                        <div className="text-[11px] text-left">
+                        <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                             <Toaster
                                 position="top-center"
                                 toastOptions={{

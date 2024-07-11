@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "@reduxjs/toolkit";
 import userLoggedReducer from "./slice/userLoggedSlice";
+import showModalReducer from "./slice/showModalSlice";
 
 const rootReducer = combineReducers({
     userLogged: userLoggedReducer,
+    showModal: showModalReducer
 });
 
 const store = configureStore({

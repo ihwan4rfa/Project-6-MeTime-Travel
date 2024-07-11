@@ -139,10 +139,8 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
     const getUserLogged = () => {
         const token = localStorage.getItem("token");
-        if (token) {
-            userLog("user", (res) => dispatch(setUser(res)));
-        }
-    }
+        token && userLog("user", (res) => dispatch(setUser(res)));
+    };
 
     return (
         <div className="flex items-center justify-center w-full h-screen bg-slate-100 font-poppins">
@@ -181,7 +179,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         </div>
                         <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium uppercase">Register</button>
                     </form>
-                    <div className={`text-[11px] text-left ${loginClicked ? 'hidden' : ''}`}>
+                    <div className={`text-[11px] text-left ${loginClicked ? 'invisible' : ''}`}>
                         <Toaster
                             position="top-right"
                             toastOptions={{
