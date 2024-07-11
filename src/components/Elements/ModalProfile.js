@@ -24,7 +24,10 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
     const handleUpload = async (e) => {
         e.preventDefault();
         const file = e.target.files[0];
-        if (!file.type.startsWith("image/")) {
+
+        if (!file) {
+            return;
+        } else if (!file.type.startsWith("image/")) {
             setProfilePictureUrl(null);
             setFileName(null);
             toast.error("The file must be an image in \n JPEG, PNG, GIF, BMP, or TIFF format.");
@@ -74,12 +77,12 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
             <>
                 <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showProfile === true ? '' : 'hidden'}`}></div>
                 <div className={`${showProfile === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
-                    <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack font-medium ${editProfile === true ? 'h-fit w-[600px]' : 'h-fit w-fit'}`}>
+                    <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack ${editProfile === true ? 'h-fit w-[600px]' : 'h-fit w-fit'}`}>
                         <div className='absolute flex justify-end w-full p-2'>
                             <button onClick={editProfile === true ? handleEditProfile : handleShowProfile} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                         </div>
                         <div className={`flex flex-col items-center justify-center w-full h-full ${editProfile === true ? "hidden" : ''}`}>
-                            <h1 className='z-10 p-5'>My Profile</h1>
+                            <h1 className='z-10 p-5 font-medium'>My Profile</h1>
                             <div className='flex items-center justify-center w-full h-full px-12'>
                                 <div className='w-24 h-24 overflow-hidden rounded-lg'>
                                     <img src={user.profilePictureUrl} className='object-cover w-full h-full'></img>
@@ -100,7 +103,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                             </div>
                         </div>
                         <form onSubmit={handleUpdateUser} className={`flex flex-col items-center justify-center w-full h-full ${editProfile === true ? '' : 'hidden'}`}>
-                            <h1 className='z-10 p-5'>Edit Profile</h1>
+                            <h1 className='z-10 p-5 font-medium'>Edit Profile</h1>
                             <div className='flex items-start justify-center w-full gap-4 px-12 h-fit'>
                                 <div className='w-24 h-24 overflow-hidden rounded-lg'>
                                     <img src={profilePictureUrl === null ? user.profilePictureUrl : profilePictureUrl} className='object-cover w-full h-full'></img>

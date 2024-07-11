@@ -19,7 +19,10 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
     const handleUpload = async (e) => {
         e.preventDefault();
         const file = e.target.files[0];
-        if (!file.type.startsWith("image/")) {
+
+        if (!file) {
+            return;
+        } else if (!file.type.startsWith("image/")) {
             setProfilePictureUrl(null);
             setFileName(null);
             toast.error("The file must be an image in \n JPEG, PNG, GIF, BMP, or TIFF format.");
