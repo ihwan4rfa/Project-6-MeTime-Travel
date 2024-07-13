@@ -34,23 +34,25 @@ const Promos = () => {
                         </div>
                     </div>
                     <div className='h-[2px] bg-opacity-50 rounded-full bg-slate-300'></div>
-                    <div className='flex flex-1 flex-wrap w-full gap-[2%] overflow-y-scroll no-scrollbar pt-3'>
-                        {promos.map((promo, index) => (
-                            <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-1'>
-                                <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
-                                <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
-                                    <h1 className='font-semibold'>{promo.title}</h1>
-                                    <div className='flex flex-col text-[11px] text-primarygray gap-1'>
-                                        <p><i class="fa-regular fa-calendar-plus mr-2 text-primaryyellow"></i>{moment(promo.createdAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
-                                        <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(promo.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
-                                    </div>
-                                    <div className='absolute bottom-0 right-0 flex m-2'>
-                                        <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                    <div className='flex flex-1 overflow-y-scroll no-scrollbar'>
+                        <div className='flex flex-wrap h-fit w-full gap-[2%] pt-2'>
+                            {promos.map((promo, index) => (
+                                <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
+                                    <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                    <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
+                                        <h1 className='font-semibold'>{promo.title}</h1>
+                                        <div className='flex flex-col text-[11px] text-primarygray gap-1'>
+                                            <p><i class="fa-regular fa-calendar-plus mr-2 text-primaryyellow"></i>{moment(promo.createdAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
+                                            <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(promo.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
+                                        </div>
+                                        <div className='absolute bottom-0 right-0 flex m-2'>
+                                            <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
