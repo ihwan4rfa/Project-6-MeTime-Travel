@@ -3,15 +3,21 @@ import Navbar from '@/components/Fragments/Navbar'
 import Sidebar from '@/components/Fragments/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
+import ModalEditBanner from '@/components/Elements/ModalEditBanner'
 
 const Banners = () => {
 
     const [banners, setBanners] = useState([]);
     const { getData } = useGetData();
+    const [showEditBanner, setShowEditBanner] = useState(false);
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
     }, []);
+
+    const handleShowEditBanner = () => {
+        setShowEditBanner(!showEditBanner);
+    }
 
     return (
         <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
@@ -46,7 +52,7 @@ const Banners = () => {
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(banner.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
-                                            <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button onClick={handleShowEditBanner} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
                                             <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
@@ -56,6 +62,7 @@ const Banners = () => {
                     </div>
                 </div>
             </div>
+            <ModalEditBanner showEditBanner={showEditBanner} handleShowEditBanner={handleShowEditBanner} />
         </div>
     )
 }
