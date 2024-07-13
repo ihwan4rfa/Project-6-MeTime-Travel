@@ -147,7 +147,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
     return (
         <div className="flex items-center justify-center w-full h-screen bg-slate-100 font-poppins">
-            <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-xl relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
+            <div className={`flex flex-col text-center bg-white rounded-[30px] translate-y-[4%] shadow-lg relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-2/3 w-full ${registerClicked ? 'z-20 md:translate-x-[50%] -translate-x-[0%]' : 'z-10 md:translate-x-[0%] translate-x-[100%]'}`}>
                     <form onSubmit={handleSubmitRegister} className="flex flex-col items-center justify-center h-full px-10 bg-white">
                         <h1 className="text-2xl font-semibold text-primaryblack">Create Account</h1>
@@ -180,7 +180,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                             </div>
                             <p className={`absolute text-[11px] w-full px-4 text-end ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
                         </div>
-                        <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium uppercase">Register</button>
+                        <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Register</button>
                     </form>
                     <div className={`text-[11px] text-left ${loginClicked ? 'invisible' : ''}`}>
                         <Toaster
@@ -213,14 +213,14 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                 </div>
                 <div className={`bg-red-500 absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
                     <form onSubmit={handleSubmitLogin} className="flex flex-col items-center justify-center h-full px-10 bg-white">
-                        <h1 className="text-2xl font-semibold text-primaryblack">Log In</h1>
+                        <h1 className="text-2xl font-semibold text-primaryblack">Login</h1>
                         <span className="mb-2 text-[13px] text-primaryblack">Enter your email and password</span>
                         <input name="emailLogin" id="emailLogin" type="email" placeholder="Email" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                         <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
                             <input name="passwordLogin" id="passwordLogin" type={seePassword ? 'text' : 'password'} placeholder="Password" className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                             <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                         </div>
-                        <button className="bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium uppercase mt-4">Log In</button>
+                        <button className="bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium mt-4">Login</button>
                     </form>
                     <div className="text-[11px] text-left">
                         <Toaster
@@ -256,12 +256,12 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[0%]`}>
                             <h1 className="text-xl font-medium md:text-2xl">Welcome Back!</h1>
                             <p className="md:text-sm text-[13px] md:my-5 my-1 mx-[25px]">Log in with email and password to start your travel adventure!</p>
-                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium uppercase mt-3 border hover:bg-white hover:text-primaryred">Log In</button>
+                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryred">Login</button>
                         </div>
                         <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[100%]`}>
                             <h1 className="text-xl font-medium md:text-2xl">New here?</h1>
                             <p className="md:text-sm text-[13px] md:my-5 my-1 md:mx-[80px] mx-[25px]">Register now and connect with fellow travelers to explore new horizons!</p>
-                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium uppercase mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
+                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
                         </div>
                     </div>
                 </div>

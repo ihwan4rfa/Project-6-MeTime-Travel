@@ -110,9 +110,9 @@ const Users = () => {
         <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
             <Navbar />
             <Sidebar />
-            <div className='w-5/6 px-10 pt-24'>
+            <div className='w-5/6 px-10 pt-20'>
                 <div className='flex flex-col w-full h-full'>
-                    <div className='flex justify-between h-14'>
+                    <div className='flex items-center justify-between h-14'>
                         <h1 className='text-2xl font-semibold'>Users</h1>
                         <div className='flex items-center text-[13px] my-2'>
                             <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{users.length}</b> users found</h1>
@@ -128,7 +128,7 @@ const Users = () => {
                             <div key={index} className='flex items-center w-full bg-white h-fit rounded-xl'>
                                 <div className='my-2 ml-2 overflow-hidden rounded-lg w-14 h-14'>
                                     {user.profilePictureUrl && user.profilePictureUrl.startsWith("https://")
-                                        && (user.profilePictureUrl.includes((".jpg") && (".png") && ("images")) || user.profilePictureUrl.includes(".png") || user.profilePictureUrl.includes("images")) ?
+                                        && (user.profilePictureUrl.includes(".jpg") || user.profilePictureUrl.includes(".png") || user.profilePictureUrl.includes("images")) ?
                                         <img src={user.profilePictureUrl} className='object-cover w-full h-full' alt='Profile' />
                                         : <Image src="/images/unknown-profile-user.jpg" className='object-cover w-full h-full' width={100} height={100} alt='Unknown Profile' />
                                     }
@@ -146,7 +146,7 @@ const Users = () => {
                                             <h1>{user.role}</h1>
                                             <h1 className='ml-2'><i class="fa-solid fa-pen-to-square"></i></h1>
                                         </button>
-                                        <div className={`absolute right-0 w-36 z-10 mt-6 bg-white shadow-lg text-primaryblack rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
+                                        <div className={`absolute right-0 w-36 z-10 mt-6 bg-white shadow-md text-primaryblack rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
                                             <div className="px-2">
                                                 <button
                                                     onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 ${user.role === 'admin' ? 'bg-slate-200' : ''}`}>

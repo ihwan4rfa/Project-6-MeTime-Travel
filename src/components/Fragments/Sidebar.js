@@ -25,14 +25,14 @@ const Sidebar = () => {
 
     return (
         <div className='w-1/6 h-screen bg-white text-primaryblack'>
-            <div className='flex flex-col gap-3 mt-24 text-[13px] font-medium'>
+            <div className='flex flex-col gap-3 mt-[89px] text-[13px] font-medium'>
                 <button onClick={() => router.push("/")} className='flex items-center justify-between px-4 py-2 mx-4 bg-white rounded-lg cursor-pointer hover:bg-slate-200'>
                     <h1>Preview</h1>
                     <div className='w-5'>
                         <h1><i class='fa-solid fa-globe text-primaryred'></i></h1>
                     </div>
                 </button>
-                <div className='h-[2px] mx-4 my-2 bg-secondaryyellow rounded-full'></div>
+                <div className='h-[2px] mx-4 bg-secondaryyellow rounded-full'></div>
                 {keys.map((key, index) => (
                     <button key={index} onClick={() => router.push(linkList[key])} className={`flex items-center justify-between px-4 py-2 mx-4 rounded-lg cursor-pointer hover:bg-slate-200 ${currentPath === linkList[key] ? 'bg-slate-200' : ''}`}>
                         <h1>{key}</h1>

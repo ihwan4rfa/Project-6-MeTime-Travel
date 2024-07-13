@@ -72,8 +72,8 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'px-36'} z-40 fixed flex items-center justify-between w-full h-16 mb-12 bg-white shadow-lg text-primaryblack font-poppins`}>
-                <button onClick={() => currentPath.startsWith("/dashboard") ? router.push("/dashboard/users") : router.push(linkList.Home)}><Image src="/images/Logo.png" width={130} height={80} /></button>
+            <nav className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'px-36'} z-40 fixed flex items-center justify-between w-full h-16 mb-12 bg-white shadow-md text-primaryblack font-poppins`}>
+                <button onClick={() => currentPath.startsWith("/dashboard") ? router.push("/dashboard/users") : router.push(linkList.Home)}><Image src="/images/Logo.png" width={120} height={80} /></button>
                 <div className="flex items-center gap-16 text-[13px] font-medium">
                     {keys.map((key, index) => (
                         <div key={index}>
@@ -99,7 +99,7 @@ const Navbar = () => {
                                     <p className='text-[11px] leading-3 text-primarygray'>{user.role}</p>
                                 </div>
                             </button>
-                            <div className={`absolute right-0 w-36 z-10 mt-14 bg-white shadow-lg text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
+                            <div className={`absolute right-0 w-36 z-10 mt-14 bg-white shadow-md text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                                 <div className="px-2">
                                     <button
                                         onClick={handleShowProfile} className='flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200'>

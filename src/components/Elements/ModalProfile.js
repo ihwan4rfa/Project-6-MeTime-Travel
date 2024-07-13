@@ -19,6 +19,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
 
     const handleEditProfile = () => {
         setEditProfile(!editProfile);
+        setProfilePictureUrl(null);
     }
 
     const handleUpload = async (e) => {
@@ -99,7 +100,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                 </div>
                             </div>
                             <div className='flex items-center justify-end w-full p-5'>
-                                <button onClick={handleEditProfile} className='text-primarygray hover:text-primaryblack'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
+                                <button onClick={handleEditProfile} className='text-slate-400 hover:text-primaryblack'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
                             </div>
                         </div>
                         <form onSubmit={handleUpdateUser} className={`flex flex-col items-center justify-center w-full h-full ${editProfile === true ? '' : 'hidden'}`}>
@@ -121,7 +122,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                 <input type="email" name="email" id="email" placeholder="Email" defaultValue={user.email} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
                                 <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" defaultValue={user.phoneNumber} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
                             </div>
-                            <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 mb-8 px-8 rounded-lg font-medium uppercase">Save</button>
+                            <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 mb-8 px-8 rounded-lg font-medium">Save</button>
                         </form>
                         <div className={`text-[11px] text-left`}>
                             <Toaster
