@@ -4,19 +4,34 @@ import Sidebar from '@/components/Fragments/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import ModalEditBanner from '@/components/Elements/ModalEditBanner'
+import { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux'
 
 const Banners = () => {
 
     const [banners, setBanners] = useState([]);
     const { getData } = useGetData();
     const [showEditBanner, setShowEditBanner] = useState(false);
+    const [selectedBanner, setSelectedBanner] = useState([]);
+    const showModal = useSelector((state) => state.showModal.modal);
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
-    }, []);
+    }, [showEditBanner]);
 
-    const handleShowEditBanner = () => {
-        setShowEditBanner(!showEditBanner);
+    const handleShowEditBanner = async (bannerId) => {
+        const getBanner = async () => {
+            await getData(`banner/${bannerId}`, (res) => {
+                setSelectedBanner(res.data.data);
+            })
+        }
+
+        try {
+            await getBanner();
+            setShowEditBanner(!showEditBanner);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -52,7 +67,7 @@ const Banners = () => {
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(banner.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
-                                            <button onClick={handleShowEditBanner} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button onClick={() => handleShowEditBanner(banner.id)} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
                                             <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
@@ -62,7 +77,35 @@ const Banners = () => {
                     </div>
                 </div>
             </div>
-            <ModalEditBanner showEditBanner={showEditBanner} handleShowEditBanner={handleShowEditBanner} />
+            <ModalEditBanner showEditBanner={showEditBanner} handleShowEditBanner={handleShowEditBanner} selectedBanner={selectedBanner} />
+            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        success: {
+                            style: {
+                                background: 'white',
+                                color: 'black'
+                            },
+                            iconTheme: {
+                                primary: '#10b981',
+                                secondary: 'white'
+                            }
+                        },
+                        error: {
+                            style: {
+                                background: '#DF6951',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: 'white',
+                                secondary: '#DF6951'
+                            }
+                        }
+                    }}
+                />
+            </div>
         </div>
     )
 }

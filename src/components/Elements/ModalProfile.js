@@ -124,7 +124,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                             </div>
                             <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 mb-8 px-8 rounded-lg font-medium">Save</button>
                         </form>
-                        <div className={`text-[11px] text-left`}>
+                        <div className={`${showProfile === true ? '' : 'invisible'} text-[11px] text-left`}>
                             <Toaster
                                 position="bottom-center"
                                 toastOptions={{
