@@ -4,20 +4,21 @@ import Sidebar from '@/components/Fragments/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import ModalEditBanner from '@/components/Elements/ModalEditBanner'
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
+import ModalConfirmDelete from '@/components/Elements/ModalConfirmDelete'
 
 const Banners = () => {
-
     const [banners, setBanners] = useState([]);
     const { getData } = useGetData();
     const [showEditBanner, setShowEditBanner] = useState(false);
     const [selectedBanner, setSelectedBanner] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
+    const [showDeleteBanner, setShowDeleteBanner] = useState(false);
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
-    }, [showEditBanner]);
+    }, [showEditBanner, showDeleteBanner]);
 
     const handleShowEditBanner = async (bannerId) => {
         const getBanner = async () => {
@@ -29,6 +30,21 @@ const Banners = () => {
         try {
             await getBanner();
             setShowEditBanner(!showEditBanner);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleShowModalConfirmDelete = async (bannerId) => {
+        const getBanner = async () => {
+            await getData(`banner/${bannerId}`, (res) => {
+                setSelectedBanner(res.data.data);
+            })
+        }
+
+        try {
+            await getBanner();
+            setShowDeleteBanner(!showDeleteBanner);
         } catch (error) {
             console.log(error);
         }
@@ -68,7 +84,7 @@ const Banners = () => {
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
                                             <button onClick={() => handleShowEditBanner(banner.id)} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleShowModalConfirmDelete(banner.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +93,8 @@ const Banners = () => {
                     </div>
                 </div>
             </div>
-            <ModalEditBanner showEditBanner={showEditBanner} handleShowEditBanner={handleShowEditBanner} selectedBanner={selectedBanner} />
+            <ModalConfirmDelete showDeleteBanner={showDeleteBanner} setShowDeleteBanner={setShowDeleteBanner} selectedBanner={selectedBanner} />
+            <ModalEditBanner showEditBanner={showEditBanner} setShowEditBanner={setShowEditBanner} selectedBanner={selectedBanner} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"

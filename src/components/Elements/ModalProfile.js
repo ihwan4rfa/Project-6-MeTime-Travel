@@ -83,7 +83,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                             <button onClick={editProfile === true ? handleEditProfile : handleShowProfile} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                         </div>
                         <div className={`flex flex-col items-center justify-center w-full h-full ${editProfile === true ? "hidden" : ''}`}>
-                            <h1 className='z-10 p-5 font-medium'>My Profile</h1>
+                            <h1 className='z-10 pt-5 pb-4 font-medium'>My Profile</h1>
                             <div className='flex items-center justify-center w-full h-full px-12'>
                                 <div className='w-24 h-24 overflow-hidden rounded-lg'>
                                     <img src={user.profilePictureUrl} className='object-cover w-full h-full'></img>
@@ -103,26 +103,26 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                 <button onClick={handleEditProfile} className='text-slate-400 hover:text-primaryblack'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
                             </div>
                         </div>
-                        <form onSubmit={handleUpdateUser} className={`flex flex-col items-center justify-center w-full h-full ${editProfile === true ? '' : 'hidden'}`}>
-                            <h1 className='z-10 p-5 font-medium'>Edit Profile</h1>
-                            <div className='flex items-start justify-center w-full gap-4 px-12 h-fit'>
+                        <form onSubmit={handleUpdateUser} className={`flex flex-col items-center gap-4 p-5 justify-center w-full h-full ${editProfile === true ? '' : 'hidden'}`}>
+                            <h1 className='z-10 font-medium'>Edit Profile</h1>
+                            <div className='flex items-start justify-center w-full gap-4 h-fit'>
                                 <div className='w-24 h-24 overflow-hidden rounded-lg'>
                                     <img src={profilePictureUrl === null ? user.profilePictureUrl : profilePictureUrl} className='object-cover w-full h-full'></img>
                                 </div>
-                                <div className='flex flex-col flex-1 w-full gap-2'>
+                                <div className='flex flex-col flex-1 w-full gap-4'>
                                     <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
                                         <label htmlFor="profilePictureUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
                                         <span className={`px-4 overflow-hidden text-ellipsis ${profilePictureUrl ? 'text-primaryblack' : ''}`}>{profilePictureUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                     </div>
                                     <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="hidden" />
-                                    <input type="text" name="name" id="name" placeholder="Full Name" defaultValue={user.name} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                    <input type="text" name="name" id="name" placeholder="Full Name" defaultValue={user.name} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                                 </div>
                             </div>
-                            <div className='flex items-start justify-center w-full gap-4 px-12 h-fit'>
-                                <input type="email" name="email" id="email" placeholder="Email" defaultValue={user.email} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
-                                <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" defaultValue={user.phoneNumber} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack my-2 py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
+                            <div className='flex items-start justify-center w-full gap-4 h-fit'>
+                                <input type="email" name="email" id="email" placeholder="Email" defaultValue={user.email} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
+                                <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" defaultValue={user.phoneNumber} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
                             </div>
-                            <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 mb-8 px-8 rounded-lg font-medium">Save</button>
+                            <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium">Save</button>
                         </form>
                         <div className={`${showProfile === true ? '' : 'invisible'} text-[11px] text-left`}>
                             <Toaster

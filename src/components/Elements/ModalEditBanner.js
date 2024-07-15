@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
 
-const ModalEditBanner = ({ showEditBanner, handleShowEditBanner, selectedBanner }) => {
+const ModalEditBanner = ({ showEditBanner, setShowEditBanner, selectedBanner }) => {
 
     const [bannerImageUrl, setBannerImageUrl] = useState(null);
     const [fileName, setFileName] = useState(null);
     const { upload } = useUpload();
     const { update } = useUpdate();
+    const formRef = useRef(null);
 
     const handleUpload = async (e) => {
         e.preventDefault();
@@ -47,12 +48,18 @@ const ModalEditBanner = ({ showEditBanner, handleShowEditBanner, selectedBanner 
         const res = await update(`update-banner/${selectedBanner.id}`, bannerData);
         if (res.status === 200) {
             toast.success(res.data.message);
-            handleShowEditBanner();
+            setShowEditBanner(false);
             e.target.reset();
             setBannerImageUrl(null);
         } else {
             toast.error(res.response.data.message);
         }
+    }
+
+    const handleCloseEditBanner = () => {
+        setShowEditBanner(false);
+        formRef.current.reset();
+        setBannerImageUrl(null);
     }
 
     return (
@@ -61,11 +68,11 @@ const ModalEditBanner = ({ showEditBanner, handleShowEditBanner, selectedBanner 
             <div className={`${showEditBanner === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack h-fit w-[600px]`}>
                     <div className='absolute flex justify-end w-full p-2'>
-                        <button onClick={handleShowEditBanner} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseEditBanner} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
-                    <form onSubmit={handleUpdateBanner} className={`flex flex-col items-center justify-center w-full h-full`}>
-                        <h1 className='z-10 p-5 font-medium'>Edit Banner</h1>
-                        <div className='flex flex-col items-start justify-center w-full gap-4 px-12 h-fit'>
+                    <form ref={formRef} onSubmit={handleUpdateBanner} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
+                        <h1 className='z-10 pb-4 font-medium'>Edit Banner</h1>
+                        <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
                             {selectedBanner.imageUrl && (
                                 <div className='w-full h-48 overflow-hidden rounded-lg'>
                                     <img src={bannerImageUrl === null ? selectedBanner.imageUrl : bannerImageUrl} className='object-cover w-full h-full'></img>
@@ -76,9 +83,9 @@ const ModalEditBanner = ({ showEditBanner, handleShowEditBanner, selectedBanner 
                                 <span className={`px-4 overflow-hidden text-ellipsis ${bannerImageUrl ? 'text-primaryblack' : ''}`}>{bannerImageUrl === null ? 'No File Selected' : `${fileName}`}</span>
                             </div>
                             <input onChange={handleUpload} type="file" name="bannerImageUrl" id="bannerImageUrl" className="hidden" />
-                            <input defaultValue={selectedBanner.name} type="text" name="name" id="name" placeholder="Banner Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack mb-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                            <input defaultValue={selectedBanner.name} type="text" name="name" id="name" placeholder="Banner Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                         </div>
-                        <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 mb-8 px-8 rounded-lg font-medium">Save</button>
+                        <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Save</button>
                     </form>
                 </div>
             </div>
