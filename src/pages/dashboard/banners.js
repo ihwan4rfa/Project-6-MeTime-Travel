@@ -7,18 +7,24 @@ import ModalEditBanner from '@/components/Elements/ModalEditBanner'
 import { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 import ModalConfirmDelete from '@/components/Elements/ModalConfirmDelete'
+import ModalAddBanner from '@/components/Elements/ModalAddBanner'
 
 const Banners = () => {
     const [banners, setBanners] = useState([]);
     const { getData } = useGetData();
     const [showEditBanner, setShowEditBanner] = useState(false);
+    const [showAddBanner, setShowAddBanner] = useState(false);
     const [selectedBanner, setSelectedBanner] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
     const [showDeleteBanner, setShowDeleteBanner] = useState(false);
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
-    }, [showEditBanner, showDeleteBanner]);
+    }, [showEditBanner, showDeleteBanner, showAddBanner]);
+
+    const handleShowAddBanner = () => {
+        setShowAddBanner(!showAddBanner);
+    }
 
     const handleShowEditBanner = async (bannerId) => {
         const getBanner = async () => {
@@ -64,7 +70,7 @@ const Banners = () => {
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <button type="submit" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <button onClick={handleShowAddBanner} className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Banner
                             </button>
@@ -95,6 +101,7 @@ const Banners = () => {
             </div>
             <ModalConfirmDelete showDeleteBanner={showDeleteBanner} setShowDeleteBanner={setShowDeleteBanner} selectedBanner={selectedBanner} />
             <ModalEditBanner showEditBanner={showEditBanner} setShowEditBanner={setShowEditBanner} selectedBanner={selectedBanner} />
+            <ModalAddBanner showAddBanner={showAddBanner} setShowAddBanner={setShowAddBanner} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
