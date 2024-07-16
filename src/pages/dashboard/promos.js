@@ -3,15 +3,36 @@ import Navbar from '@/components/Fragments/Navbar'
 import Sidebar from '@/components/Fragments/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
+import { useSelector } from 'react-redux'
+import { Toaster } from 'react-hot-toast'
+import ModalConfirmDeletePromo from '@/components/Elements/ModalConfirmDeletePromo'
 
 const Promos = () => {
 
     const [promos, setPromos] = useState([]);
     const { getData } = useGetData();
+    const [showDeletePromo, setShowDeletePromo] = useState(false);
+    const [selectedPromo, setSelectedPromo] = useState([]);
+    const showModal = useSelector((state) => state.showModal.modal);
 
     useEffect(() => {
         getData("promos", (res) => setPromos(res.data.data));
-    }, []);
+    }, [showDeletePromo]);
+
+    const handleShowModalConfirmDelete = async (promoId) => {
+        const getPromo = async () => {
+            await getData(`promo/${promoId}`, (res) => {
+                setSelectedPromo(res.data.data);
+            })
+        }
+
+        try {
+            await getPromo();
+            setShowDeletePromo(!showDeletePromo);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
@@ -47,7 +68,7 @@ const Promos = () => {
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
                                             <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleShowModalConfirmDelete(promo.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -55,6 +76,35 @@ const Promos = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <ModalConfirmDeletePromo showDeletePromo={showDeletePromo} setShowDeletePromo={setShowDeletePromo} selectedPromo={selectedPromo} />
+            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        success: {
+                            style: {
+                                background: 'white',
+                                color: 'black'
+                            },
+                            iconTheme: {
+                                primary: '#10b981',
+                                secondary: 'white'
+                            }
+                        },
+                        error: {
+                            style: {
+                                background: '#DF6951',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: 'white',
+                                secondary: '#DF6951'
+                            }
+                        }
+                    }}
+                />
             </div>
         </div>
     )

@@ -6,7 +6,7 @@ import useGetData from '@/Hooks/useGetData'
 import ModalEditBanner from '@/components/Elements/ModalEditBanner'
 import { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
-import ModalConfirmDelete from '@/components/Elements/ModalConfirmDelete'
+import ModalConfirmDeleteBanner from '@/components/Elements/ModalConfirmDeleteBanner'
 import ModalAddBanner from '@/components/Elements/ModalAddBanner'
 
 const Banners = () => {
@@ -99,7 +99,7 @@ const Banners = () => {
                     </div>
                 </div>
             </div>
-            <ModalConfirmDelete showDeleteBanner={showDeleteBanner} setShowDeleteBanner={setShowDeleteBanner} selectedBanner={selectedBanner} />
+            <ModalConfirmDeleteBanner showDeleteBanner={showDeleteBanner} setShowDeleteBanner={setShowDeleteBanner} selectedBanner={selectedBanner} />
             <ModalEditBanner showEditBanner={showEditBanner} setShowEditBanner={setShowEditBanner} selectedBanner={selectedBanner} />
             <ModalAddBanner showAddBanner={showAddBanner} setShowAddBanner={setShowAddBanner} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
