@@ -3,15 +3,36 @@ import Navbar from '@/components/Fragments/Navbar'
 import Sidebar from '@/components/Fragments/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
+import { useSelector } from 'react-redux'
+import { Toaster } from 'react-hot-toast'
+import ModalConfirmDeleteCategory from '@/components/Elements/ModalConfirmDeleteCategory'
 
 const Categories = () => {
 
     const [categories, setCategories] = useState([]);
     const { getData } = useGetData();
+    const [showDeleteCategory, setShowDeleteCategory] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState([]);
+    const showModal = useSelector((state) => state.showModal.modal);
 
     useEffect(() => {
         getData("categories", (res) => setCategories(res.data.data));
-    }, []);
+    }, [showDeleteCategory]);
+
+    const handleShowModalConfirmDelete = async (categoryId) => {
+        const getCategory = async () => {
+            await getData(`category/${categoryId}`, (res) => {
+                setSelectedCategory(res.data.data);
+            })
+        }
+
+        try {
+            await getCategory();
+            setShowDeleteCategory(!showDeleteCategory);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
@@ -47,7 +68,7 @@ const Categories = () => {
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
                                             <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleShowModalConfirmDelete(category.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -55,6 +76,35 @@ const Categories = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <ModalConfirmDeleteCategory showDeleteCategory={showDeleteCategory} setShowDeleteCategory={setShowDeleteCategory} selectedCategory={selectedCategory} />
+            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        success: {
+                            style: {
+                                background: 'white',
+                                color: 'black'
+                            },
+                            iconTheme: {
+                                primary: '#10b981',
+                                secondary: 'white'
+                            }
+                        },
+                        error: {
+                            style: {
+                                background: '#DF6951',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: 'white',
+                                secondary: '#DF6951'
+                            }
+                        }
+                    }}
+                />
             </div>
         </div>
     )
