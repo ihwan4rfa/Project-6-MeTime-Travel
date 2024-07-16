@@ -3,15 +3,36 @@ import Navbar from '@/components/Fragments/Navbar'
 import Sidebar from '@/components/Fragments/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
+import { useSelector } from 'react-redux'
+import { Toaster } from 'react-hot-toast'
+import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDeleteDestination'
 
 const Destinations = () => {
 
     const [destinations, setDestinations] = useState([]);
     const { getData } = useGetData();
+    const [showDeleteDestination, setShowDeleteDestination] = useState(false);
+    const [selectedDestination, setSelectedDestination] = useState([]);
+    const showModal = useSelector((state) => state.showModal.modal);
 
     useEffect(() => {
         getData("activities", (res) => setDestinations(res.data.data));
-    }, []);
+    }, [showDeleteDestination]);
+
+    const handleShowModalConfirmDelete = async (destinationId) => {
+        const getCategory = async () => {
+            await getData(`activity/${destinationId}`, (res) => {
+                setSelectedDestination(res.data.data);
+            })
+        }
+
+        try {
+            await getCategory();
+            setShowDeleteDestination(!showDeleteDestination);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
@@ -40,14 +61,14 @@ const Destinations = () => {
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
                                     <img src={destination.imageUrls} className='object-cover w-full bg-slate-200 h-[65%]'></img>
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
-                                        <h1 className='font-semibold'>{destination.name}</h1>
+                                        <h1 className='font-semibold'>{destination.title}</h1>
                                         <div className='flex flex-col text-[11px] text-primarygray gap-1'>
                                             <p><i class="fa-regular fa-calendar-plus mr-2 text-primaryyellow"></i>{moment(destination.createdAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(destination.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
                                             <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleShowModalConfirmDelete(destination.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -55,6 +76,35 @@ const Destinations = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <ModalConfirmDeleteDestination showDeleteDestination={showDeleteDestination} setShowDeleteDestination={setShowDeleteDestination} selectedDestination={selectedDestination} />
+            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        success: {
+                            style: {
+                                background: 'white',
+                                color: 'black'
+                            },
+                            iconTheme: {
+                                primary: '#10b981',
+                                secondary: 'white'
+                            }
+                        },
+                        error: {
+                            style: {
+                                background: '#DF6951',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: 'white',
+                                secondary: '#DF6951'
+                            }
+                        }
+                    }}
+                />
             </div>
         </div>
     )
