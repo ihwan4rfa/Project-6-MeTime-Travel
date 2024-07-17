@@ -6,18 +6,35 @@ import useGetData from '@/Hooks/useGetData'
 import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeleteCategory from '@/components/Elements/ModalConfirmDeleteCategory'
+import ModalEditCategory from '@/components/Elements/ModalEditCategory'
 
 const Categories = () => {
 
     const [categories, setCategories] = useState([]);
     const { getData } = useGetData();
-    const [showDeleteCategory, setShowDeleteCategory] = useState(false);
+    const [showEditCategory, setShowEditCategory] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
+    const [showDeleteCategory, setShowDeleteCategory] = useState(false);
 
     useEffect(() => {
         getData("categories", (res) => setCategories(res.data.data));
-    }, [showDeleteCategory]);
+    }, [showDeleteCategory, showEditCategory]);
+
+    const handleEditCategory = async (categoryId) => {
+        const getCategory = async () => {
+            await getData(`category/${categoryId}`, (res) => {
+                setSelectedCategory(res.data.data);
+            })
+        }
+
+        try {
+            await getCategory();
+            setShowEditCategory(!showEditCategory);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleShowModalConfirmDelete = async (categoryId) => {
         const getCategory = async () => {
@@ -67,7 +84,7 @@ const Categories = () => {
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(category.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
-                                            <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button onClick={() => handleEditCategory(category.id)} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
                                             <button onClick={() => handleShowModalConfirmDelete(category.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
@@ -77,6 +94,7 @@ const Categories = () => {
                     </div>
                 </div>
             </div>
+            <ModalEditCategory showEditCategory={showEditCategory} setShowEditCategory={setShowEditCategory} selectedCategory={selectedCategory} />
             <ModalConfirmDeleteCategory showDeleteCategory={showDeleteCategory} setShowDeleteCategory={setShowDeleteCategory} selectedCategory={selectedCategory} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
