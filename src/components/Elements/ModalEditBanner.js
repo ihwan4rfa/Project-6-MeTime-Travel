@@ -79,7 +79,7 @@ const ModalEditBanner = ({ showEditBanner, setShowEditBanner, selectedBanner }) 
                                 </div>
                             )}
                             <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
-                                <label htmlFor="bannerImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Banner</label>
+                                <label htmlFor="bannerImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose File</label>
                                 <span className={`px-4 overflow-hidden text-ellipsis ${bannerImageUrl ? 'text-primaryblack' : ''}`}>{bannerImageUrl === null ? 'No File Selected' : `${fileName}`}</span>
                             </div>
                             <input onChange={handleUpload} type="file" name="bannerImageUrl" id="bannerImageUrl" className="hidden" />

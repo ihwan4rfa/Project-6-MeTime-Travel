@@ -22,12 +22,12 @@ const ModalConfirmDeletePromo = ({ showDeletePromo, setShowDeletePromo, selected
                 <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack h-fit w-fit`}>
                     <div className={`flex flex-col items-center justify-center w-full h-full p-5 gap-4`}>
                         <div className='flex flex-col items-center w-full'>
-                            <h1 className='z-10 font-medium'>Delete Promo</h1>
-                            <h1 className='z-10 font-medium text-[11px] text-primaryred text-center rounded-md w-full p-1'>Delete "{selectedPromo.title}" promo?</h1>
+                            <i class="text-3xl text-primaryred fa-solid fa-triangle-exclamation"></i>
+                            <h1 className='z-10 w-full p-1 font-medium text-center rounded-md'>Delete <b>{selectedPromo.title}</b> promo?</h1>
                         </div>
                         <div className='flex items-center justify-center gap-4'>
                             <button onClick={() => setShowDeletePromo(false)} type="submit" className="hover:bg-slate-200 text-primaryblack text-[13px] py-[10px] px-8 rounded-lg font-medium">Keep it</button>
-                            <button onClick={() => handleDeletePromo(selectedPromo.id)} type="submit" className=" bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium">Delete Promo</button>
+                            <button onClick={() => handleDeletePromo(selectedPromo.id)} type="submit" className=" bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium">Yes, Delete</button>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import axios from "axios"
 
 const useUpdate = () => {
     const update = async (url, body) => {
+
         try {
             const res = await axios.post(
                 `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/${url}`,

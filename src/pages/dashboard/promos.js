@@ -6,18 +6,35 @@ import useGetData from '@/Hooks/useGetData'
 import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeletePromo from '@/components/Elements/ModalConfirmDeletePromo'
+import ModalEditPromo from '@/components/Elements/ModalEditPromo'
 
 const Promos = () => {
 
     const [promos, setPromos] = useState([]);
     const { getData } = useGetData();
+    const [showEditPromo, setShowEditPromo] = useState(false);
     const [showDeletePromo, setShowDeletePromo] = useState(false);
     const [selectedPromo, setSelectedPromo] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
 
     useEffect(() => {
         getData("promos", (res) => setPromos(res.data.data));
-    }, [showDeletePromo]);
+    }, [showDeletePromo, showEditPromo]);
+
+    const handleShowEditPromo = async (promoId) => {
+        const getPromo = async () => {
+            await getData(`promo/${promoId}`, (res) => {
+                setSelectedPromo(res.data.data);
+            })
+        }
+
+        try {
+            await getPromo();
+            setShowEditPromo(!showEditPromo);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleShowModalConfirmDelete = async (promoId) => {
         const getPromo = async () => {
@@ -67,7 +84,7 @@ const Promos = () => {
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(promo.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
-                                            <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button onClick={() => handleShowEditPromo(promo.id)} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
                                             <button onClick={() => handleShowModalConfirmDelete(promo.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
@@ -77,6 +94,7 @@ const Promos = () => {
                     </div>
                 </div>
             </div>
+            <ModalEditPromo showEditPromo={showEditPromo} setShowEditPromo={setShowEditPromo} selectedPromo={selectedPromo} />
             <ModalConfirmDeletePromo showDeletePromo={showDeletePromo} setShowDeletePromo={setShowDeletePromo} selectedPromo={selectedPromo} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
