@@ -6,18 +6,35 @@ import useGetData from '@/Hooks/useGetData'
 import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDeleteDestination'
+import ModalEditDestination from '@/components/Elements/ModalEditDestination'
 
 const Destinations = () => {
 
     const [destinations, setDestinations] = useState([]);
     const { getData } = useGetData();
+    const [showEditDestination, setShowEditDestination] = useState(false);
     const [showDeleteDestination, setShowDeleteDestination] = useState(false);
     const [selectedDestination, setSelectedDestination] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
 
     useEffect(() => {
         getData("activities", (res) => setDestinations(res.data.data));
-    }, [showDeleteDestination]);
+    }, [showDeleteDestination, showEditDestination]);
+
+    const handleShowEditDestination = async (destinationId) => {
+        const getCategory = async () => {
+            await getData(`activity/${destinationId}`, (res) => {
+                setSelectedDestination(res.data.data);
+            })
+        }
+
+        try {
+            await getCategory();
+            setShowEditDestination(!showEditDestination);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleShowModalConfirmDelete = async (destinationId) => {
         const getCategory = async () => {
@@ -59,7 +76,7 @@ const Destinations = () => {
                         <div className='flex flex-wrap h-fit w-full gap-[2%] pt-2'>
                             {destinations.map((destination, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
-                                    <img src={destination.imageUrls} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                    <img src={destination.imageUrls[0]} className='object-cover w-full bg-slate-200 h-[65%]'></img>
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
                                         <h1 className='font-semibold'>{destination.title}</h1>
                                         <div className='flex flex-col text-[11px] text-primarygray gap-1'>
@@ -67,7 +84,7 @@ const Destinations = () => {
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(destination.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
-                                            <button className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button onClick={() => handleShowEditDestination(destination.id)} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
                                             <button onClick={() => handleShowModalConfirmDelete(destination.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
@@ -77,6 +94,7 @@ const Destinations = () => {
                     </div>
                 </div>
             </div>
+            <ModalEditDestination showEditDestination={showEditDestination} setShowEditDestination={setShowEditDestination} selectedDestination={selectedDestination} />
             <ModalConfirmDeleteDestination showDeleteDestination={showDeleteDestination} setShowDeleteDestination={setShowDeleteDestination} selectedDestination={selectedDestination} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
