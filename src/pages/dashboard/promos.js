@@ -8,19 +8,24 @@ import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeletePromo from '@/components/Elements/ModalConfirmDeletePromo'
 import ModalEditPromo from '@/components/Elements/ModalEditPromo'
 import Image from 'next/image'
+import ModalAddPromo from '@/components/Elements/ModalAddPromo'
 
 const Promos = () => {
-
     const [promos, setPromos] = useState([]);
     const { getData } = useGetData();
     const [showEditPromo, setShowEditPromo] = useState(false);
     const [showDeletePromo, setShowDeletePromo] = useState(false);
     const [selectedPromo, setSelectedPromo] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
+    const [showAddPromo, setShowAddPromo] = useState(false);
 
     useEffect(() => {
         getData("promos", (res) => setPromos(res.data.data));
-    }, [showDeletePromo, showEditPromo]);
+    }, [showDeletePromo, showEditPromo, showAddPromo]);
+
+    const handleShowAddPromo = () => {
+        setShowAddPromo(!showAddPromo);
+    }
 
     const handleShowEditPromo = async (promoId) => {
         const getPromo = async () => {
@@ -66,7 +71,7 @@ const Promos = () => {
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <button type="submit" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <button onClick={handleShowAddPromo} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Promo
                             </button>
@@ -98,8 +103,9 @@ const Promos = () => {
                     </div>
                 </div>
             </div>
-            <ModalEditPromo showEditPromo={showEditPromo} setShowEditPromo={setShowEditPromo} selectedPromo={selectedPromo} />
             <ModalConfirmDeletePromo showDeletePromo={showDeletePromo} setShowDeletePromo={setShowDeletePromo} selectedPromo={selectedPromo} />
+            <ModalEditPromo showEditPromo={showEditPromo} setShowEditPromo={setShowEditPromo} selectedPromo={selectedPromo} />
+            <ModalAddPromo showAddPromo={showAddPromo} setShowAddPromo={setShowAddPromo} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"

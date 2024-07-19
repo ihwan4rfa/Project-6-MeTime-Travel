@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useCreate from '@/Hooks/useCreate';
+import Image from 'next/image';
 
 const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
 
@@ -45,6 +46,13 @@ const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
             imageUrl: addBannerImageUrl
         };
 
+        for (const key in bannerData) {
+            if (!bannerData[key]) {
+                toast.error("Please input all fields.");
+                return;
+            }
+        }
+
         const res = await create("create-banner", bannerData);
         if (res.status === 200) {
             toast.success(res.data.message);
@@ -73,11 +81,12 @@ const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
                     <form ref={formRef} onSubmit={handleAddBanner} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <h1 className='z-10 pb-4 font-medium'>Add Banner</h1>
                         <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
-                            {addBannerImageUrl && (
-                                <div className='w-full h-48 overflow-hidden rounded-lg'>
+                            <div className='w-full h-48 overflow-hidden rounded-lg'>
+                                {addBannerImageUrl ?
                                     <img src={addBannerImageUrl} className='object-cover w-full h-full'></img>
-                                </div>
-                            )}
+                                    : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
+                                }
+                            </div>
                             <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
                                 <label htmlFor="addBannerImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Banner</label>
                                 <span className={`px-4 overflow-hidden text-ellipsis ${addBannerImageUrl ? 'text-primaryblack' : ''}`}>{addBannerImageUrl === null ? 'No File Selected' : `${addFileName}`}</span>

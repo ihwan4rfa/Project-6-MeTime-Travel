@@ -46,6 +46,13 @@ const ModalEditBanner = ({ showEditBanner, setShowEditBanner, selectedBanner }) 
             imageUrl: bannerImageUrl || selectedBanner.imageUrl
         };
 
+        for (const key in bannerData) {
+            if (!bannerData[key]) {
+                toast.error("Please input all fields.");
+                return;
+            }
+        }
+
         const res = await update(`update-banner/${selectedBanner.id}`, bannerData);
         if (res.status === 200) {
             toast.success(res.data.message);

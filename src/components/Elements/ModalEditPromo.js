@@ -51,6 +51,13 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
             minimum_claim_price: parseFloat(e.target.minimum_claim_price.value)
         };
 
+        for (const key in promoData) {
+            if (!promoData[key]) {
+                toast.error("Please input all fields.");
+                return;
+            }
+        }
+
         const res = await update(`update-promo/${selectedPromo.id}`, promoData);
         if (res.status === 200) {
             toast.success(res.data.message);
