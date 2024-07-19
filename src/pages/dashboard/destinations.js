@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDeleteDestination'
 import ModalEditDestination from '@/components/Elements/ModalEditDestination'
+import ModalAddDestination from '@/components/Elements/ModalAddDestination'
 import Image from 'next/image'
 
 const Destinations = () => {
@@ -17,10 +18,15 @@ const Destinations = () => {
     const [showDeleteDestination, setShowDeleteDestination] = useState(false);
     const [selectedDestination, setSelectedDestination] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
+    const [showAddDestination, setShowAddDestination] = useState(false);
 
     useEffect(() => {
         getData("activities", (res) => setDestinations(res.data.data));
-    }, [showDeleteDestination, showEditDestination]);
+    }, [showDeleteDestination, showEditDestination, showAddDestination]);
+
+    const handleShowAddDestination = () => {
+        setShowAddDestination(!showAddDestination);
+    }
 
     const handleShowEditDestination = async (destinationId) => {
         const getCategory = async () => {
@@ -66,7 +72,7 @@ const Destinations = () => {
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <button type="submit" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <button onClick={handleShowAddDestination} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Destination
                             </button>
@@ -98,8 +104,9 @@ const Destinations = () => {
                     </div>
                 </div>
             </div>
-            <ModalEditDestination showEditDestination={showEditDestination} setShowEditDestination={setShowEditDestination} selectedDestination={selectedDestination} />
             <ModalConfirmDeleteDestination showDeleteDestination={showDeleteDestination} setShowDeleteDestination={setShowDeleteDestination} selectedDestination={selectedDestination} />
+            <ModalEditDestination showEditDestination={showEditDestination} setShowEditDestination={setShowEditDestination} selectedDestination={selectedDestination} />
+            <ModalAddDestination showAddDestination={showAddDestination} setShowAddDestination={setShowAddDestination} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"

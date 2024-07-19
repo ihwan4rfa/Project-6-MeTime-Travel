@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
-import useUpdate from '@/Hooks/useUpdate';
+import useCreate from '@/Hooks/useCreate';
 import Image from 'next/image';
 
 const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
@@ -9,7 +9,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
     const [addPromoImageUrl, setAddPromoImageUrl] = useState(null);
     const [fileName, setFileName] = useState(null);
     const { upload } = useUpload();
-    const { update } = useUpdate();
+    const { create } = useCreate();
     const formRef = useRef(null);
 
     const handleUpload = async (e) => {
@@ -58,7 +58,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
             }
         }
 
-        const res = await update(`create-promo`, promoData);
+        const res = await create(`create-promo`, promoData);
         if (res.status === 200) {
             toast.success(res.data.message);
             setShowAddPromo(false);

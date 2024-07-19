@@ -46,7 +46,7 @@ const DropDownCategory = (props) => {
     return (
         <div className="flex relative text-[13px] w-2/6">
             <a onClick={handleDropDownToggle} className="flex justify-between w-full px-4 py-[10px] rounded-lg bg-slate-200 cursor-pointer text-primaryblack">
-                <h1>{selectedCategoryName ? selectedCategoryName : destinationCategoryName}</h1>
+                <h1>{selectedCategoryName ? selectedCategoryName : (destinationCategoryName ? destinationCategoryName : 'Category')}</h1>
                 <h1><i class={`fa-solid ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i></h1>
             </a>
             <div className={`absolute w-full z-10 mt-14 bg-slate-200 shadow-md text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
