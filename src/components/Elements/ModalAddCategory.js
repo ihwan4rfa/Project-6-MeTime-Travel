@@ -4,9 +4,9 @@ import useUpload from '@/Hooks/useUpload';
 import useCreate from '@/Hooks/useCreate';
 import Image from 'next/image';
 
-const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
+const ModalAddCategory = ({ showAddCategory, setShowAddCategory }) => {
 
-    const [addBannerImageUrl, setAddBannerImageUrl] = useState(null);
+    const [addCategoryImageUrl, setAddCategoryImageUrl] = useState(null);
     const [addFileName, setAddFileName] = useState(null);
     const { upload } = useUpload();
     const { create } = useCreate();
@@ -19,7 +19,7 @@ const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
         if (!file) {
             return;
         } else if (!file.type.startsWith("image/")) {
-            setAddBannerImageUrl(null);
+            setAddCategoryImageUrl(null);
             setAddFileName(null);
             toast.error("The file must be an image in \n JPEG, PNG, GIF, BMP, or TIFF format.");
             return false;
@@ -28,71 +28,71 @@ const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
         formData.append("image", file);
         try {
             const res = await upload("upload-image", formData);
-            setAddBannerImageUrl(res.data.url);
+            setAddCategoryImageUrl(res.data.url);
             setAddFileName(file.name);
             toast.success("Image uploaded");
             return res.data.url;
         } catch (error) {
-            setAddBannerImageUrl(null);
+            setAddCategoryImageUrl(null);
             setAddFileName(null);
             toast.error("Failed to upload image. \n Maybe the image is too big. \n Try another image.");
         }
     };
 
-    const handleAddBanner = async (e) => {
+    const handleAddCategory = async (e) => {
         e.preventDefault();
-        const bannerData = {
+        const categoryData = {
             name: e.target.name.value,
-            imageUrl: addBannerImageUrl
+            imageUrl: addCategoryImageUrl
         };
 
-        for (const key in bannerData) {
-            if (!bannerData[key]) {
+        for (const key in categoryData) {
+            if (!categoryData[key]) {
                 toast.error("Please input all fields.");
                 return;
             }
         }
 
-        const res = await create("create-banner", bannerData);
+        const res = await create("create-category", categoryData);
         if (res.status === 200) {
             toast.success(res.data.message);
-            setShowAddBanner(false);
+            setShowAddCategory(false);
             e.target.reset();
-            setAddBannerImageUrl(null);
+            setAddCategoryImageUrl(null);
         } else {
             toast.error(res.response.data.message);
         }
     }
 
-    const handleCloseAddBanner = () => {
-        setShowAddBanner(false);
+    const handleCloseAddCategory = () => {
+        setShowAddCategory(false);
         formRef.current.reset();
-        setAddBannerImageUrl(null);
+        setAddCategoryImageUrl(null);
     }
 
     return (
         <>
-            <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showAddBanner === true ? '' : 'hidden'}`}></div>
-            <div className={`${showAddBanner === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
+            <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showAddCategory === true ? '' : 'hidden'}`}></div>
+            <div className={`${showAddCategory === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack h-fit w-[600px]`}>
                     <div className='absolute flex justify-end w-full p-2'>
-                        <button onClick={handleCloseAddBanner} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseAddCategory} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
-                    <form ref={formRef} onSubmit={handleAddBanner} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
-                        <h1 className='z-10 pb-4 font-medium'>Add Banner</h1>
+                    <form ref={formRef} onSubmit={handleAddCategory} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
+                        <h1 className='z-10 pb-4 font-medium'>Add Category</h1>
                         <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
                             <div className='w-full h-48 overflow-hidden rounded-lg'>
-                                {addBannerImageUrl ?
-                                    <img src={addBannerImageUrl} className='object-cover w-full h-full'></img>
+                                {addCategoryImageUrl ?
+                                    <img src={addCategoryImageUrl} className='object-cover w-full h-full'></img>
                                     : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
                                 }
                             </div>
                             <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
-                                <label htmlFor="addBannerImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
-                                <span className={`px-4 overflow-hidden text-ellipsis ${addBannerImageUrl ? 'text-primaryblack' : ''}`}>{addBannerImageUrl === null ? 'No File Selected' : `${addFileName}`}</span>
+                                <label htmlFor="addCategoryImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
+                                <span className={`px-4 overflow-hidden text-ellipsis ${addCategoryImageUrl ? 'text-primaryblack' : ''}`}>{addCategoryImageUrl === null ? 'No File Selected' : `${addFileName}`}</span>
                             </div>
-                            <input onChange={handleUpload} type="file" name="addBannerImageUrl" id="addBannerImageUrl" className="hidden" />
-                            <input type="text" name="name" id="name" placeholder="Banner Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                            <input onChange={handleUpload} type="file" name="addCategoryImageUrl" id="addCategoryImageUrl" className="hidden" />
+                            <input type="text" name="name" id="name" placeholder="Category Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                         </div>
                         <button type="submit" className=" bg-primaryyellow hover:bg-yellowhover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Submit</button>
                     </form>
@@ -102,4 +102,4 @@ const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
     )
 }
 
-export default ModalAddBanner
+export default ModalAddCategory

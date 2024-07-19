@@ -104,7 +104,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
                             </div>
                             <div className='flex w-full gap-4'>
                                 <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="addPromoImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose File</label>
+                                    <label htmlFor="addPromoImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${addPromoImageUrl ? 'text-primaryblack' : ''}`}>{addPromoImageUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input onChange={handleUpload} type="file" name="addPromoImageUrl" id="addPromoImageUrl" className="hidden" />
@@ -114,7 +114,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Save</button>
+                        <button type="submit" className=" bg-primaryyellow hover:bg-yellowhover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Submit</button>
                     </form>
                 </div>
             </div>

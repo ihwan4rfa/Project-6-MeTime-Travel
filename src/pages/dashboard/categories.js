@@ -7,20 +7,25 @@ import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeleteCategory from '@/components/Elements/ModalConfirmDeleteCategory'
 import ModalEditCategory from '@/components/Elements/ModalEditCategory'
+import ModalAddCategory from '@/components/Elements/ModalAddCategory'
 import Image from 'next/image'
 
 const Categories = () => {
-
     const [categories, setCategories] = useState([]);
     const { getData } = useGetData();
     const [showEditCategory, setShowEditCategory] = useState(false);
+    const [showAddCategory, setShowAddCategory] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
     const [showDeleteCategory, setShowDeleteCategory] = useState(false);
 
     useEffect(() => {
         getData("categories", (res) => setCategories(res.data.data));
-    }, [showDeleteCategory, showEditCategory]);
+    }, [showDeleteCategory, showEditCategory, showAddCategory]);
+
+    const handleShowAddCategory = () => {
+        setShowAddCategory(!showAddCategory);
+    }
 
     const handleEditCategory = async (categoryId) => {
         const getCategory = async () => {
@@ -66,7 +71,7 @@ const Categories = () => {
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <button type="submit" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <button onClick={handleShowAddCategory} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Category
                             </button>
@@ -98,8 +103,9 @@ const Categories = () => {
                     </div>
                 </div>
             </div>
-            <ModalEditCategory showEditCategory={showEditCategory} setShowEditCategory={setShowEditCategory} selectedCategory={selectedCategory} />
             <ModalConfirmDeleteCategory showDeleteCategory={showDeleteCategory} setShowDeleteCategory={setShowDeleteCategory} selectedCategory={selectedCategory} />
+            <ModalEditCategory showEditCategory={showEditCategory} setShowEditCategory={setShowEditCategory} selectedCategory={selectedCategory} />
+            <ModalAddCategory showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} />
             <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"

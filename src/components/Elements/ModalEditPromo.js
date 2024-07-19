@@ -108,7 +108,7 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
                             </div>
                             <div className='flex w-full gap-4'>
                                 <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="promoImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose File</label>
+                                    <label htmlFor="promoImageUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${promoImageUrl ? 'text-primaryblack' : ''}`}>{promoImageUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input onChange={handleUpload} type="file" name="promoImageUrl" id="promoImageUrl" className="hidden" />

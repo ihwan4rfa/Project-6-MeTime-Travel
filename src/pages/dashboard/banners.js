@@ -71,7 +71,7 @@ const Banners = () => {
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <button onClick={handleShowAddBanner} className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <button onClick={handleShowAddBanner} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Banner
                             </button>
