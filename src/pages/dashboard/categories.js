@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeleteCategory from '@/components/Elements/ModalConfirmDeleteCategory'
 import ModalEditCategory from '@/components/Elements/ModalEditCategory'
+import Image from 'next/image'
 
 const Categories = () => {
 
@@ -76,7 +77,10 @@ const Categories = () => {
                         <div className='flex flex-wrap h-fit w-full gap-[2%] pt-2'>
                             {categories.map((category, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
-                                    <img src={category.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                    {category.imageUrl.startsWith("https://") && (category.imageUrl.includes(".jpg") || category.imageUrl.includes(".png") || category.imageUrl.includes("images")) ?
+                                        <img src={category.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                        : <Image src="/images/no-image.png" className='object-cover w-full h-[65%]' width={500} height={500} alt='Unknown Profile' />
+                                    }
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
                                         <h1 className='font-semibold'>{category.name}</h1>
                                         <div className='flex flex-col text-[11px] text-primarygray gap-1'>

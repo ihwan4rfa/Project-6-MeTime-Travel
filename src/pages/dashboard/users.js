@@ -130,7 +130,7 @@ const Users = () => {
                                     {user.profilePictureUrl && user.profilePictureUrl.startsWith("https://")
                                         && (user.profilePictureUrl.includes(".jpg") || user.profilePictureUrl.includes(".png") || user.profilePictureUrl.includes("images")) ?
                                         <img src={user.profilePictureUrl} className='object-cover w-full h-full' alt='Profile' />
-                                        : <Image src="/images/unknown-profile-user.jpg" className='object-cover w-full h-full' width={100} height={100} alt='Unknown Profile' />
+                                        : <Image src="/images/unknown-profile-user.png" className='object-cover w-full h-full' width={100} height={100} alt='Unknown Profile' />
                                     }
                                 </div>
                                 <div className='flex items-center justify-between w-full font-medium'>

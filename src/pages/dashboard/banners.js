@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 import ModalConfirmDeleteBanner from '@/components/Elements/ModalConfirmDeleteBanner'
 import ModalAddBanner from '@/components/Elements/ModalAddBanner'
+import Image from 'next/image'
 
 const Banners = () => {
     const [banners, setBanners] = useState([]);
@@ -81,7 +82,10 @@ const Banners = () => {
                         <div className='flex flex-wrap h-fit w-full gap-[2%] pt-2'>
                             {banners.map((banner, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
-                                    <img src={banner.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                    {banner.imageUrl.startsWith("https://") && (banner.imageUrl.includes(".jpg") || banner.imageUrl.includes(".png") || banner.imageUrl.includes("images")) ?
+                                        <img src={banner.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                        : <Image src="/images/no-image.png" className='object-cover w-full h-[65%]' width={500} height={500} alt='Unknown Profile' />
+                                    }
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
                                         <h1 className='font-semibold'>{banner.name}</h1>
                                         <div className='flex flex-col text-[11px] text-primarygray gap-1'>

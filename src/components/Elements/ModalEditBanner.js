@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
+import Image from 'next/image';
 
 const ModalEditBanner = ({ showEditBanner, setShowEditBanner, selectedBanner }) => {
 
@@ -75,7 +76,12 @@ const ModalEditBanner = ({ showEditBanner, setShowEditBanner, selectedBanner }) 
                         <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
                             {selectedBanner.imageUrl && (
                                 <div className='w-full h-48 overflow-hidden rounded-lg'>
-                                    <img src={bannerImageUrl === null ? selectedBanner.imageUrl : bannerImageUrl} className='object-cover w-full h-full'></img>
+                                    {selectedBanner.imageUrl.startsWith("https://") && (selectedBanner.imageUrl.includes(".jpg") || selectedBanner.imageUrl.includes(".png") || selectedBanner.imageUrl.includes("images")) ?
+                                        <img src={bannerImageUrl === null ? selectedBanner.imageUrl : bannerImageUrl} className='object-cover w-full h-full'></img>
+                                        : (bannerImageUrl !== null ? <img src={bannerImageUrl === null ? selectedBanner.imageUrl : bannerImageUrl} className='object-cover w-full h-full'></img>
+                                            : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
+                                        )
+                                    }
                                 </div>
                             )}
                             <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">

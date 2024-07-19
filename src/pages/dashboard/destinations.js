@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDeleteDestination'
 import ModalEditDestination from '@/components/Elements/ModalEditDestination'
+import Image from 'next/image'
 
 const Destinations = () => {
 
@@ -76,7 +77,10 @@ const Destinations = () => {
                         <div className='flex flex-wrap h-fit w-full gap-[2%] pt-2'>
                             {destinations.map((destination, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
-                                    <img src={destination.imageUrls[0]} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                    {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?
+                                        <img src={destination.imageUrls[0]} className='object-cover w-full bg-slate-200 h-[65%]'></img>
+                                        : <Image src="/images/no-image.png" className='object-cover w-full h-[65%]' width={500} height={500} alt='Unknown Profile' />
+                                    }
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
                                         <h1 className='font-semibold'>{destination.title}</h1>
                                         <div className='flex flex-col text-[11px] text-primarygray gap-1'>

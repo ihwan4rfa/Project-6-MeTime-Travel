@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
+import Image from 'next/image';
 
 const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
 
@@ -81,7 +82,12 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
                             <div className='flex w-full gap-4'>
                                 {selectedPromo.imageUrl && (
                                     <div className='w-2/5 overflow-hidden rounded-lg h-[207px]'>
-                                        <img src={promoImageUrl === null ? selectedPromo.imageUrl : promoImageUrl} className='object-cover w-full h-full'></img>
+                                        {selectedPromo.imageUrl.startsWith("https://") && (selectedPromo.imageUrl.includes(".jpg") || selectedPromo.imageUrl.includes(".png") || selectedPromo.imageUrl.includes("images")) ?
+                                            <img src={promoImageUrl === null ? selectedPromo.imageUrl : promoImageUrl} className='object-cover w-full h-full'></img>
+                                            : (promoImageUrl !== null ? <img src={promoImageUrl === null ? selectedPromo.imageUrl : promoImageUrl} className='object-cover w-full h-full'></img>
+                                                : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
+                                            )
+                                        }
                                     </div>
                                 )}
                                 <div className='flex flex-col w-3/5 gap-4'>

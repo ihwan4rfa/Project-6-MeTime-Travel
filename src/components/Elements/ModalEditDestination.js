@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
 import DropDownCategory from './DropDownCategory';
+import Image from 'next/image'
 
 const ModalEditDestination = ({ showEditDestination, setShowEditDestination, selectedDestination }) => {
 
@@ -24,7 +25,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
 
     useEffect(() => {
         if (selectedDestination !== undefined) {
-            setImageUrls(selectedDestination.imageUrls)
+            setImageUrls(selectedDestination.imageUrls);
         }
     }, [selectedDestination])
 
@@ -54,7 +55,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
         if (!file) {
             return;
         } else if (!file.type.startsWith("image/")) {
-            setImageUrls(null);
+            setImageUrls([...imageUrls]);
             setFileName(null);
             toast.error("The file must be an image in \n JPEG, PNG, GIF, BMP, or TIFF format.");
             return false;
@@ -68,7 +69,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
             toast.success("Image uploaded");
             return res.data.url;
         } catch (error) {
-            setImageUrls(null);
+            setImageUrls([...imageUrls]);
             setFileName(null);
             toast.error("Failed to upload image. \n Maybe the image is too big. \n Try another image.");
         }
@@ -92,20 +93,32 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
             location_maps: e.target.location_maps.value
         };
 
+        for (const key in destinationData) {
+            if (!destinationData[key]) {
+                toast.error("Please input all fields.");
+                return;
+            }
+        }
+
         const res = await update(`update-activity/${selectedDestination.id}`, destinationData);
         if (res.status === 200) {
             toast.success(res.data.message);
+            e.target.reset();
             setShowEditDestination(false);
             setShowNextStep(false);
-            e.target.reset();
+            setSelectedCategoryId(null);
+            setDestinationCategoryName(null);
+            setSelectedCategoryName(null);
+            setDropDownHidden(true);
+            setFileName(null);
         } else {
             toast.error(res.response.data.message);
         }
     }
 
     const handleCloseEditDestination = () => {
-        setShowEditDestination(false);
         formRef.current.reset();
+        setShowEditDestination(false);
         setShowNextStep(false);
         setSelectedCategoryId(null);
         setDestinationCategoryName(null);
@@ -135,7 +148,10 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
                                     {imageUrls !== undefined && imageUrls.map((imageUrl, index) => (
                                         <div key={index} className={`flex relative w-full ${imageUrls.length === 1 ? 'h-full' : 'h-[75%]'}`}>
                                             <button onClick={() => handleRemoveImage(index)} type='button' className='absolute flex items-center justify-center m-2 bg-white rounded-full hover:bg-primaryred w-7 h-7 text-primaryred hover:text-white'><i class="fa-regular fa-trash-can"></i></button>
-                                            <img src={imageUrl} className='object-cover w-full h-full rounded-lg'></img>
+                                            {imageUrl.startsWith("https://") && (imageUrl.includes(".jpg") || imageUrl.includes(".png") || imageUrl.includes("images")) ?
+                                                <img src={imageUrl} className='object-cover w-full h-full rounded-lg'></img>
+                                                : <Image src="/images/no-image.png" className='object-cover w-full h-full rounded-lg' width={500} height={500} alt='Unknown Profile' />
+                                            }
                                         </div>
                                     ))}
                                 </div>

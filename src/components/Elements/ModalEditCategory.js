@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
+import Image from 'next/image';
 
 const ModalEditCategory = ({ showEditCategory, setShowEditCategory, selectedCategory }) => {
 
@@ -75,7 +76,12 @@ const ModalEditCategory = ({ showEditCategory, setShowEditCategory, selectedCate
                         <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
                             {selectedCategory.imageUrl && (
                                 <div className='w-full h-48 overflow-hidden rounded-lg'>
-                                    <img src={categoryImageUrl === null ? selectedCategory.imageUrl : categoryImageUrl} className='object-cover w-full h-full'></img>
+                                    {selectedCategory.imageUrl.startsWith("https://") && (selectedCategory.imageUrl.includes(".jpg") || selectedCategory.imageUrl.includes(".png") || selectedCategory.imageUrl.includes("images")) ?
+                                        <img src={categoryImageUrl === null ? selectedCategory.imageUrl : categoryImageUrl} className='object-cover w-full h-full'></img>
+                                        : (categoryImageUrl !== null ? <img src={categoryImageUrl === null ? selectedCategory.imageUrl : categoryImageUrl} className='object-cover w-full h-full'></img>
+                                            : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
+                                        )
+                                    }
                                 </div>
                             )}
                             <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
