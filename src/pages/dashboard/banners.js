@@ -18,6 +18,7 @@ const Banners = () => {
     const [selectedBanner, setSelectedBanner] = useState([]);
     const showModal = useSelector((state) => state.showModal.modal);
     const [showDeleteBanner, setShowDeleteBanner] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
@@ -57,6 +58,20 @@ const Banners = () => {
         }
     }
 
+    // Event every search changed
+    useEffect(() => {
+        getData("banners", (res) => { // must be refetch every load new data
+            const filtered = res.data.data.filter((banner) =>
+                banner.name.toLowerCase().includes(search.toLowerCase())
+            )
+            setBanners(filtered); // update banners every search changed
+        });
+    }, [search]);
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    }
+
     return (
         <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
             <Navbar />
@@ -66,10 +81,10 @@ const Banners = () => {
                     <div className='flex items-center justify-between h-14'>
                         <h1 className='text-2xl font-semibold'>Banners</h1>
                         <div className='flex items-center text-[13px] my-2'>
-                            <h1 className={`mr-4 text-slate-400`}><b>10</b> banners found</h1>
+                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{banners.length}</b> banners found</h1>
                             <div className='flex py-2 bg-white rounded-lg text-primaryblack'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
+                                <input onChange={handleSearch} type="text" placeholder="Search Banner" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
                             <button onClick={handleShowAddBanner} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
