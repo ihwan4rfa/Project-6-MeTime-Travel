@@ -20,7 +20,7 @@ const DropDownRole = ({ selectedRole, setSelectedRole, selectedRole2, setSelecte
                 <h1>{selectedRole ? `${selectedRole === 'admin' ? 'admin' : 'user'}` : 'Select Role'}</h1>
                 <h1><i class={`fa-solid ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i></h1>
             </a>
-            <div className={`absolute w-full z-10 mt-14 bg-slate-200 text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
+            <div className={`absolute w-full z-10 mt-14 bg-slate-200 shadow-dropdown text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                 <div className="px-2">
                     <button
                         onClick={() => handleOptionChange('admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedRole2 === 'admin' ? 'bg-white' : ''}`}>

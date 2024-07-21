@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: "Poppins",
+        volkhov: "Volkhov"
       },
       colors: {
         primaryblue: "#029BC5",
@@ -21,6 +22,33 @@ module.exports = {
         secondaryyellow: '#FFF1DA',
         primarygreen: '#10b981',
         primarygray: '#5E6282',
+      },
+      boxShadow: {
+        'cardfacilities': '0 35px 50px -20px rgba(0, 0, 0, 0.1)',
+        'dropdown': '0 10px 40px -12px rgba(0, 0, 0, 0.1)',
+        'navbar': '0 20px 40px -26px rgba(0, 0, 0, 0.1)',
+      },
+      keyframes: {
+        typing: {
+          "0%": {
+            width: "0%",
+            visibility: "hidden"
+          },
+          "100%": {
+            width: "100%"
+          },
+        },
+        blink: {
+          "50%": {
+            borderColor: "transparent"
+          },
+          "100%": {
+            borderColor: "white"
+          }
+        }
+      },
+      animation: {
+        typing: "typing 3s steps(35) infinite alternate, blink .6s infinite"
       }
     }
   }

@@ -146,7 +146,7 @@ const Users = () => {
                                             <h1>{user.role}</h1>
                                             <h1 className='ml-2'><i class="fa-solid fa-pen-to-square"></i></h1>
                                         </button>
-                                        <div className={`absolute right-0 w-36 z-10 mt-6 bg-white shadow-md text-primaryblack rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
+                                        <div className={`absolute right-0 w-36 z-10 mt-6 bg-white shadow-dropdown text-primaryblack rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
                                             <div className="px-2">
                                                 <button
                                                     onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 ${user.role === 'admin' ? 'bg-slate-200' : ''}`}>
