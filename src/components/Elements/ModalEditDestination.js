@@ -13,12 +13,13 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
     const { update } = useUpdate();
     const formRef = useRef(null);
     const [showNextStep, setShowNextStep] = useState(false);
-    const srcUrl = extractIframeSrc();
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
     const [destinationCategoryName, setDestinationCategoryName] = useState(null);
     const [selectedCategoryName, setSelectedCategoryName] = useState(null);
     const [dropDownHidden, setDropDownHidden] = useState(true);
-    
+    const [linkMap, setLinkMap] = useState(null);
+    const [srcUrl, setSrcUrl] = useState();
+
     const handleNextStep = () => {
         setShowNextStep(!showNextStep);
     }
@@ -35,18 +36,31 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
         setImageUrls(newImageUrls);
     }
 
-    function extractIframeSrc() {
+    const handleLinkMap = (e) => {
+        setLinkMap(e.target.value);
+    }
+
+    useEffect(() => {
         if (selectedDestination.location_maps === undefined) {
-            return;
+            setSrcUrl(null);
         } else {
-            const match = selectedDestination.location_maps.match(/<iframe[^>]+src="([^"]+)"/);
-            if (match && match[1]) {
-                return match[1];
+            if (linkMap === null) {
+                const match = selectedDestination.location_maps.match(/<iframe[^>]+src="([^"]+)"/);
+                if (match && match[1]) {
+                    setSrcUrl(match[1]);
+                } else {
+                    setSrcUrl(null);
+                }
             } else {
-                return;
+                const match = linkMap.match(/<iframe[^>]+src="([^"]+)"/);
+                if (match && match[1]) {
+                    setSrcUrl(match[1]);
+                } else {
+                    setSrcUrl(null);
+                }
             }
         }
-    }
+    }, [linkMap, showEditDestination])
 
     const handleUpload = async (e) => {
         e.preventDefault();
@@ -111,6 +125,8 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
             setSelectedCategoryName(null);
             setDropDownHidden(true);
             setFileName(null);
+            setLinkMap(null);
+            setSrcUrl(null);
         } else {
             toast.error(res.response.data.message);
         }
@@ -125,6 +141,8 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
         setSelectedCategoryName(null);
         setDropDownHidden(true);
         setFileName(null);
+        setLinkMap(null);
+        setSrcUrl(null);
     }
 
     return (
@@ -200,7 +218,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
                                 </div>
                                 <div className='flex gap-4'>
                                     <input defaultValue={selectedDestination.city} type="text" name="city" id="city" placeholder="City" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
-                                    <input defaultValue={selectedDestination.location_maps} type="text" name="location_maps" id="location_maps" placeholder="Location Maps" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
+                                    <input onChange={handleLinkMap} defaultValue={selectedDestination.location_maps} type="text" name="location_maps" id="location_maps" placeholder="Location Maps" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
                                 </div>
                                 {srcUrl &&
                                     <iframe className='rounded-lg' src={srcUrl} width="100%" height="152"></iframe>

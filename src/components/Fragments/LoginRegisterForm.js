@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import useUpload from "../../Hooks/useUpload";
-import Dropdown from "../Elements/DropDown";
+import DropDownRole from "../Elements/DropDownRole";
 import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useDispatch } from "react-redux";
@@ -168,7 +168,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         </div>
                         <div className="relative w-full">
                             <div className="flex gap-4">
-                                <Dropdown selectedRole={selectedRole} setSelectedRole={setSelectedRole} selectedRole2={selectedRole2} setSelectedRole2={setSelectedRole2} />
+                                <DropDownRole selectedRole={selectedRole} setSelectedRole={setSelectedRole} selectedRole2={selectedRole2} setSelectedRole2={setSelectedRole2} />
                                 <div className="flex bg-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
                                     <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" value={password} onChange={handleChangePassword} className="w-full outline-none bg-slate-200 placeholder:text-slate-400 text-primaryblack" />
                                     <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>

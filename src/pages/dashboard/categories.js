@@ -81,10 +81,10 @@ const Categories = () => {
                     <div className='flex items-center justify-between h-14 '>
                         <h1 className='text-2xl font-semibold'>Categories</h1>
                         <div className='flex items-center text-[13px] my-2'>
-                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{categories.length}</b> categories found</h1>
+                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{categories.length}</b> {categories.length > 1 ? 'categories' : 'category'} found</h1>
                             <div className='flex py-2 bg-white rounded-lg text-primaryblack'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input onChange={handleSearch} type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
+                                <input onChange={handleSearch} type="text" placeholder="Search Category" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
                             <button onClick={handleShowAddCategory} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />

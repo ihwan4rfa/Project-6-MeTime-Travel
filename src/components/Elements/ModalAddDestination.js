@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useCreate from '@/Hooks/useCreate';
@@ -18,7 +18,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
     const [selectedCategoryName, setSelectedCategoryName] = useState(null);
     const [dropDownHidden, setDropDownHidden] = useState(true);
     const [linkMap, setLinkMap] = useState(null);
-    const srcUrl = extractIframeSrc();
+    const [srcUrl, setSrcUrl] = useState();
 
     const handleNextStep = () => {
         setShowNextStep(!showNextStep);
@@ -34,18 +34,20 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
         setLinkMap(e.target.value);
     }
 
-    function extractIframeSrc() {
+    console.log(linkMap);
+
+    useEffect(() => {
         if (linkMap === null) {
-            return;
+            setSrcUrl(null);
         } else {
             const match = linkMap.match(/<iframe[^>]+src="([^"]+)"/);
             if (match && match[1]) {
-                return match[1];
+                setSrcUrl(match[1]);
             } else {
-                return;
+                setSrcUrl(null);
             }
         }
-    }
+    }, [linkMap, showAddDestination])
 
     const handleUpload = async (e) => {
         e.preventDefault();
@@ -111,6 +113,8 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
             setDropDownHidden(true);
             setFileName(null);
             setAddImageUrls(['']);
+            setLinkMap(null);
+            setSrcUrl(null);
         } else {
             toast.error(res.response.data.message);
         }
@@ -126,6 +130,8 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
         setDropDownHidden(true);
         setFileName(null);
         setAddImageUrls(['']);
+        setLinkMap(null);
+        setSrcUrl(null);
     }
 
     return (

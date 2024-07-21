@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Dropdown = ({ selectedRole, setSelectedRole, selectedRole2, setSelectedRole2 }) => {
+const DropDownRole = ({ selectedRole, setSelectedRole, selectedRole2, setSelectedRole2 }) => {
     const [dropDownHidden, setDropDownHidden] = useState(true);
 
     const handleOptionChange = (option) => {
@@ -38,4 +38,4 @@ const Dropdown = ({ selectedRole, setSelectedRole, selectedRole2, setSelectedRol
     );
 };
 
-export default Dropdown;
+export default DropDownRole;

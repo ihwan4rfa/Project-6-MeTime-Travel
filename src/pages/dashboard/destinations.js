@@ -9,6 +9,7 @@ import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDel
 import ModalEditDestination from '@/components/Elements/ModalEditDestination'
 import ModalAddDestination from '@/components/Elements/ModalAddDestination'
 import Image from 'next/image'
+import DropDownFilterByCategory from '@/components/Elements/DropDownFilterByCategory'
 
 const Destinations = () => {
 
@@ -20,6 +21,8 @@ const Destinations = () => {
     const showModal = useSelector((state) => state.showModal.modal);
     const [showAddDestination, setShowAddDestination] = useState(false);
     const [search, setSearch] = useState("");
+    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+    const [categoryAllSelected, setCategoryAllSelected] = useState(true);
 
     useEffect(() => {
         getData("activities", (res) => setDestinations(res.data.data));
@@ -59,14 +62,42 @@ const Destinations = () => {
         }
     }
 
+    // Event every filter changed
+    useEffect(() => {
+        if (selectedCategoryId === null) {
+            getData("activities", (res) => { // must be refetch every load new data
+                const filtered = res.data.data.filter((activity) =>
+                    activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered); // update destinations every search changed
+            });
+        } else {
+            getData(`activities-by-category/${selectedCategoryId}`, (res) => {
+                const filtered = res.data.data.filter((activity) =>
+                    activity.categoryId === selectedCategoryId && activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered);
+            })
+        }
+    }, [selectedCategoryId]);
+
     // Event every search changed
     useEffect(() => {
-        getData("activities", (res) => { // must be refetch every load new data
-            const filtered = res.data.data.filter((activity) =>
-                activity.title.toLowerCase().includes(search.toLowerCase())
-            )
-            setDestinations(filtered); // update banners every search changed
-        });
+        if (selectedCategoryId === null) {
+            getData("activities", (res) => { // must be refetch every load new data
+                const filtered = res.data.data.filter((activity) =>
+                    activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered); // update destinations every search changed
+            });
+        } else {
+            getData(`activities-by-category/${selectedCategoryId}`, (res) => {
+                const filtered = res.data.data.filter((activity) =>
+                    activity.categoryId === selectedCategoryId && activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered);
+            })
+        }
     }, [search]);
 
     const handleSearch = (e) => {
@@ -81,13 +112,14 @@ const Destinations = () => {
                 <div className='flex flex-col w-full h-full'>
                     <div className='flex items-center justify-between h-14'>
                         <h1 className='text-2xl font-semibold'>Destinations</h1>
-                        <div className='flex items-center text-[13px] my-2'>
-                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{destinations.length}</b> destinations found</h1>
+                        <div className='flex items-center justify-end w-full text-[13px] my-2 gap-4'>
+                            <h1 className={`text-slate-400 ${search === "" && selectedCategoryId === null ? 'hidden' : ''}`}><b>{destinations.length}</b> {destinations.length > 1 ? 'destinations' : 'destination'} found</h1>
                             <div className='flex py-2 bg-white rounded-lg text-primaryblack'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input onChange={handleSearch} type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
+                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <button onClick={handleShowAddDestination} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <DropDownFilterByCategory setSelectedCategoryId={setSelectedCategoryId} categoryAllSelected={categoryAllSelected} setCategoryAllSelected={setCategoryAllSelected} setDestinations={setDestinations} />
+                            <button onClick={handleShowAddDestination} type="button" className="px-4 py-2 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Destination
                             </button>

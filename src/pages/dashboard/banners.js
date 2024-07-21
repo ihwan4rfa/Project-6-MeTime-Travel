@@ -81,7 +81,7 @@ const Banners = () => {
                     <div className='flex items-center justify-between h-14'>
                         <h1 className='text-2xl font-semibold'>Banners</h1>
                         <div className='flex items-center text-[13px] my-2'>
-                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{banners.length}</b> banners found</h1>
+                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{banners.length}</b> {banners.length > 1 ? 'banners' : 'banner'} found</h1>
                             <div className='flex py-2 bg-white rounded-lg text-primaryblack'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input onChange={handleSearch} type="text" placeholder="Search Banner" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
