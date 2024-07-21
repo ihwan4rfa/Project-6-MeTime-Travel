@@ -33,7 +33,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
     const handleRemoveImage = (index) => {
         const newImageUrls = [...imageUrls];
         newImageUrls.splice(index, 1);
-        setImageUrls(newImageUrls);
+        imageUrls.length === 1 ? setImageUrls(['']) : setImageUrls(newImageUrls);
     }
 
     const handleLinkMap = (e) => {

@@ -6,7 +6,6 @@ import DropDownCategory from '../Fragments/DropDownCategory';
 import Image from 'next/image'
 
 const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
-
     const [addImageUrls, setAddImageUrls] = useState(['']);
     const [fileName, setFileName] = useState(null);
     const { upload } = useUpload();
@@ -27,14 +26,12 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
     const handleRemoveImage = (index) => {
         const newImageUrls = [...addImageUrls];
         newImageUrls.splice(index, 1);
-        setAddImageUrls(newImageUrls);
+        addImageUrls.length === 1 ? setAddImageUrls(['']) : setAddImageUrls(newImageUrls);
     }
 
     const handleLinkMap = (e) => {
         setLinkMap(e.target.value);
     }
-
-    console.log(linkMap);
 
     useEffect(() => {
         if (linkMap === null) {

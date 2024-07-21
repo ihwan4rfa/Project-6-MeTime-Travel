@@ -12,7 +12,6 @@ import Image from 'next/image'
 import DropDownFilterByCategory from '@/components/Fragments/DropDownFilterByCategory'
 
 const Destinations = () => {
-
     const [destinations, setDestinations] = useState([]);
     const { getData } = useGetData();
     const [showEditDestination, setShowEditDestination] = useState(false);
@@ -25,7 +24,23 @@ const Destinations = () => {
     const [categoryAllSelected, setCategoryAllSelected] = useState(true);
 
     useEffect(() => {
-        getData("activities", (res) => setDestinations(res.data.data));
+        if (selectedCategoryId === null) {
+            getData("activities", (res) => { // must be refetch every load new data
+                const filtered = res.data.data.filter((activity) =>
+                    activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered); // update destinations every search changed
+            });
+        } else if (selectedCategoryId !== null) {
+            getData(`activities-by-category/${selectedCategoryId}`, (res) => {
+                const filtered = res.data.data.filter((activity) =>
+                    activity.categoryId === selectedCategoryId && activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered);
+            })
+        } else {
+            getData("activities", (res) => setDestinations(res.data.data));
+        }
     }, [showDeleteDestination, showEditDestination, showAddDestination]);
 
     const handleShowAddDestination = () => {
