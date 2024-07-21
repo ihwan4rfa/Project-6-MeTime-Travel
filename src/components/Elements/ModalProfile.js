@@ -60,11 +60,11 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
 
         const res = await update(`update-profile/`, userData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("User updated");
             handleEditProfile();
             getUserLogged();
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to update user");
         }
     }
 

@@ -9,9 +9,9 @@ const ModalConfirmDeletePromo = ({ showDeletePromo, setShowDeletePromo, selected
         const res = await deleteData(`delete-promo/${promoId}`)
         if (res.status === 200) {
             setShowDeletePromo(false);
-            toast.success(res.data.message);
+            toast.success("Promo deleted");
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to delete promo");
         }
     }
 

@@ -9,9 +9,9 @@ const ModalConfirmDeleteBanner = ({ showDeleteBanner, setShowDeleteBanner, selec
         const res = await deleteData(`delete-banner/${bannerId}`)
         if (res.status === 200) {
             setShowDeleteBanner(false);
-            toast.success(res.data.message);
+            toast.success("Banner deleted");
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to delete banner");
         }
     }
 

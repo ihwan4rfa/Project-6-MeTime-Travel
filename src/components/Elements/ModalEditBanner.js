@@ -55,12 +55,12 @@ const ModalEditBanner = ({ showEditBanner, setShowEditBanner, selectedBanner }) 
 
         const res = await update(`update-banner/${selectedBanner.id}`, bannerData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Banner updated");
             setShowEditBanner(false);
             e.target.reset();
             setBannerImageUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to update banner");
         }
     }
 

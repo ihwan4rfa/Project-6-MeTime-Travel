@@ -60,12 +60,12 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
 
         const res = await create(`create-promo`, promoData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Promo created");
             setShowAddPromo(false);
             e.target.reset();
             setAddPromoImageUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to create promo");
         }
     }
 

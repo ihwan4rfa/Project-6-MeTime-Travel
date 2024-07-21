@@ -60,12 +60,12 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
 
         const res = await update(`update-promo/${selectedPromo.id}`, promoData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Promo updated");
             setShowEditPromo(false);
             e.target.reset();
             setPromoImageUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to update promo");
         }
     }
 

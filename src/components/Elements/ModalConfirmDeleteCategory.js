@@ -9,9 +9,9 @@ const ModalConfirmDeleteCategory = ({ showDeleteCategory, setShowDeleteCategory,
         const res = await deleteData(`delete-category/${categoryId}`)
         if (res.status === 200) {
             setShowDeleteCategory(false);
-            toast.success(res.data.message);
+            toast.success("Category deleted");
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to delete category");
         }
     }
 

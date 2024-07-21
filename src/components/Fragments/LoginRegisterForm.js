@@ -1,6 +1,6 @@
 import { useState } from "react"
 import useUpload from "../../Hooks/useUpload";
-import DropDownRole from "../Elements/DropDownRole";
+import DropDownRole from "./DropDownRole";
 import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useDispatch } from "react-redux";
@@ -66,7 +66,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
 
         for (const key in userData) {
             if (!userData[key]) {
-                toast.error("Please input all fields.");
+                toast.error("Please input all fields!");
                 return;
             }
         }
@@ -88,7 +88,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                 toast.error("Registration failed. \n This email is already registered. \n Try another email or log in.");
             }
         } else {
-            toast.error("Please check both passwords \n and make sure they match.");
+            toast.error("Please check both passwords \n and make sure they match!");
             return;
         }
     };

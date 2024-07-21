@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
-import DropDownCategory from './DropDownCategory';
+import DropDownCategory from '../Fragments/DropDownCategory';
 import Image from 'next/image'
 
 const ModalEditDestination = ({ showEditDestination, setShowEditDestination, selectedDestination }) => {
@@ -109,14 +109,14 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
 
         for (const key in destinationData) {
             if (!destinationData[key]) {
-                toast.error("Please input all fields.");
+                toast.error("Please input all fields");
                 return;
             }
         }
 
         const res = await update(`update-activity/${selectedDestination.id}`, destinationData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Destination updated");
             e.target.reset();
             setShowEditDestination(false);
             setShowNextStep(false);
@@ -128,7 +128,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
             setLinkMap(null);
             setSrcUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to update destination");
         }
     }
 

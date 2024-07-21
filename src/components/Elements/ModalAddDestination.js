@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useCreate from '@/Hooks/useCreate';
-import DropDownCategory from './DropDownCategory';
+import DropDownCategory from '../Fragments/DropDownCategory';
 import Image from 'next/image'
 
 const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
@@ -76,7 +76,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
         }
     };
 
-    const handleUpdateDestination = async (e) => {
+    const handleAddDestination = async (e) => {
         e.preventDefault();
         const destinationData = {
             categoryId: selectedCategoryId,
@@ -96,14 +96,14 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
 
         for (const key in destinationData) {
             if (!destinationData[key]) {
-                toast.error("Please input all fields.");
+                toast.error("Please input all fields!");
                 return;
             }
         }
 
         const res = await create(`create-activity`, destinationData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Destination created");
             e.target.reset();
             setShowAddDestination(false);
             setShowNextStep(false);
@@ -116,7 +116,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
             setLinkMap(null);
             setSrcUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to create destination");
         }
     }
 
@@ -142,7 +142,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
                     <div className='absolute flex justify-end w-full p-2'>
                         <button onClick={handleCloseAddDestination} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
-                    <form ref={formRef} onSubmit={handleUpdateDestination} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
+                    <form ref={formRef} onSubmit={handleAddDestination} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <h1 className='z-10 pb-2 font-medium'>Add Destination</h1>
                         <div className={`flex absolute top-[55px] w-[95.4%] h-[2px] rounded-full bg-gradient-to-r ${showNextStep === true ? 'bg-primaryblue' : 'from-primaryblue via-slate-200 to-slate-200'}`}></div>
                         <div className='z-10 flex items-center justify-between w-1/2 pb-4'>

@@ -9,9 +9,9 @@ const ModalConfirmDeleteDestination = ({ showDeleteDestination, setShowDeleteDes
         const res = await deleteData(`delete-activity/${destinationId}`)
         if (res.status === 200) {
             setShowDeleteDestination(false);
-            toast.success(res.data.message);
+            toast.success("Destination deleted");
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to delete destination");
         }
     }
 

@@ -9,7 +9,7 @@ import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDel
 import ModalEditDestination from '@/components/Elements/ModalEditDestination'
 import ModalAddDestination from '@/components/Elements/ModalAddDestination'
 import Image from 'next/image'
-import DropDownFilterByCategory from '@/components/Elements/DropDownFilterByCategory'
+import DropDownFilterByCategory from '@/components/Fragments/DropDownFilterByCategory'
 
 const Destinations = () => {
 

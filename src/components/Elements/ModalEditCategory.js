@@ -48,12 +48,12 @@ const ModalEditCategory = ({ showEditCategory, setShowEditCategory, selectedCate
 
         const res = await update(`update-category/${selectedCategory.id}`, categoryData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Category updated");
             setShowEditCategory(false);
             e.target.reset();
             setCategoryImageUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to update category");
         }
     }
 

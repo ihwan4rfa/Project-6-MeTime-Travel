@@ -48,19 +48,19 @@ const ModalAddCategory = ({ showAddCategory, setShowAddCategory }) => {
 
         for (const key in categoryData) {
             if (!categoryData[key]) {
-                toast.error("Please input all fields.");
+                toast.error("Please input all fields!");
                 return;
             }
         }
 
         const res = await create("create-category", categoryData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Category created");
             setShowAddCategory(false);
             e.target.reset();
             setAddCategoryImageUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to create category");
         }
     }
 

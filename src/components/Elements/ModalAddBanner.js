@@ -48,19 +48,19 @@ const ModalAddBanner = ({ showAddBanner, setShowAddBanner }) => {
 
         for (const key in bannerData) {
             if (!bannerData[key]) {
-                toast.error("Please input all fields.");
+                toast.error("Please input all fields!");
                 return;
             }
         }
 
         const res = await create("create-banner", bannerData);
         if (res.status === 200) {
-            toast.success(res.data.message);
+            toast.success("Banner created");
             setShowAddBanner(false);
             e.target.reset();
             setAddBannerImageUrl(null);
         } else {
-            toast.error(res.response.data.message);
+            toast.error("Failed to create banner");
         }
     }
 
