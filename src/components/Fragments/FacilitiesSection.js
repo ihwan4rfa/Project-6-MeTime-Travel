@@ -37,7 +37,7 @@ const FacilitiesSection = () => {
             <div className='flex justify-between w-full'>
                 {keys.map((key, index) => (
                     <div className='relative'>
-                        <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col h-64 duration-100 bg-white hover:shadow-cardfacilities hover:scale-105 w-52 rounded-2xl'>
+                        <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col h-64 duration-100 bg-white cursor-pointer hover:shadow-cardfacilities hover:scale-105 w-52 rounded-2xl'>
                             <div className='flex items-end justify-center w-full h-2/5'>
                                 <Image src={iconList[key]} className='w-auto h-16' width={500} height={500} alt="Icon" />
                             </div>

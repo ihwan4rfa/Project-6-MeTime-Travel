@@ -24,9 +24,9 @@ module.exports = {
         primarygray: '#5E6282',
       },
       boxShadow: {
-        'cardfacilities': '0 35px 50px -20px rgba(0, 0, 0, 0.1)',
-        'dropdown': '0 10px 40px -12px rgba(0, 0, 0, 0.1)',
-        'navbar': '0 20px 40px -26px rgba(0, 0, 0, 0.1)',
+        'cardfacilities': '0 35px 50px -20px rgba(0, 0, 0, 0.2)',
+        'dropdown': '0 10px 40px -12px rgba(0, 0, 0, 0.2)',
+        'navbar': '0 20px 40px -26px rgba(0, 0, 0, 0.2)',
       },
       keyframes: {
         typing: {

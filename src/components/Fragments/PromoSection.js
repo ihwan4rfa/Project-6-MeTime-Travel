@@ -1,10 +1,57 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import useGetData from '@/Hooks/useGetData';
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 
 const PromoSection = () => {
+    const [promos, setPromos] = useState([]);
+    const { getData } = useGetData();
+
+    useEffect(() => {
+        getData("promos", (res) => setPromos(res.data.data));
+    }, []);
+
+    const responsive = {
+        700: {
+            items: 2,
+        },
+        1000: {
+            items: 3,
+        },
+        1200: {
+            items: 4,
+        },
+        1500: {
+            items: 5,
+        }
+    };
+
     return (
-        <div className='flex w-full h-screen pt-20'>
-            
+        <div className='relative flex flex-col w-full gap-10 mt-8 h-fit'>
+            <div className='absolute z-0 bg-yellow-300 bg-opacity-40 rounded-full w-[500px] h-[500px] blur-3xl -top-10 -left-10'></div>
+            <div className='relative flex justify-between w-full'>
+                <h1 className='flex text-3xl font-bold tracking-tight font-volkhov'>Special Promo!</h1>
+                <button type="button" className="px-5 py-3 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover">
+                    View All Offers
+                </button>
+            </div>
+            <div className='relative flex w-full overflow-x-hidden rounded-xl'>
+                <AliceCarousel mouseTracking infinite autoPlay animationDuration={1500} disableButtonsControls disableDotsControls responsive={responsive}>
+                    {promos.map((promo, index) => (
+                        <button key={index} className='w-[95%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px]'>
+                            {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
+                                <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
+                                : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
+                            }
+                            <div className='flex justify-between items-center w-full h-[20%] px-4 py-3'>
+                                <h1 className='font-semibold'>{promo.title}</h1>
+                                <h1 className='font-semibold text-primaryblue'>{promo.promo_discount_price}</h1>
+                            </div>
+                        </button>
+                    ))}
+                </AliceCarousel>
+            </div>
         </div>
     )
 }
