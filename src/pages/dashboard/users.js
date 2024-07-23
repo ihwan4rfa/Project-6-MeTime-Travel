@@ -123,7 +123,7 @@ const Users = () => {
                         </div>
                     </div>
                     <div className='h-[2px] bg-opacity-50 rounded-full bg-slate-300'></div>
-                    <div ref={containerRef} className='flex flex-col flex-1 w-full gap-2 overflow-y-scroll no-scrollbar'>
+                    <div ref={containerRef} className='flex flex-col flex-1 w-full gap-3 pt-3 overflow-y-scroll no-scrollbar'>
                         {displayedUser.map((user, index) => (
                             <div key={index} className='flex items-center w-full bg-white h-fit rounded-xl'>
                                 <div className='my-2 ml-2 overflow-hidden rounded-lg w-14 h-14'>

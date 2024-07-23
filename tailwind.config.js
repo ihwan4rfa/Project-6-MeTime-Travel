@@ -24,9 +24,12 @@ module.exports = {
         primarygray: '#5E6282',
       },
       boxShadow: {
-        'cardfacilities': '0 35px 50px -20px rgba(0, 0, 0, 0.2)',
-        'dropdown': '0 10px 40px -12px rgba(0, 0, 0, 0.2)',
-        'navbar': '0 20px 40px -26px rgba(0, 0, 0, 0.2)',
+        'card': '0 35px 50px -26px rgba(0, 0, 0, 0.1)',
+        'dropdown': '0 10px 40px -15px rgba(0, 0, 0, 0.15)',
+        'navbar': '0 20px 40px -26px rgba(0, 0, 0, 0.15)',
+        'label': '0 5px 20px -8px rgba(0, 0, 0, 0.1)',
+        'hoverlabel': '0 5px 20px -8px rgba(0, 0, 0, 0.15)',
+        'button': '0 6px 25px -8px rgba(0, 0, 0, 0.1)',
       },
       keyframes: {
         typing: {
@@ -49,6 +52,9 @@ module.exports = {
       },
       animation: {
         typing: "typing 3s steps(35) infinite alternate, blink .6s infinite"
+      },
+      scale: {
+        '103': '1.03',
       }
     }
   }

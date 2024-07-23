@@ -94,9 +94,9 @@ const Banners = () => {
                     </div>
                     <div className='h-[2px] bg-opacity-50 rounded-full bg-slate-300'></div>
                     <div className='flex flex-1 overflow-y-scroll no-scrollbar'>
-                        <div className='flex flex-wrap h-fit w-full gap-[2%] pt-2'>
+                        <div className='flex flex-wrap h-fit w-full gap-[2%] pt-3'>
                             {banners.map((banner, index) => (
-                                <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] my-3'>
+                                <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] mb-5'>
                                     {banner.imageUrl.startsWith("https://") && (banner.imageUrl.includes(".jpg") || banner.imageUrl.includes(".png") || banner.imageUrl.includes("images")) ?
                                         <img src={banner.imageUrl} className='object-cover w-full bg-slate-200 h-[65%]'></img>
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[65%]' width={500} height={500} alt='Unknown Profile' />

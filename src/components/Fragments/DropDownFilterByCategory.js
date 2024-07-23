@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useGetData from '@/Hooks/useGetData';
 
-const DropDownFilterByCategory = ({ setSelectedCategoryId, categoryAllSelected, setCategoryAllSelected, setDestinations }) => {
+const DropDownFilterByCategory = ({ selectedCategoryId, setSelectedCategoryId, categoryAllSelected, setCategoryAllSelected, setDestinations }) => {
     const [selectedCategoryName, setSelectedCategoryName] = useState(null);
     const [dropDownHidden, setDropDownHidden] = useState(true);
     const [categories, setCategories] = useState([]);
@@ -23,11 +23,25 @@ const DropDownFilterByCategory = ({ setSelectedCategoryId, categoryAllSelected, 
     };
 
     const handleChangeAllCategory = () => {
-        getData("activities", (res) => setDestinations(res.data.data));
         setDropDownHidden(!dropDownHidden);
         setCategoryAllSelected(true);
         setSelectedCategoryId(null);
         setSelectedCategoryName(null);
+        if (selectedCategoryId === null) {
+            getData("activities", (res) => { // must be refetch every load new data
+                const filtered = res.data.data.filter((activity) =>
+                    activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered); // update destinations every search changed
+            });
+        } else {
+            getData(`activities-by-category/${selectedCategoryId}`, (res) => {
+                const filtered = res.data.data.filter((activity) =>
+                    activity.categoryId === selectedCategoryId && activity.title.toLowerCase().includes(search.toLowerCase())
+                )
+                setDestinations(filtered);
+            })
+        }
     }
 
     return (

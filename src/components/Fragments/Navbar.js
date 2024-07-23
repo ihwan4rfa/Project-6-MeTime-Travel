@@ -72,7 +72,7 @@ const Navbar = () => {
 
     return (
         <div className='font-poppins'>
-            <nav className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'px-36'} z-40 fixed flex items-center justify-between w-full h-16 bg-white shadow-navbar text-primaryblack`}>
+            <nav className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'px-36'} z-50 fixed flex items-center justify-between w-full h-16 bg-white shadow-navbar text-primaryblack`}>
                 <button onClick={() => currentPath.startsWith("/dashboard") ? router.push("/dashboard/users") : router.push(linkList.Home)}><Image className='w-auto h-9' src="/images/Logo.png" width={500} height={500} /></button>
                 <div className="flex items-center gap-16 text-[13px] font-medium">
                     {keys.map((key, index) => (
