@@ -84,7 +84,7 @@ const DestinationSection = () => {
     };
 
     return (
-        <div className='relative z-10 flex w-full mt-8 h-fit'>
+        <div className='relative z-10 flex w-full h-fit'>
             <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-[550px] h-[550px] blur-3xl -top-10 -right-20'></div>
             <div className='relative flex flex-col items-start justify-start w-1/3 h-full'>
                 <div className='mb-4'>

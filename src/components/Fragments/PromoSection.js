@@ -29,7 +29,7 @@ const PromoSection = () => {
     };
 
     return (
-        <div className='relative z-20 flex flex-col w-full gap-10 mt-12 h-fit'>
+        <div className='relative z-20 flex flex-col w-full gap-10 h-fit'>
             <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-[500px] h-[400px] blur-3xl -top-5 -left-20'></div>
             <div className='relative flex justify-between w-full'>
                 <h1 className='flex text-3xl font-bold tracking-tight font-volkhov'>Special Promo!</h1>

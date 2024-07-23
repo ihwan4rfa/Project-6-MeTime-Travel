@@ -29,7 +29,7 @@ const FacilitiesSection = () => {
     const [hoverIndex, setHoverIndex] = useState(null);
 
     return (
-        <div className='relative z-30 flex flex-col w-full gap-8 h-fit'>
+        <div className='relative z-30 flex flex-col w-full gap-8 -mt-16 h-fit'>
             <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-[300px] h-[300px] blur-3xl -top-24 -right-20'></div>
             <Image src="/images/aksen.png" className='absolute w-24 -top-10 -left-20' width={500} height={500} alt='Line Decore' />
             <h1 className='flex items-center justify-center w-full text-3xl font-bold tracking-tight font-volkhov'>
