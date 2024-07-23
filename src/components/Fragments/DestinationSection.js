@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const DestinationSection = () => {
     const { getData } = useGetData();
@@ -9,6 +10,7 @@ const DestinationSection = () => {
     const [search, setSearch] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
     const [selectedCategoryName, setSelectedCategoryName] = useState(null);
+    const router = useRouter();
     const handleDragStart = (e) => e.preventDefault();
 
     useEffect(() => {
@@ -112,7 +114,7 @@ const DestinationSection = () => {
                         ))}
                     </div>
                 </div>
-                <button type="button" className="px-5 py-3 mt-2 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover">
+                <button onClick={() => router.push("/destinations")} type="button" className="px-5 py-3 mt-2 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover">
                     Explore All
                 </button>
             </div>
@@ -125,19 +127,26 @@ const DestinationSection = () => {
                     </div>
                 </div>
                 <div className='flex h-[380px] overflow-y-scroll no-scrollbar w-full rounded-xl'>
-                    <div className='flex flex-wrap justify-end w-full gap-[3%]'>
+                    <div className='flex flex-wrap justify-end rounded-xl w-full gap-[3%]'>
                         {destinations && destinations.map((destination, index) => (
-                            <button key={index} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] overflow-hidden bg-white text-primaryblack rounded-xl h-64'>
+                            <button key={index} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] relative overflow-hidden bg-white text-primaryblack rounded-xl h-64'>
+                                <div className='flex text-[11px] items-center z-10 absolute bg-white h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
+                                    <i className="fa-solid fa-star text-primaryyellow mr-1"></i>
+                                    <h1 className='text-primarygray pt-[1px]'>{destination.rating}</h1>
+                                </div>
                                 {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?
-                                    <img src={destination.imageUrls[0]} className='object-cover w-full bg-slate-200 h-[73%]'></img>
-                                    : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
+                                    <img src={destination.imageUrls[0]} className='object-cover relative w-full bg-slate-200 h-[73%]'></img>
+                                    : <Image src="/images/no-image.png" className='object-cover relative w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
                                 }
-                                <div className='flex justify-between font-medium items-center w-full h-[27%] px-4'>
-                                    <div className='flex flex-col w-3/5 gap-1 text-start'>
+                                <div className='flex relative justify-between font-medium items-center w-full h-[27%] px-4'>
+                                    <div className='flex flex-col w-4/6 gap-1 text-start'>
                                         <h1>{destination.title}</h1>
-                                        <h1 className='text-primarygray text-[11px]'><i class="fa-solid fa-location-dot mr-2 text-primaryred"></i>{`${destination.city}, ${destination.province}`}</h1>
+                                        <div className='text-[11px] flex items-center gap-2'>
+                                            <i class="fa-solid fa-location-dot text-primaryred"></i>
+                                            <h1 className='text-primarygray'>{`${destination.city}, ${destination.province}`}</h1>
+                                        </div>
                                     </div>
-                                    <div className='flex flex-col items-end w-2/5 gap-1'>
+                                    <div className='flex flex-col items-end w-2/6 gap-1'>
                                         <div className='relative flex w-fit'>
                                             <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
                                             <h1 className='relative text-primarygray text-[11px]'>{destination.price}</h1>

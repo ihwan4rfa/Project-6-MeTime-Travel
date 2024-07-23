@@ -3,10 +3,12 @@ import Image from 'next/image'
 import useGetData from '@/Hooks/useGetData';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
+import { useRouter } from 'next/router';
 
 const PromoSection = () => {
     const [promos, setPromos] = useState([]);
     const { getData } = useGetData();
+    const router = useRouter();
     const handleDragStart = (e) => e.preventDefault();
 
     useEffect(() => {
@@ -15,16 +17,16 @@ const PromoSection = () => {
 
     const responsive = {
         700: {
-            items: 2,
+            items: 1,
         },
         1000: {
-            items: 3,
+            items: 2,
         },
         1200: {
-            items: 4,
+            items: 3,
         },
         1500: {
-            items: 5,
+            items: 4,
         }
     };
 
@@ -33,14 +35,14 @@ const PromoSection = () => {
             <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-[500px] h-[400px] blur-3xl -top-5 -left-20'></div>
             <div className='relative flex justify-between w-full'>
                 <h1 className='flex text-3xl font-bold tracking-tight font-volkhov'>Special Promo!</h1>
-                <button type="button" className="px-5 py-3 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover">
+                <button onClick={() => router.push("/promos")} type="button" className="px-5 py-3 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover">
                     View All Offers
                 </button>
             </div>
-            <div className='relative w-full overflow-x-hidden rounded-xl'>
-                <AliceCarousel mouseTracking infinite autoPlay animationDuration={1500} disableButtonsControls disableDotsControls responsive={responsive}>
+            <div className='w-full relative overflow-x-hidden rounded-xl'>
+                <AliceCarousel mouseTracking paddingRight={160} infinite autoPlay animationDuration={1500} disableButtonsControls disableDotsControls responsive={responsive}>
                     {promos.map((promo, index) => (
-                        <button key={index} onDragStart={handleDragStart} className='w-[95%] overflow-hidden bg-white text-primaryblack rounded-xl h-64'>
+                        <div key={index} onDragStart={handleDragStart} className='w-[95%] h-60 overflow-hidden bg-white cursor-pointer text-primaryblack rounded-xl'>
                             {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                 <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                 : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
@@ -49,7 +51,7 @@ const PromoSection = () => {
                                 <h1>{promo.title}</h1>
                                 <h1 className='text-primaryblue'>{promo.promo_discount_price}</h1>
                             </div>
-                        </button>
+                        </div>
                     ))}
                 </AliceCarousel>
             </div>
