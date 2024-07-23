@@ -127,7 +127,7 @@ const DestinationSection = () => {
                 <div className='flex h-[380px] overflow-y-scroll no-scrollbar w-full rounded-xl'>
                     <div className='flex flex-wrap justify-end w-full gap-[3%]'>
                         {destinations && destinations.map((destination, index) => (
-                            <button key={index} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px]'>
+                            <button key={index} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] overflow-hidden bg-white text-primaryblack rounded-xl h-64'>
                                 {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?
                                     <img src={destination.imageUrls[0]} className='object-cover w-full bg-slate-200 h-[73%]'></img>
                                     : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />

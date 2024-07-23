@@ -5,6 +5,7 @@ import FacilitiesSection from '@/components/Fragments/FacilitiesSection'
 import PromoSection from '@/components/Fragments/PromoSection'
 import DestinationSection from '@/components/Fragments/DestinationSection'
 import BannerSection from '@/components/Fragments/BannerSection'
+import FooterSection from '@/components/Fragments/FooterSection'
 
 const index = () => {
   return (
@@ -16,6 +17,7 @@ const index = () => {
         <PromoSection />
         <DestinationSection />
         <BannerSection />
+        <FooterSection />
       </div>
     </div>
   )

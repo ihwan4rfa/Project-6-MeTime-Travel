@@ -18,10 +18,10 @@ const FacilitiesSection = () => {
     ]
 
     const descriptionList = [
-        "Precision Weather Forecasting for Seamless Adventures",
-        "Discover Best Flights for Your Perfect Getaway",
-        "Explore Local Events for Unforgettable Experiences",
-        "Trusted by Many with Excellent Customer Testimonials",
+        "Precision weather forecasting for seamless adventures",
+        "Discover best flights for your perfect getaway",
+        "Explore local events for unforgettable experiences",
+        "Trusted by many with excellent customer testimonials",
     ]
 
     const keys = Object.keys(iconList);
@@ -38,7 +38,7 @@ const FacilitiesSection = () => {
             <div className='flex justify-between w-full'>
                 {keys.map((key, index) => (
                     <div className='relative'>
-                        <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col h-64 duration-75 bg-white cursor-pointer hover:shadow-card hover:scale-103 w-52 rounded-2xl'>
+                        <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col h-64 duration-75 bg-white hover:shadow-card hover:scale-103 w-52 rounded-2xl'>
                             <div className='flex items-end justify-center w-full h-2/5'>
                                 <Image src={iconList[key]} className='w-auto h-16' width={500} height={500} alt="Icon" />
                             </div>

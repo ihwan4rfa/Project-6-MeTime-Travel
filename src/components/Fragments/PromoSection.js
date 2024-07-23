@@ -40,7 +40,7 @@ const PromoSection = () => {
             <div className='relative w-full overflow-x-hidden rounded-xl'>
                 <AliceCarousel mouseTracking infinite autoPlay animationDuration={1500} disableButtonsControls disableDotsControls responsive={responsive}>
                     {promos.map((promo, index) => (
-                        <button key={index} onDragStart={handleDragStart} className='w-[95%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px]'>
+                        <button key={index} onDragStart={handleDragStart} className='w-[95%] overflow-hidden bg-white text-primaryblack rounded-xl h-64'>
                             {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                 <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                 : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
