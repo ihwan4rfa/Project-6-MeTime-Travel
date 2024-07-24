@@ -74,6 +74,10 @@ const index = () => {
         setSearch(e.target.value);
     }
 
+    const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+
     return (
         <div className='flex relative w-full h-screen text-[13px] font-poppins text-primaryblack'>
             <Navbar />
@@ -98,7 +102,7 @@ const index = () => {
                     <div className='flex flex-1 rounded-t-xl overflow-y-scroll no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations && destinations.map((destination, index) => (
-                                <button key={index} className='w-[32%] mb-[1.5%] relative overflow-hidden bg-white text-primaryblack rounded-xl h-64'>
+                                <button key={index} className='w-[32%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
                                     <div className='flex text-[11px] items-center z-10 absolute bg-white h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
                                         <i className="fa-solid fa-star text-primaryyellow mr-1"></i>
                                         <h1 className='text-primarygray pt-[1px]'>{destination.rating}</h1>
@@ -109,18 +113,18 @@ const index = () => {
                                     }
                                     <div className='flex relative justify-between font-medium items-center w-full h-[27%] px-4'>
                                         <div className='flex flex-col w-4/6 gap-1 text-start'>
-                                            <h1>{destination.title}</h1>
-                                            <div className='text-[11px] flex items-center gap-2'>
-                                                <i class="fa-solid fa-location-dot text-primaryred"></i>
-                                                <h1 className='text-primarygray'>{`${destination.city}, ${destination.province}`}</h1>
+                                            <h1 className='capitalize'>{destination.title}</h1>
+                                            <div className='text-[11px] flex items-start gap-2'>
+                                                <i class="fa-solid fa-location-dot mt-[3px] text-primaryred"></i>
+                                                <h1 className='text-primarygray capitalize'>{`${destination.city}, ${destination.province}`}</h1>
                                             </div>
                                         </div>
                                         <div className='flex flex-col items-end w-2/6 gap-1'>
                                             <div className='relative flex w-fit'>
                                                 <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
-                                                <h1 className='relative text-primarygray text-[11px]'>{destination.price}</h1>
+                                                <h1 className='relative text-primarygray text-[11px]'>Rp{formatNumber(destination.price)}</h1>
                                             </div>
-                                            <h1 className='text-primaryblue'>{`${destination.price_discount}`}</h1>
+                                            <h1 className='text-primaryblue'>Rp{`${formatNumber(destination.price_discount)}`}</h1>
                                         </div>
                                     </div>
                                 </button>

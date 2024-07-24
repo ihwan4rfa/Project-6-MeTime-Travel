@@ -57,7 +57,7 @@ const DropDownFilterByCategory = ({ selectedCategoryId, setSelectedCategoryId, c
                     </button>
                     {categories.map((category, index) => (
                         <button key={index} onClick={() => handleOptionChange(category.id, category.name)} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 ${categoryAllSelected === false && selectedCategoryName === category.name ? 'bg-slate-200' : ''}`}>
-                            <h1 className='text-left'>{category.name}</h1>
+                            <h1 className='text-left capitalize'>{category.name}</h1>
                         </button>
                     ))}
                 </div>

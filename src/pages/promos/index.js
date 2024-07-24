@@ -2,15 +2,25 @@ import Navbar from '@/components/Fragments/Navbar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import Image from 'next/image'
+import ModalDetailPromo from '@/components/Elements/ModalDetailPromo'
+import { useDispatch } from 'react-redux';
+import { setShowModal } from '@/redux/slice/showModalSlice';
 
 const index = () => {
     const [promos, setPromos] = useState([]);
     const { getData } = useGetData();
     const [search, setSearch] = useState("");
+    const [showDetailPromo, setShowDetailPromo] = useState(false);
+    const [selectedPromo, setSelectedPromo] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getData("promos", (res) => setPromos(res.data.data));
     }, []);
+
+    const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
 
     // Event every search changed
     useEffect(() => {
@@ -24,6 +34,22 @@ const index = () => {
 
     const handleSearch = (e) => {
         setSearch(e.target.value);
+    }
+
+    const handleShowDetailPromo = async (promoId) => {
+        const getPromo = async () => {
+            await getData(`promo/${promoId}`, (res) => {
+                setSelectedPromo(res.data.data);
+            })
+        }
+
+        try {
+            await getPromo();
+            setShowDetailPromo(true);
+            dispatch(setShowModal(true));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -49,14 +75,14 @@ const index = () => {
                     <div className='flex flex-1 rounded-t-xl overflow-y-scroll no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {promos.map((promo, index) => (
-                                <button key={index} className='w-[23.5%] mb-[1.5%] overflow-hidden bg-white text-primaryblack rounded-xl h-56'>
+                                <button onClick={() => handleShowDetailPromo(promo.id)} key={index} className='w-[23.5%] mb-[1.5%] overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-56'>
                                     {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                         <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
                                     }
                                     <div className='flex justify-between font-medium items-center w-full h-[20%] px-4 py-3'>
-                                        <h1>{promo.title}</h1>
-                                        <h1 className='text-primaryblue'>{promo.promo_discount_price}</h1>
+                                        <h1 className='capitalize'>{promo.title}</h1>
+                                        <h1 className='text-primaryblue'>Rp{formatNumber(promo.promo_discount_price)}</h1>
                                     </div>
                                 </button>
                             ))}
@@ -64,6 +90,7 @@ const index = () => {
                     </div>
                 </div>
             </div>
+            <ModalDetailPromo showDetailPromo={showDetailPromo} setShowDetailPromo={setShowDetailPromo} selectedPromo={selectedPromo} setSelectedPromo={setSelectedPromo} />
         </div>
     )
 }

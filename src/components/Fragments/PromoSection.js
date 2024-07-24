@@ -15,6 +15,10 @@ const PromoSection = () => {
         getData("promos", (res) => setPromos(res.data.data));
     }, []);
 
+    const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+
     const responsive = {
         500: {
             items: 1,
@@ -42,14 +46,14 @@ const PromoSection = () => {
             <div className='w-full relative overflow-x-hidden rounded-xl'>
                 <AliceCarousel mouseTracking paddingRight={160} infinite autoPlay animationDuration={1500} disableButtonsControls disableDotsControls responsive={responsive}>
                     {promos.map((promo, index) => (
-                        <div key={index} onDragStart={handleDragStart} className='w-[95%] h-60 overflow-hidden bg-white cursor-pointer text-primaryblack rounded-xl'>
+                        <div key={index} onDragStart={handleDragStart} className='w-[95%] h-60 overflow-hidden bg-white border border-white hover:border-primaryred cursor-pointer text-primaryblack rounded-xl'>
                             {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                 <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                 : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
                             }
                             <div className='flex justify-between font-medium items-center w-full h-[20%] px-4 py-3'>
-                                <h1>{promo.title}</h1>
-                                <h1 className='text-primaryblue'>{promo.promo_discount_price}</h1>
+                                <h1 className='capitalize'>{promo.title}</h1>
+                                <h1 className='text-primaryblue'>Rp{formatNumber(promo.promo_discount_price)}</h1>
                             </div>
                         </div>
                     ))}
