@@ -133,16 +133,15 @@ const Destinations = () => {
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
                             </div>
-                            <DropDownFilterByCategory selectedCategoryId={selectedCategoryId}  setSelectedCategoryId={setSelectedCategoryId} categoryAllSelected={categoryAllSelected} setCategoryAllSelected={setCategoryAllSelected} setDestinations={setDestinations} />
+                            <DropDownFilterByCategory selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} categoryAllSelected={categoryAllSelected} setCategoryAllSelected={setCategoryAllSelected} setDestinations={setDestinations} />
                             <button onClick={handleShowAddDestination} type="button" className="px-4 py-2 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Destination
                             </button>
                         </div>
                     </div>
-                    <div className='h-[2px] bg-opacity-50 rounded-full bg-slate-300'></div>
-                    <div className='flex flex-1 overflow-y-scroll no-scrollbar'>
-                        <div className='flex flex-wrap h-fit w-full gap-[2%] pt-3'>
+                    <div className='flex flex-1 overflow-y-scroll no-scrollbar rounded-xl mt-1'>
+                        <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations.map((destination, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] mb-5'>
                                     {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?

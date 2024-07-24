@@ -16,10 +16,10 @@ const PromoSection = () => {
     }, []);
 
     const responsive = {
-        700: {
+        500: {
             items: 1,
         },
-        1000: {
+        900: {
             items: 2,
         },
         1200: {

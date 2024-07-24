@@ -76,8 +76,8 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
     return (
         user && (
             <>
-                <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showProfile === true ? '' : 'hidden'}`}></div>
-                <div className={`${showProfile === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
+                <div className={`absolute z-40 w-full h-full opacity-40 bg-primaryblack ${showProfile === true ? '' : 'hidden'}`}></div>
+                <div className={`${showProfile === true ? '' : 'hidden'} absolute z-40 flex items-center justify-center w-full h-full`}>
                     <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack ${editProfile === true ? 'h-fit w-[600px]' : 'h-fit w-fit'}`}>
                         <div className='absolute flex justify-end w-full p-2'>
                             <button onClick={editProfile === true ? handleEditProfile : handleShowProfile} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>

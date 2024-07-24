@@ -92,9 +92,8 @@ const Promos = () => {
                             </button>
                         </div>
                     </div>
-                    <div className='h-[2px] bg-opacity-50 rounded-full bg-slate-300'></div>
-                    <div className='flex flex-1 overflow-y-scroll no-scrollbar'>
-                        <div className='flex flex-wrap h-fit w-full gap-[2%] pt-3'>
+                    <div className='flex flex-1 overflow-y-scroll no-scrollbar rounded-xl mt-1'>
+                        <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {promos.map((promo, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] mb-5'>
                                     {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
