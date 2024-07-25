@@ -5,7 +5,7 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRouter } from 'next/router';
 
-const PromoSection = () => {
+const PromoSection = ({ handleShowDetailPromo }) => {
     const [promos, setPromos] = useState([]);
     const { getData } = useGetData();
     const router = useRouter();
@@ -43,10 +43,10 @@ const PromoSection = () => {
                     View All Offers
                 </button>
             </div>
-            <div className='w-full relative overflow-x-hidden rounded-xl'>
+            <div className='relative w-full overflow-x-hidden rounded-xl'>
                 <AliceCarousel mouseTracking paddingRight={160} infinite autoPlay animationDuration={1500} disableButtonsControls disableDotsControls responsive={responsive}>
                     {promos.map((promo, index) => (
-                        <div key={index} onDragStart={handleDragStart} className='w-[95%] h-60 overflow-hidden bg-white border border-white hover:border-primaryred cursor-pointer text-primaryblack rounded-xl'>
+                        <div key={index} onClick={() => handleShowDetailPromo(promo.id)} onDragStart={handleDragStart} className='w-[95%] h-60 overflow-hidden bg-white border border-white hover:border-primaryred cursor-pointer text-primaryblack rounded-xl'>
                             {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                 <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                 : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />

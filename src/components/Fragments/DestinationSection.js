@@ -3,7 +3,7 @@ import useGetData from '@/Hooks/useGetData'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-const DestinationSection = () => {
+const DestinationSection = ({ handleShowDetailDestination }) => {
     const { getData } = useGetData();
     const [categories, setCategories] = useState();
     const [destinations, setDestinations] = useState();
@@ -133,9 +133,9 @@ const DestinationSection = () => {
                 <div className='flex h-[380px] overflow-y-scroll no-scrollbar w-full rounded-xl'>
                     <div className='flex flex-wrap justify-end rounded-xl w-full gap-[3%] h-fit'>
                         {destinations && destinations.map((destination, index) => (
-                            <button key={index} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
+                            <button key={index} onClick={() => handleShowDetailDestination(destination.id)} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
                                 <div className='flex text-[11px] items-center z-10 absolute bg-white h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
-                                    <i className="fa-solid fa-star text-primaryyellow mr-1"></i>
+                                    <i className="mr-1 fa-solid fa-star text-primaryyellow"></i>
                                     <h1 className='text-primarygray pt-[1px]'>{destination.rating}</h1>
                                 </div>
                                 {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?
@@ -147,7 +147,7 @@ const DestinationSection = () => {
                                         <h1 className='capitalize'>{destination.title}</h1>
                                         <div className='text-[11px] flex items-start gap-2'>
                                             <i class="fa-solid fa-location-dot mt-[3px] text-primaryred"></i>
-                                            <h1 className='text-primarygray capitalize'>{`${destination.city}, ${destination.province}`}</h1>
+                                            <h1 className='capitalize text-primarygray'>{`${destination.city}, ${destination.province}`}</h1>
                                         </div>
                                     </div>
                                     <div className='flex flex-col items-end w-2/6 gap-1'>

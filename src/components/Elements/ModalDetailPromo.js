@@ -46,12 +46,12 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
                                     </div>
                                 )}
                                 <div className='flex flex-col w-[450px] gap-2'>
-                                    <h1 className='font-semibold capitalize text-2xl'>{selectedPromo.title}</h1>
-                                    <div className='flex justify-between bg-slate-100 w-full py-2 pl-3 pr-2 mb-2 rounded-lg'>
+                                    <h1 className='text-2xl font-semibold capitalize'>{selectedPromo.title}</h1>
+                                    <div className='flex justify-between w-full py-2 pl-3 pr-2 mb-2 rounded-lg bg-slate-100'>
                                         <div className='flex flex-col items-start justify-between'>
                                             <h1 className='text-2xl font-semibold text-primaryblue'>Rp{formatNumber(selectedPromo.promo_discount_price)}</h1>
                                             <h1 className='text-[11px]'>
-                                                Spend at least <span className='text-primaryred font-semibold rounded-md '>
+                                                Spend at least <span className='font-semibold rounded-md text-primaryred '>
                                                     Rp{formatNumber(selectedPromo.minimum_claim_price)}
                                                 </span> to get this promo
                                             </h1>
