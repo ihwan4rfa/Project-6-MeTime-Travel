@@ -45,7 +45,7 @@ const DropDownFilterByCategory = ({ selectedCategoryId, setSelectedCategoryId, c
     }
 
     return (
-        <div className="flex z-30 relative text-[13px] w-36">
+        <div className="flex z-20 relative text-[13px] w-36">
             <a onClick={handleDropDownToggle} className={`${dropDownUser === true ? 'py-3 shadow-label' : 'py-2'} flex justify-between w-full px-4 bg-white rounded-lg cursor-pointer text-primaryblack`}>
                 <h1>{selectedCategoryName ? selectedCategoryName : 'All Category'}</h1>
                 <h1><i class={`fa-solid ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i></h1>

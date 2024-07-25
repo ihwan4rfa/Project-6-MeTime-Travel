@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import Image from 'next/image'
 import DropDownFilterByCategory from '@/components/Fragments/DropDownFilterByCategory'
+import ModalDetailDestination from '@/components/Elements/ModalDetailDestination'
+import { useDispatch } from 'react-redux';
+import { setShowModal } from '@/redux/slice/showModalSlice';
 
 const index = () => {
     const [destinations, setDestinations] = useState([]);
@@ -11,6 +14,9 @@ const index = () => {
     const dropDownUser = true;
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
     const [categoryAllSelected, setCategoryAllSelected] = useState(true);
+    const [showDetailDestination, setShowDetailDestination] = useState(false);
+    const [selectedDestination, setSelectedDestination] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (selectedCategoryId === null) {
@@ -78,11 +84,27 @@ const index = () => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
+    const handleShowDetailDestination = async (destinationId) => {
+        const getDestination = async () => {
+            await getData(`activity/${destinationId}`, (res) => {
+                setSelectedDestination(res.data.data);
+            })
+        }
+
+        try {
+            await getDestination();
+            setShowDetailDestination(true);
+            dispatch(setShowModal(true));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className='flex relative w-full h-screen text-[13px] font-poppins text-primaryblack'>
             <Navbar />
-            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/2 h-1/2 blur-3xl right-10 top-20'></div>
-            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/2 h-1/2 blur-3xl left-10 bottom-0'></div>
+            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/3 h-1/2 blur-3xl right-10 top-20'></div>
+            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/3 h-1/2 blur-3xl left-10 bottom-0'></div>
             <div className='w-full relative px-36 pt-24'>
                 <div className='flex flex-col w-full h-full gap-7'>
                     <div className='flex items-center justify-between h-14'>
@@ -102,7 +124,7 @@ const index = () => {
                     <div className='flex flex-1 rounded-t-xl overflow-y-scroll no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations && destinations.map((destination, index) => (
-                                <button key={index} className='w-[32%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
+                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='w-[32%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
                                     <div className='flex text-[11px] items-center z-10 absolute bg-white h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
                                         <i className="fa-solid fa-star text-primaryyellow mr-1"></i>
                                         <h1 className='text-primarygray pt-[1px]'>{destination.rating}</h1>
@@ -133,6 +155,7 @@ const index = () => {
                     </div>
                 </div>
             </div>
+            <ModalDetailDestination showDetailDestination={showDetailDestination} setShowDetailDestination={setShowDetailDestination} selectedDestination={selectedDestination} setSelectedDestination={setSelectedDestination} />
         </div>
     )
 }

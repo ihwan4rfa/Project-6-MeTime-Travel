@@ -55,8 +55,8 @@ const index = () => {
     return (
         <div className='flex relative w-full h-screen text-[13px] font-poppins text-primaryblack'>
             <Navbar />
-            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/2 h-1/2 blur-3xl right-10 top-20'></div>
-            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/2 h-1/2 blur-3xl left-10 bottom-0'></div>
+            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/3 h-1/2 blur-3xl right-10 top-20'></div>
+            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-1/3 h-1/2 blur-3xl left-10 bottom-0'></div>
             <div className='w-full relative px-36 pt-24'>
                 <div className='flex flex-col w-full h-full gap-7'>
                     <div className='flex items-center justify-between h-14'>

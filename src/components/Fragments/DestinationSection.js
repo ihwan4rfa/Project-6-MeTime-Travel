@@ -131,7 +131,7 @@ const DestinationSection = () => {
                     </div>
                 </div>
                 <div className='flex h-[380px] overflow-y-scroll no-scrollbar w-full rounded-xl'>
-                    <div className='flex flex-wrap justify-end rounded-xl w-full gap-[3%]'>
+                    <div className='flex flex-wrap justify-end rounded-xl w-full gap-[3%] h-fit'>
                         {destinations && destinations.map((destination, index) => (
                             <button key={index} onDragStart={handleDragStart} className='w-[48.5%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
                                 <div className='flex text-[11px] items-center z-10 absolute bg-white h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
