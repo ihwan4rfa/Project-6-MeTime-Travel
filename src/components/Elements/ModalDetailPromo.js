@@ -28,7 +28,7 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
     return (
         selectedPromo &&
         <>
-            <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showDetailPromo === true ? '' : 'hidden'}`}></div>
+            <div className={`absolute z-30 w-full h-full opacity-40 bg-primaryblack ${showDetailPromo === true ? '' : 'hidden'}`}></div>
             <div className={`${showDetailPromo === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack h-fit w-fit`}>
                     <div className='absolute flex justify-end w-full p-2'>
