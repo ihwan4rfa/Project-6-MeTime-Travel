@@ -101,22 +101,22 @@ const index = () => {
     }
 
     return (
-        <div className='flex relative w-full h-screen text-[13px] font-poppins text-primaryblack'>
+        <div className='flex relative w-full h-screen text-[13px] font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack'>
             <Navbar />
-            <div className='absolute z-0 w-1/3 rounded-full bg-primaryyellow bg-opacity-10 h-1/2 blur-3xl right-10 top-20'></div>
-            <div className='absolute bottom-0 z-0 w-1/3 rounded-full bg-primaryyellow bg-opacity-10 h-1/2 blur-3xl left-10'></div>
+            <div className='absolute z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl right-10 top-20'></div>
+            <div className='absolute bottom-0 z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl left-10'></div>
             <div className='relative w-full pt-24 px-36'>
                 <div className='flex flex-col w-full h-full gap-7'>
                     <div className='flex items-center justify-between h-14'>
                         <div className='flex flex-col'>
                             <h1 className='text-2xl font-bold tracking-tight font-volkhov'>Explore All Destination</h1>
-                            <h1 className='text-2xl font-bold tracking-tight font-volkhov text-primaryred'>Find Yours!</h1>
+                            <h1 className='overflow-hidden text-2xl font-bold tracking-tight font-volkhov text-primaryred dark:text-primaryyellow whitespace-nowrap animate-typing'>Find Yours!</h1>
                         </div>
                         <div className='flex items-center gap-4 my-2'>
                             <h1 className={`text-slate-400 ${search === "" && selectedCategoryId === null ? 'hidden' : ''}`}><b>{destinations.length}</b> {destinations.length > 1 ? 'destinations' : 'destination'} found</h1>
-                            <div className='flex py-3 bg-white rounded-lg shadow-label text-primaryblack'>
+                            <div className='flex py-3 bg-white rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
+                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                             </div>
                             <DropDownFilterByCategory dropDownUser={dropDownUser} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} categoryAllSelected={categoryAllSelected} setCategoryAllSelected={setCategoryAllSelected} setDestinations={setDestinations} />
                         </div>
@@ -124,10 +124,10 @@ const index = () => {
                     <div className='flex flex-1 overflow-y-scroll rounded-t-xl no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations && destinations.map((destination, index) => (
-                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='w-[32%] mb-[1.5%] relative overflow-hidden bg-white border border-white hover:border-primaryred text-primaryblack rounded-xl h-64'>
-                                    <div className='flex text-[11px] items-center z-10 absolute bg-white h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
+                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='w-[32%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-64'>
+                                    <div className='flex text-[11px] items-center z-10 absolute bg-white dark:bg-primaryblack h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
                                         <i className="mr-1 fa-solid fa-star text-primaryyellow"></i>
-                                        <h1 className='text-primarygray pt-[1px]'>{destination.rating}</h1>
+                                        <h1 className='text-primarygray dark:text-slate-400 pt-[1px]'>{destination.rating}</h1>
                                     </div>
                                     {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?
                                         <img src={destination.imageUrls[0]} className='object-cover relative w-full bg-slate-200 h-[73%]'></img>
@@ -135,16 +135,16 @@ const index = () => {
                                     }
                                     <div className='flex relative justify-between font-medium items-center w-full h-[27%] px-4'>
                                         <div className='flex flex-col w-4/6 gap-1 text-start'>
-                                            <h1 className='capitalize'>{destination.title}</h1>
+                                            <h1 className='capitalize dark:text-slate-200'>{destination.title}</h1>
                                             <div className='text-[11px] flex items-start gap-2'>
                                                 <i class="fa-solid fa-location-dot mt-[3px] text-primaryred"></i>
-                                                <h1 className='capitalize text-primarygray'>{`${destination.city}, ${destination.province}`}</h1>
+                                                <h1 className='capitalize text-primarygray dark:text-slate-400'>{`${destination.city}, ${destination.province}`}</h1>
                                             </div>
                                         </div>
                                         <div className='flex flex-col items-end w-2/6 gap-1'>
                                             <div className='relative flex w-fit'>
                                                 <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
-                                                <h1 className='relative text-primarygray text-[11px]'>{formatNumber(destination.price)}</h1>
+                                                <h1 className='relative text-primarygray dark:text-slate-400 text-[11px]'>{formatNumber(destination.price)}</h1>
                                             </div>
                                             <h1 className='text-primaryblue'>{`${formatNumber(destination.price_discount)}`}</h1>
                                         </div>

@@ -120,7 +120,7 @@ const Destinations = () => {
     }
 
     return (
-        <div className='flex w-full h-screen bg-slate-100 font-poppins text-primaryblack'>
+        <div className='flex w-full h-screen bg-slate-100 font-poppins dark:bg-slate-700 dark:text-slate-200 text-primaryblack'>
             <Navbar />
             <Sidebar />
             <div className='w-5/6 px-10 pt-20'>
@@ -129,9 +129,9 @@ const Destinations = () => {
                         <h1 className='text-2xl font-semibold'>Destinations</h1>
                         <div className='flex items-center justify-end w-full text-[13px] my-2 gap-4'>
                             <h1 className={`text-slate-400 ${search === "" && selectedCategoryId === null ? 'hidden' : ''}`}><b>{destinations.length}</b> {destinations.length > 1 ? 'destinations' : 'destination'} found</h1>
-                            <div className='flex py-2 bg-white rounded-lg text-primaryblack'>
-                                <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300" />
+                            <div className='flex py-2 bg-white rounded-lg dark:bg-primaryblack text-primaryblack'>
+                                <button className='px-4'><i class="fa-solid fa-magnifying-glass dark:text-slate-200"></i></button>
+                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                             </div>
                             <DropDownFilterByCategory selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} categoryAllSelected={categoryAllSelected} setCategoryAllSelected={setCategoryAllSelected} setDestinations={setDestinations} />
                             <button onClick={handleShowAddDestination} type="button" className="px-4 py-2 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
@@ -143,14 +143,14 @@ const Destinations = () => {
                     <div className='flex flex-1 mt-1 overflow-y-scroll no-scrollbar rounded-xl'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations.map((destination, index) => (
-                                <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] mb-5'>
+                                <div key={index} className='w-[32%] overflow-hidden bg-white dark:bg-primaryblack dark:text-slate-200 text-primaryblack rounded-xl h-64 text-[13px] mb-5'>
                                     {destination.imageUrls[0].startsWith("https://") && (destination.imageUrls[0].includes(".jpg") || destination.imageUrls[0].includes(".png") || destination.imageUrls[0].includes("images")) ?
                                         <img src={destination.imageUrls[0]} className='object-cover w-full bg-slate-200 h-[65%]'></img>
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[65%]' width={500} height={500} alt='Unknown Profile' />
                                     }
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
                                         <h1 className='font-semibold capitalize'>{destination.title}</h1>
-                                        <div className='flex flex-col text-[11px] text-primarygray gap-1'>
+                                        <div className='flex flex-col text-[11px] text-primarygray dark:text-slate-400 gap-1'>
                                             <p><i class="fa-regular fa-calendar-plus mr-2 text-primaryyellow"></i>{moment(destination.createdAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(destination.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>

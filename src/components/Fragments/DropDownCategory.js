@@ -49,7 +49,7 @@ const DropDownCategory = (props) => {
                 <h1>{selectedCategoryName ? selectedCategoryName : (destinationCategoryName ? destinationCategoryName : 'Category')}</h1>
                 <h1><i class={`fa-solid ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i></h1>
             </a>
-            <div className={`absolute w-full z-10 mt-11 bg-slate-200 shadow-dropdown text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
+            <div className={`absolute w-full z-10 mt-11 bg-slate-200 h-fit max-h-[166px] overflow-y-scroll no-scrollbar shadow-dropdown text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                 <div className="px-2">
                     {categories.map((category, index) => (
                         <button key={index} onClick={() => handleOptionChange(category.id, category.name)} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedCategoryName === category.name ? 'bg-white' : (destinationCategoryName === category.name ? 'bg-white' : '')}`}>

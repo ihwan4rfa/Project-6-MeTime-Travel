@@ -14,7 +14,7 @@ const BannerSection = () => {
 
     return (
         <div className='relative flex flex-col w-full gap-10 h-fit'>
-            <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-[400px] h-[400px] blur-3xl -top-20 -left-10'></div>
+            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[400px] h-[400px] blur-3xl -top-20 -left-10'></div>
             <div className='relative flex items-center w-full h-full overflow-x-hidden rounded-tr-[90px] rounded-bl-[90px] rounded-2xl'>
                 <div className='absolute z-20 w-3/5 left-[10%]'>
                     <h1 className='overflow-hidden text-2xl font-bold tracking-tight left-[20%] font-volkhov whitespace-nowrap animate-typing text-primaryyellow'>It's Time for Me Time!</h1>

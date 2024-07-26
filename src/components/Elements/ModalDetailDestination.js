@@ -41,11 +41,11 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
     return (
         selectedDestination &&
         <>
-            <div className={`absolute z-30 w-full h-full opacity-40 bg-primaryblack ${showDetailDestination === true ? '' : 'hidden'}`}></div>
+            <div className={`absolute z-30 w-full h-full opacity-40 bg-primaryblack dark:bg-primarygray dark:opacity-60 ${showDetailDestination === true ? '' : 'hidden'}`}></div>
             <div className={`${showDetailDestination === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
-                <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack h-fit w-fit`}>
+                <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-fit`}>
                     <div className='absolute flex items-center justify-end w-full p-2'>
-                        <button onClick={handleCloseDetailDestination} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseDetailDestination} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <div className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
@@ -60,10 +60,10 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                         </div>
                                     ))}
                                 </div>
-                                <div className='flex flex-col w-[500px] gap-1'>
+                                <div className='flex flex-col w-[500px] gap-1 text-primaryblack dark:text-slate-200'>
                                     <div className='flex items-center gap-3'>
                                         <h1 className='text-2xl font-semibold capitalize'>{selectedDestination.title}</h1>
-                                        <h1 className='px-1 capitalize rounded-sm bg-slate-100'>{selectedDestination.category.name}</h1>
+                                        <h1 className='px-1 capitalize rounded-sm bg-slate-100 dark:bg-slate-700'>{selectedDestination.category.name}</h1>
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <div className='flex items-center'>
@@ -78,28 +78,28 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                             <h1 className='capitalize'>{`${selectedDestination.city}, ${selectedDestination.province}`}</h1>
                                         </div>
                                     </div>
-                                    <div className='flex items-center w-full gap-3 px-3 py-2 mb-2 rounded-lg bg-slate-100'>
+                                    <div className='flex items-center w-full gap-3 px-3 py-2 mb-2 rounded-lg bg-slate-100 dark:bg-slate-700'>
                                         <div className='relative flex w-fit'>
                                             <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
-                                            <h1 className='relative text-primarygray'>{formatNumber(selectedDestination.price)}</h1>
+                                            <h1 className='relative text-primarygray dark:text-slate-400'>{formatNumber(selectedDestination.price)}</h1>
                                         </div>
                                         <h1 className='text-2xl font-semibold text-primaryblue'>{formatNumber(selectedDestination.price_discount)}</h1>
                                         <h1 className='text-[11px] font-semibold text-white bg-primaryred px-1 rounded-sm'>{percent(selectedDestination.price, selectedDestination.price_discount)}</h1>
                                     </div>
                                     <div className='flex flex-col w-full h-[159px] gap-2 overflow-y-scroll no-scrollbar'>
                                         <div className='flex w-auto gap-8 ml-3'>
-                                            <h1 className='w-[25%] text-primarygray'>Description</h1>
+                                            <h1 className='w-[25%] text-primarygray dark:text-slate-400'>Description</h1>
                                             <h1 className='w-[75%]'>{selectedDestination.description}</h1>
                                         </div>
                                         <div className='flex w-auto gap-8 ml-3'>
-                                            <h1 className='w-[25%] text-primarygray'>Facilities</h1>
+                                            <h1 className='w-[25%] text-primarygray dark:text-slate-400'>Facilities</h1>
                                             <h1 className='w-[75%]'>{selectedDestination.facilities}</h1>
                                         </div>
                                         <div className='flex w-auto gap-8 ml-3'>
-                                            <h1 className='w-[25%] text-primarygray'>Address</h1>
+                                            <h1 className='w-[25%] text-primarygray dark:text-slate-400'>Address</h1>
                                             <div className='w-[75%] flex flex-col gap-1 items-start'>
                                                 <h1>{selectedDestination.address}</h1>
-                                                <button onClick={handleViewMap} className='font-medium text-primaryred hover:text-redhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
+                                                <button onClick={handleViewMap} className='font-medium text-primaryred hover:text-redhover dark:text-primaryyellow dark:hover:text-yellowhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
                                             </div>
                                         </div>
                                     </div>

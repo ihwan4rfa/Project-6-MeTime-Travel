@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "@reduxjs/toolkit";
 import userLoggedReducer from "./slice/userLoggedSlice";
 import showModalReducer from "./slice/showModalSlice";
+import themeReducer from "./slice/themeSlice";
 
 const rootReducer = combineReducers({
     userLogged: userLoggedReducer,
-    showModal: showModalReducer
+    showModal: showModalReducer,
+    theme: themeReducer
 });
 
 const store = configureStore({

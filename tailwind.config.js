@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -17,11 +18,11 @@ module.exports = {
         primaryblack: "#212832",
         primaryred: "#DF6951",
         redhover: "#BF4F39",
-        primaryyellow: '#F1A501',
-        yellowhover: '#F19101',
-        secondaryyellow: '#FFF1DA',
-        primarygreen: '#10b981',
-        primarygray: '#5E6282',
+        primaryyellow: "#F1A501",
+        yellowprimary: "#F1A501",
+        yellowhover: "#F19101",
+        primarygreen: "#10b981",
+        primarygray: "#5E6282",
       },
       boxShadow: {
         'card': '0 35px 50px -26px rgba(0, 0, 0, 0.1)',
