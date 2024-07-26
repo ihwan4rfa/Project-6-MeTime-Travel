@@ -23,12 +23,12 @@ const DropDownRole = ({ selectedRole, setSelectedRole, selectedRole2, setSelecte
             <div className={`absolute w-full z-10 mt-14 bg-slate-200 shadow-dropdown text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                 <div className="px-2">
                     <button
-                        onClick={() => handleOptionChange('admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedRole2 === 'admin' ? 'bg-white' : ''}`}>
+                        onClick={() => handleOptionChange('admin')} type="button" className={`flex capitalize items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedRole2 === 'admin' ? 'bg-white' : ''}`}>
                         <h1>admin</h1>
                         <h1 className={'text-primaryblue'}><i class="fa-solid fa-user-plus"></i></h1>
                     </button>
                     <button
-                        onClick={() => handleOptionChange('user')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedRole2 === 'user' ? 'bg-white' : ''}`}>
+                        onClick={() => handleOptionChange('user')} type="button" className={`flex capitalize items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-white ${selectedRole2 === 'user' ? 'bg-white' : ''}`}>
                         <h1>user</h1>
                         <h1 className='text-primaryred'><i class="fa-solid fa-user"></i></h1>
                     </button>

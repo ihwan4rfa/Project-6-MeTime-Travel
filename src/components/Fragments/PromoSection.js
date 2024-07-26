@@ -16,7 +16,7 @@ const PromoSection = ({ handleShowDetailPromo }) => {
     }, []);
 
     const formatNumber = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     };
 
     const responsive = {
@@ -53,7 +53,7 @@ const PromoSection = ({ handleShowDetailPromo }) => {
                             }
                             <div className='flex justify-between font-medium items-center w-full h-[20%] px-4 py-3'>
                                 <h1 className='capitalize'>{promo.title}</h1>
-                                <h1 className='text-primaryblue'>Rp{formatNumber(promo.promo_discount_price)}</h1>
+                                <h1 className='text-primaryblue'>{formatNumber(promo.promo_discount_price)}</h1>
                             </div>
                         </div>
                     ))}

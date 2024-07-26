@@ -89,7 +89,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                     <img src={user.profilePictureUrl} className='object-cover w-full h-full'></img>
                                 </div>
                                 <div className='flex flex-col gap-2 ml-6'>
-                                    <h1 className='text-lg font-semibold'>
+                                    <h1 className='text-lg font-semibold capitalize'>
                                         <i class={`fa-solid mr-2 ${user?.role === "admin" ? 'fa-user-plus text-primaryblue' : 'fa-user text-primaryred'}`}></i>
                                         {user.name}
                                     </h1>

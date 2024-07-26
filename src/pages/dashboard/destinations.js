@@ -140,7 +140,7 @@ const Destinations = () => {
                             </button>
                         </div>
                     </div>
-                    <div className='flex flex-1 overflow-y-scroll no-scrollbar rounded-xl mt-1'>
+                    <div className='flex flex-1 mt-1 overflow-y-scroll no-scrollbar rounded-xl'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations.map((destination, index) => (
                                 <div key={index} className='w-[32%] overflow-hidden bg-white text-primaryblack rounded-xl h-64 text-[13px] mb-5'>
@@ -149,7 +149,7 @@ const Destinations = () => {
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[65%]' width={500} height={500} alt='Unknown Profile' />
                                     }
                                     <div className='flex relative w-full flex-col h-[35%] px-4 py-3 gap-2'>
-                                        <h1 className='font-semibold'>{destination.title}</h1>
+                                        <h1 className='font-semibold capitalize'>{destination.title}</h1>
                                         <div className='flex flex-col text-[11px] text-primarygray gap-1'>
                                             <p><i class="fa-regular fa-calendar-plus mr-2 text-primaryyellow"></i>{moment(destination.createdAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(destination.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>

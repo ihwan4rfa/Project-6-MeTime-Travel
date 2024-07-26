@@ -60,7 +60,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                         </div>
                                     ))}
                                 </div>
-                                <div className='flex flex-col w-[500px] gap-2'>
+                                <div className='flex flex-col w-[500px] gap-1'>
                                     <div className='flex items-center gap-3'>
                                         <h1 className='text-2xl font-semibold capitalize'>{selectedDestination.title}</h1>
                                         <h1 className='px-1 capitalize rounded-sm bg-slate-100'>{selectedDestination.category.name}</h1>
@@ -86,25 +86,27 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                         <h1 className='text-2xl font-semibold text-primaryblue'>{formatNumber(selectedDestination.price_discount)}</h1>
                                         <h1 className='text-[11px] font-semibold text-white bg-primaryred px-1 rounded-sm'>{percent(selectedDestination.price, selectedDestination.price_discount)}</h1>
                                     </div>
-                                    <div className='flex w-auto gap-8 ml-3'>
-                                        <h1 className='w-[25%] text-primarygray'>Description</h1>
-                                        <h1 className='w-[75%]'>{selectedDestination.description}</h1>
-                                    </div>
-                                    <div className='flex w-auto gap-8 ml-3'>
-                                        <h1 className='w-[25%] text-primarygray'>Facilities</h1>
-                                        <h1 className='w-[75%]'>{selectedDestination.facilities}</h1>
-                                    </div>
-                                    <div className='flex w-auto gap-8 ml-3'>
-                                        <h1 className='w-[25%] text-primarygray'>Address</h1>
-                                        <div className='w-[75%] flex flex-col gap-1 items-start'>
-                                            <h1>{selectedDestination.address}</h1>
-                                            <button onClick={handleViewMap} className='font-medium text-primaryred hover:text-redhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
+                                    <div className='flex flex-col w-full h-[159px] gap-2 overflow-y-scroll no-scrollbar'>
+                                        <div className='flex w-auto gap-8 ml-3'>
+                                            <h1 className='w-[25%] text-primarygray'>Description</h1>
+                                            <h1 className='w-[75%]'>{selectedDestination.description}</h1>
+                                        </div>
+                                        <div className='flex w-auto gap-8 ml-3'>
+                                            <h1 className='w-[25%] text-primarygray'>Facilities</h1>
+                                            <h1 className='w-[75%]'>{selectedDestination.facilities}</h1>
+                                        </div>
+                                        <div className='flex w-auto gap-8 ml-3'>
+                                            <h1 className='w-[25%] text-primarygray'>Address</h1>
+                                            <div className='w-[75%] flex flex-col gap-1 items-start'>
+                                                <h1>{selectedDestination.address}</h1>
+                                                <button onClick={handleViewMap} className='font-medium text-primaryred hover:text-redhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className={`flex flex-col w-[896px] h-[280px] ${viewMap ? '' : 'hidden'}`}>
-                                <h1 className='pb-2 font-medium text-center'>{selectedDestination.title}</h1>
+                                <h1 className='pb-2 font-medium text-center capitalize'>{selectedDestination.title}</h1>
                                 {srcUrl &&
                                     <iframe className='rounded-lg' src={srcUrl} width="100%" height="100%"></iframe>
                                 }

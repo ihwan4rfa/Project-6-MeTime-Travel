@@ -86,7 +86,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
     };
 
     const formatNumber = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     };
 
     return (
@@ -99,7 +99,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                     </h1>
                     <h1 className='overflow-hidden text-2xl font-bold tracking-tight whitespace-nowrap animate-typing text-primaryred font-volkhov'>Find Yours Today!</h1>
                 </div>
-                <h1 className='font-medium text-center text-primaryblack'>Category <i class="text-primaryred fa-solid fa-chevron-right mx-2 text-[11px]"></i> {selectedCategoryName ? selectedCategoryName : 'All'}</h1>
+                <h1 className='font-medium text-center capitalize text-primaryblack'>Category <i class="text-primaryred fa-solid fa-chevron-right mx-2 text-[11px]"></i> {selectedCategoryName ? selectedCategoryName : 'All'}</h1>
                 <div className='flex w-full pl-2 pr-12 my-6 overflow-y-scroll h-52 no-scrollbar'>
                     <div className='flex flex-wrap gap-4 mb-4 w-fit h-fit'>
                         <div onClick={handleChangeAllCategory} className='flex items-center p-2 font-medium bg-white cursor-pointer shadow-label hover:shadow-hoverlabel hover:scale-103 rounded-xl'>
@@ -153,9 +153,9 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                                     <div className='flex flex-col items-end w-2/6 gap-1'>
                                         <div className='relative flex w-fit'>
                                             <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
-                                            <h1 className='relative text-primarygray text-[11px]'>Rp{formatNumber(destination.price)}</h1>
+                                            <h1 className='relative text-primarygray text-[11px]'>{formatNumber(destination.price)}</h1>
                                         </div>
-                                        <h1 className='text-primaryblue'>Rp{`${formatNumber(destination.price_discount)}`}</h1>
+                                        <h1 className='text-primaryblue'>{`${formatNumber(destination.price_discount)}`}</h1>
                                     </div>
                                 </div>
                             </button>

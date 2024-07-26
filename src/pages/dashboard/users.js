@@ -122,7 +122,7 @@ const Users = () => {
                             </div>
                         </div>
                     </div>
-                    <div ref={containerRef} className='flex flex-col flex-1 w-full gap-3 rounded-xl overflow-y-scroll no-scrollbar mt-1'>
+                    <div ref={containerRef} className='flex flex-col flex-1 w-full gap-3 mt-1 overflow-y-scroll rounded-xl no-scrollbar'>
                         {displayedUser.map((user, index) => (
                             <div key={index} className='flex items-center w-full bg-white h-fit rounded-xl'>
                                 <div className='my-2 ml-2 overflow-hidden rounded-lg w-14 h-14'>
@@ -134,26 +134,26 @@ const Users = () => {
                                 </div>
                                 <div className='flex items-center justify-between w-full font-medium'>
                                     <div className='flex flex-col gap-1 ml-3'>
-                                        <h1 className='text-[13px] font-semibold'>{user.name}</h1>
+                                        <h1 className='text-[13px] font-semibold capitalize'>{user.name}</h1>
                                         <div className='flex text-[11px] gap-3 text-primarygray'>
                                             <h1 className='flex items-center'><i class='mr-1 mt-[2px] fa-regular fa-envelope'></i>{user.email}</h1>
                                             <h1 className='flex items-center'><i class='mr-1 mt-[2px] fa-brands fa-whatsapp'></i>{user.phoneNumber}</h1>
                                         </div>
                                     </div>
                                     <div className='relative flex justify-end w-full mr-4 text-[11px]'>
-                                        <button onClick={() => handleDropDownToggle(index)} className={`flex ${user.role === "admin" ? "text-primaryblue" : "text-primaryred"}`}>
+                                        <button onClick={() => handleDropDownToggle(index)} className={`flex capitalize ${user.role === "admin" ? "text-primaryblue" : "text-primaryred"}`}>
                                             <h1>{user.role}</h1>
                                             <h1 className='ml-2'><i class="fa-solid fa-pen-to-square"></i></h1>
                                         </button>
                                         <div className={`absolute right-0 w-36 z-10 mt-6 bg-white shadow-dropdown text-primaryblack rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
                                             <div className="px-2">
                                                 <button
-                                                    onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 ${user.role === 'admin' ? 'bg-slate-200' : ''}`}>
+                                                    onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 ${user.role === 'admin' ? 'bg-slate-200' : ''}`}>
                                                     <h1>admin</h1>
                                                     <h1 className={'text-primaryblue'}><i class="fa-solid fa-user-plus"></i></h1>
                                                 </button>
                                                 <button
-                                                    onClick={() => handleUpdateRole(user, 'user')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 ${user.role === 'user' ? 'bg-slate-200' : ''}`}>
+                                                    onClick={() => handleUpdateRole(user, 'user')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 ${user.role === 'user' ? 'bg-slate-200' : ''}`}>
                                                     <h1>user</h1>
                                                     <h1 className='text-primaryred'><i class="fa-solid fa-user"></i></h1>
                                                 </button>

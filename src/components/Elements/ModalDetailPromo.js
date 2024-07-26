@@ -22,7 +22,7 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
     }
 
     const formatNumber = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     };
 
     return (
@@ -38,21 +38,21 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
                         <div className='flex flex-col items-start justify-center w-full gap-4 h-fit'>
                             <div className='flex w-full gap-4'>
                                 {selectedPromo.imageUrl && (
-                                    <div className='w-[300px] overflow-hidden rounded-lg h-[180px]'>
+                                    <div className='w-[300px] overflow-hidden rounded-lg h-[200px]'>
                                         {selectedPromo.imageUrl.startsWith("https://") && (selectedPromo.imageUrl.includes(".jpg") || selectedPromo.imageUrl.includes(".png") || selectedPromo.imageUrl.includes("images")) ?
                                             <img src={selectedPromo.imageUrl} className='object-cover w-full h-full'></img>
                                             : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
                                         }
                                     </div>
                                 )}
-                                <div className='flex flex-col w-[450px] gap-2'>
+                                <div className='flex flex-col w-[450px] gap-1'>
                                     <h1 className='text-2xl font-semibold capitalize'>{selectedPromo.title}</h1>
                                     <div className='flex justify-between w-full py-2 pl-3 pr-2 mb-2 rounded-lg bg-slate-100'>
                                         <div className='flex flex-col items-start justify-between'>
-                                            <h1 className='text-2xl font-semibold text-primaryblue'>Rp{formatNumber(selectedPromo.promo_discount_price)}</h1>
+                                            <h1 className='text-2xl font-semibold text-primaryblue'>{formatNumber(selectedPromo.promo_discount_price)}</h1>
                                             <h1 className='text-[11px]'>
                                                 Spend at least <span className='font-semibold rounded-md text-primaryred '>
-                                                    Rp{formatNumber(selectedPromo.minimum_claim_price)}
+                                                    {formatNumber(selectedPromo.minimum_claim_price)}
                                                 </span> to get this promo
                                             </h1>
                                         </div>
@@ -63,13 +63,15 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='flex w-auto gap-8 ml-3'>
-                                        <h1 className='w-1/3 text-primarygray'>Description</h1>
-                                        <h1 className='w-2/3'>{selectedPromo.description}</h1>
-                                    </div>
-                                    <div className='flex w-auto gap-8 ml-3'>
-                                        <h1 className='w-1/3 text-primarygray'>Terms and condition</h1>
-                                        <h1 className='w-2/3'>{selectedPromo.terms_condition}</h1>
+                                    <div className='flex flex-col w-full gap-2 overflow-y-scroll no-scrollbar max-h-[85px] h-fit'>
+                                        <div className='flex w-auto gap-8 ml-3'>
+                                            <h1 className='w-[35%] text-primarygray'>Description</h1>
+                                            <h1 className='w-[65%]'>{selectedPromo.description}</h1>
+                                        </div>
+                                        <div className='flex w-auto gap-8 ml-3'>
+                                            <h1 className='w-[35%] text-primarygray'>Terms and condition</h1>
+                                            <h1 className='w-[65%]'>{selectedPromo.terms_condition}</h1>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

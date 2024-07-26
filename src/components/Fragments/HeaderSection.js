@@ -8,14 +8,18 @@ import "react-alice-carousel/lib/alice-carousel.css";
 const HeaderSection = () => {
     const router = useRouter();
     const [banners, setBanners] = useState([]);
+    const [destinations, setDestinations] = useState([]);
     const { getData } = useGetData();
+
+    console.log(destinations);
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
+        getData("activities", (res) => setDestinations(res.data.data));
     }, []);
 
     return (
-        <div className='z-30 relative flex items-center w-full pt-20 h-fit'>
+        <div className='relative z-30 flex items-center w-full pt-20 h-fit'>
             <div className='absolute z-0 bg-primaryyellow bg-opacity-10 rounded-full w-[300px] h-[300px] blur-3xl -top-28 -left-56'></div>
             <div className='absolute flex items-center w-1/2 h-[220px] overflow-hidden rounded-tl-[90px] rounded-br-[90px] rounded-3xl top-52 right-0'>
                 <AliceCarousel infinite autoPlay animationDuration={4000} disableButtonsControls disableDotsControls animationType='fadeout'>
@@ -29,7 +33,11 @@ const HeaderSection = () => {
                     ))}
                 </AliceCarousel>
             </div>
-            <div className='flex relative flex-col justify-center w-1/2 h-full'>
+            <div className='absolute z-10 flex items-center gap-1 px-4 py-1 bg-black rounded-lg backdrop-blur-sm bg-opacity-[0.15] -right-5 bottom-64 rounded-br-3xl rounded-tl-3xl'>
+                <h1 className='text-[35px] font-bold text-primaryyellow'>{destinations.length}</h1>
+                <h1 className='leading-tight text-white'>Destinations<br />Await</h1>
+            </div>
+            <div className='relative flex flex-col justify-center w-1/2 h-full'>
                 <h1 className='overflow-hidden text-2xl font-bold tracking-tight font-volkhov whitespace-nowrap animate-typing text-primaryred'>It's Time for Me Time!</h1>
                 <h1 className='relative w-full text-[50px] font-bold font-volkhov leading-tight tracking-tight mb-5'>
                     Adventure Awaits!<br />Make Time with<br />Me Time Travel
@@ -42,7 +50,7 @@ const HeaderSection = () => {
                     Explore Now
                 </button>
             </div>
-            <div className='flex relative items-center justify-center w-1/2 h-full'>
+            <div className='relative flex items-center justify-center w-1/2 h-full'>
                 <Image src="/images/header-model.png" className='p-4' width={500} height={500} alt='Line Decore' />
             </div>
         </div>

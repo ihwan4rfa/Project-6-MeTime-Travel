@@ -22,9 +22,9 @@ const FooterSection = () => {
                             <button className='hover:text-primaryred'>About</button>
                             <div className='flex gap-4 text-base'>
                                 <a href='https://www.instagram.com/ihwanarfa' target='_blank'><i class="fa-brands fa-instagram hover:text-primaryred"></i></a>
-                                <a href='https://web.facebook.com/ihwan.arifandi.5'><i class="fa-brands fa-facebook-f text-[15px] hover:text-primaryred"></i></a>
-                                <a href='https://www.x.com/ihwanarfa'><i class="fa-brands fa-x-twitter hover:text-primaryred"></i></a>
-                                <a href='https://www.tiktok.com/@ihwanarfa'><i class="fa-brands fa-tiktok text-[15px] hover:text-primaryred"></i></a>
+                                <a href='https://web.facebook.com/ihwan.arifandi.5' target='_blank'><i class="fa-brands fa-facebook-f text-[15px] hover:text-primaryred"></i></a>
+                                <a href='https://www.x.com/ihwanarfa' target='_blank'><i class="fa-brands fa-x-twitter hover:text-primaryred"></i></a>
+                                <a href='https://www.tiktok.com/@ihwanarfa' target='_blank'><i class="fa-brands fa-tiktok text-[15px] hover:text-primaryred"></i></a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ const FooterSection = () => {
                     </div>
                     <div className='flex flex-col gap-6'>
                         <h1 className='font-medium'>Quick links</h1>
-                        <div className='flex flex-col gap-3 text-primarygray items-start'>
+                        <div className='flex flex-col items-start gap-3 text-primarygray'>
                             <button onClick={() => router.push("/destinations")} className='hover:text-primaryred'>Destinations</button>
                             <button onClick={() => router.push("/promos")} className='hover:text-primaryred'>promos</button>
                         </div>

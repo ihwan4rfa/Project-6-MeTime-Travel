@@ -81,7 +81,7 @@ const index = () => {
     }
 
     const formatNumber = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     };
 
     const handleShowDetailDestination = async (destinationId) => {
@@ -144,9 +144,9 @@ const index = () => {
                                         <div className='flex flex-col items-end w-2/6 gap-1'>
                                             <div className='relative flex w-fit'>
                                                 <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
-                                                <h1 className='relative text-primarygray text-[11px]'>Rp{formatNumber(destination.price)}</h1>
+                                                <h1 className='relative text-primarygray text-[11px]'>{formatNumber(destination.price)}</h1>
                                             </div>
-                                            <h1 className='text-primaryblue'>Rp{`${formatNumber(destination.price_discount)}`}</h1>
+                                            <h1 className='text-primaryblue'>{`${formatNumber(destination.price_discount)}`}</h1>
                                         </div>
                                     </div>
                                 </button>
