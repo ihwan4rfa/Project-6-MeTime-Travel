@@ -81,7 +81,7 @@ const index = () => {
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
                                     }
                                     <div className='flex justify-between font-medium items-center w-full h-[20%] px-4 py-3'>
-                                        <h1 className='capitalize'>{promo.title}</h1>
+                                        <h1 className='text-left capitalize'>{promo.title}</h1>
                                         <h1 className='text-primaryblue'>{formatNumber(promo.promo_discount_price)}</h1>
                                     </div>
                                 </button>

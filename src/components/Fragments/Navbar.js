@@ -110,7 +110,7 @@ const Navbar = () => {
                             <div className={`absolute right-0 w-36 z-10 mt-14 bg-white dark:bg-primaryblack dark:text-slate-200 shadow-dropdown dark:shadow-slate-600 text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                                 <div className="px-2">
                                     <button
-                                        onClick={handleShowProfile} className='flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-600'>
+                                        onClick={handleShowProfile} className='flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700'>
                                         <h1>Profile</h1>
                                         <h1 className={`text-[11px] ${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'}`}><i class={`fa-solid ${user?.role === "admin" ? 'fa-user-plus' : 'fa-user'}`}></i></h1>
                                     </button>

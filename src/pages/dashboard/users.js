@@ -148,12 +148,12 @@ const Users = () => {
                                         <div className={`absolute right-0 w-36 z-10 mt-6 bg-white dark:bg-primaryblack shadow-dropdown dark:shadow-slate-600 text-primaryblack dark:text-slate-200 rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
                                             <div className="px-2">
                                                 <button
-                                                    onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-600 ${user.role === 'admin' ? 'bg-slate-200 dark:bg-slate-600' : ''}`}>
+                                                    onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-700 ${user.role === 'admin' ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
                                                     <h1>admin</h1>
                                                     <h1 className={'text-primaryblue'}><i class="fa-solid fa-user-plus"></i></h1>
                                                 </button>
                                                 <button
-                                                    onClick={() => handleUpdateRole(user, 'user')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-600 ${user.role === 'user' ? 'bg-slate-200 dark:bg-slate-600' : ''}`}>
+                                                    onClick={() => handleUpdateRole(user, 'user')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-700 ${user.role === 'user' ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
                                                     <h1>user</h1>
                                                     <h1 className='text-primaryred'><i class="fa-solid fa-user"></i></h1>
                                                 </button>

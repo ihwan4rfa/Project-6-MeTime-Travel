@@ -25,11 +25,11 @@ const BannerSection = () => {
                 </div>
                 <div className='absolute z-10 w-full h-full bg-gradient-to-r from-black from-[-20%]'></div>
                 <AliceCarousel infinite autoPlay animationDuration={4000} disableButtonsControls disableDotsControls animationType='fadeout'>
-                    {banners.map((promo, index) => (
+                    {banners.map((banner, index) => (
                         <div key={index} className='relative flex items-center w-full h-64 overflow-hidden bg-white text-primaryblack'>
-                            {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
-                                <img src={promo.imageUrl} className='object-cover w-full h-full bg-slate-200'></img>
-                                : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Profile' />
+                            {banner.imageUrl.startsWith("https://") && (banner.imageUrl.includes(".jpg") || banner.imageUrl.includes(".png") || banner.imageUrl.includes("images")) ?
+                                <img src={banner.imageUrl} className='object-cover w-full h-full bg-slate-200'></img>
+                                : <Image src="/images/no-image.png" className='object-cover w-full h-full' width={500} height={500} alt='Unknown Image' />
                             }
                         </div>
                     ))}

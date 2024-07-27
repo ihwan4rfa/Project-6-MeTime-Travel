@@ -147,25 +147,25 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
 
     return (
         <>
-            <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack ${showEditDestination === true ? '' : 'hidden'}`}></div>
+            <div className={`absolute z-20 w-full h-full opacity-40 bg-primaryblack dark:bg-primarygray dark:opacity-60 ${showEditDestination === true ? '' : 'hidden'}`}></div>
             <div className={`${showEditDestination === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
-                <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack h-fit w-[900px]`}>
+                <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-[900px]`}>
                     <div className='absolute flex justify-end w-full p-2'>
                         <button onClick={handleCloseEditDestination} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <form ref={formRef} onSubmit={handleUpdateDestination} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <h1 className='z-10 pb-2 font-medium'>Edit Destination</h1>
-                        <div className={`flex absolute top-[55px] w-[95.4%] h-[2px] rounded-full bg-gradient-to-r ${showNextStep === true ? 'bg-primaryblue' : 'from-primaryblue via-slate-200 to-slate-200'}`}></div>
+                        <div className={`flex absolute top-[55px] w-[95.4%] h-[2px] rounded-full bg-gradient-to-r ${showNextStep === true ? 'bg-primaryblue' : 'from-primaryblue via-slate-200 dark:via-slate-600 to-slate-200 dark:to-slate-600'}`}></div>
                         <div className='z-10 flex items-center justify-between w-1/2 pb-4'>
                             <h1 className="flex items-center justify-center text-white bg-primaryblue text-[11px] w-4 h-4 rounded-full font-semibold">1</h1>
-                            <h1 className={`flex items-center justify-center text-white ${showNextStep === true ? 'bg-primaryblue' : 'bg-slate-200'} text-[11px] w-4 h-4 rounded-full font-semibold`}>2</h1>
+                            <h1 className={`flex items-center justify-center text-white ${showNextStep === true ? 'bg-primaryblue' : 'bg-slate-200 dark:bg-slate-600'} text-[11px] w-4 h-4 rounded-full font-semibold`}>2</h1>
                         </div>
                         <div className={`flex flex-col items-start justify-center w-full gap-4 h-fit ${showNextStep === true ? 'hidden' : ''}`}>
                             <div className='flex w-full gap-4'>
                                 <div className='flex flex-col w-2/5 overflow-scroll no-scrollbar rounded-lg h-[207px] gap-3'>
                                     {imageUrls !== undefined && imageUrls.map((imageUrl, index) => (
                                         <div key={index} className={`flex relative w-full ${imageUrls.length === 1 ? 'h-full' : 'h-[75%]'}`}>
-                                            <button onClick={() => handleRemoveImage(index)} type='button' className={`${imageUrls[0] === '' ? 'hidden' : ''} absolute flex items-center justify-center m-2 bg-white rounded-full  hover:bg-primaryred w-7 h-7 text-primaryred hover:text-white`}><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleRemoveImage(index)} type='button' className={`${imageUrls[0] === '' ? 'hidden' : ''} absolute flex items-center justify-center m-2 bg-white dark:bg-primaryblack rounded-full  hover:bg-primaryred dark:hover:bg-primaryred w-7 h-7 text-primaryred hover:text-white`}><i class="fa-regular fa-trash-can"></i></button>
                                             {imageUrl.startsWith("https://") && (imageUrl.includes(".jpg") || imageUrl.includes(".png") || imageUrl.includes("images")) ?
                                                 <img src={imageUrl} className='object-cover w-full h-full rounded-lg'></img>
                                                 : <Image src="/images/no-image.png" className='object-cover w-full h-full rounded-lg' width={500} height={500} alt='Unknown Profile' />
@@ -175,7 +175,7 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
                                 </div>
                                 <div className='flex flex-col w-3/5 gap-4'>
                                     <div className='flex gap-4'>
-                                        <input defaultValue={selectedDestination.title} type="text" name="title" id="title" placeholder="Destination Name" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-4/6 outline-none" />
+                                        <input defaultValue={selectedDestination.title} type="text" name="title" id="title" placeholder="Destination Name" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-4/6 outline-none" />
                                         <DropDownCategory
                                             dropDownHidden={dropDownHidden}
                                             setDropDownHidden={setDropDownHidden}
@@ -189,36 +189,36 @@ const ModalEditDestination = ({ showEditDestination, setShowEditDestination, sel
                                         />
                                     </div>
                                     <div className='flex gap-4'>
-                                        <textarea name="description" id="description" placeholder="Description" defaultValue={selectedDestination.description} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full h-24 outline-none" />
-                                        <textarea name="facilities" id="facilities" placeholder="Facilities" defaultValue={selectedDestination.facilities} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                        <textarea name="description" id="description" placeholder="Description" defaultValue={selectedDestination.description} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full h-24 outline-none no-scrollbar" />
+                                        <textarea name="facilities" id="facilities" placeholder="Facilities" defaultValue={selectedDestination.facilities} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none no-scrollbar" />
                                     </div>
                                     <div className='flex gap-4'>
-                                        <input type="number" name="price" id="price" placeholder="Price" defaultValue={selectedDestination.price} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
-                                        <input type="number" name="price_discount" id="price_discount" placeholder="Discount Price" defaultValue={selectedDestination.price_discount} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                        <input type="number" name="price" id="price" placeholder="Price" defaultValue={selectedDestination.price} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                        <input type="number" name="price_discount" id="price_discount" placeholder="Discount Price" defaultValue={selectedDestination.price_discount} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                                     </div>
                                 </div>
                             </div>
                             <div className='flex w-full gap-4'>
-                                <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="imageUrls" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Add Image</label>
-                                    <span className={`px-4 overflow-hidden text-ellipsis ${imageUrls ? 'text-primaryblack' : ''}`}>{fileName === null ? 'No File Selected' : `${fileName}`}</span>
+                                <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
+                                    <label htmlFor="imageUrls" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Add Image</label>
+                                    <span className={`px-4 overflow-hidden text-ellipsis ${imageUrls ? 'text-primaryblack dark:text-slate-200' : ''}`}>{fileName === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input onChange={handleUpload} type="file" name="imageUrls" id="imageUrls" className="hidden" />
                                 <div className='flex w-3/5 gap-4'>
-                                    <input type="number" name="rating" id="rating" placeholder="Rating" defaultValue={selectedDestination.rating} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
-                                    <input type="number" name="total_reviews" id="total_reviews" placeholder="Total Reviews" defaultValue={selectedDestination.total_reviews} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                    <input type="number" name="rating" id="rating" placeholder="Rating" defaultValue={selectedDestination.rating} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                    <input type="number" name="total_reviews" id="total_reviews" placeholder="Total Reviews" defaultValue={selectedDestination.total_reviews} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                                 </div>
                             </div>
                         </div>
                         <div className={`flex flex-col items-start justify-center w-full gap-4 h-fit ${showNextStep === true ? '' : 'hidden'}`}>
                             <div className='flex flex-col w-full gap-4'>
                                 <div className='flex gap-4'>
-                                    <input defaultValue={selectedDestination.address} type="text" name="address" id="address" placeholder="Address" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
-                                    <input defaultValue={selectedDestination.province} type="text" name="province" id="province" placeholder="Province" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
+                                    <input defaultValue={selectedDestination.address} type="text" name="address" id="address" placeholder="Address" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
+                                    <input defaultValue={selectedDestination.province} type="text" name="province" id="province" placeholder="Province" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
                                 </div>
                                 <div className='flex gap-4'>
-                                    <input defaultValue={selectedDestination.city} type="text" name="city" id="city" placeholder="City" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
-                                    <input onChange={handleLinkMap} defaultValue={selectedDestination.location_maps} type="text" name="location_maps" id="location_maps" placeholder="Location Maps" className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
+                                    <input defaultValue={selectedDestination.city} type="text" name="city" id="city" placeholder="City" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
+                                    <input onChange={handleLinkMap} defaultValue={selectedDestination.location_maps} type="text" name="location_maps" id="location_maps" placeholder="Location Maps" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
                                 </div>
                                 {srcUrl &&
                                     <iframe className='rounded-lg' src={srcUrl} width="100%" height="152"></iframe>

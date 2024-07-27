@@ -42,7 +42,7 @@ const FooterSection = () => {
                         <h1 className='font-medium'>Quick links</h1>
                         <div className='flex flex-col items-start gap-3 text-primarygray dark:text-slate-400'>
                             <button onClick={() => router.push("/destinations")} className='hover:text-primaryred dark:hover:text-primaryyellow'>Destinations</button>
-                            <button onClick={() => router.push("/promos")} className='hover:text-primaryred dark:hover:text-primaryyellow'>promos</button>
+                            <button onClick={() => router.push("/promos")} className='hover:text-primaryred dark:hover:text-primaryyellow'>Promos</button>
                         </div>
                     </div>
                 </div>

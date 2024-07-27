@@ -76,9 +76,9 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
     return (
         user && (
             <>
-                <div className={`absolute z-40 w-full h-full opacity-40 bg-primaryblack ${showProfile === true ? '' : 'hidden'}`}></div>
+                <div className={`absolute z-40 w-full h-full opacity-40 bg-primaryblack dark:bg-primarygray dark:opacity-60 ${showProfile === true ? '' : 'hidden'}`}></div>
                 <div className={`${showProfile === true ? '' : 'hidden'} absolute z-40 flex items-center justify-center w-full h-full`}>
-                    <div className={`bg-white shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack ${editProfile === true ? 'h-fit w-[600px]' : 'h-fit w-fit'}`}>
+                    <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 ${editProfile === true ? 'h-fit w-[600px]' : 'h-fit w-fit'}`}>
                         <div className='absolute flex justify-end w-full p-2'>
                             <button onClick={editProfile === true ? handleEditProfile : handleShowProfile} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                         </div>
@@ -93,14 +93,14 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                         <i class={`fa-solid mr-2 ${user?.role === "admin" ? 'fa-user-plus text-primaryblue' : 'fa-user text-primaryred'}`}></i>
                                         {user.name}
                                     </h1>
-                                    <div className='flex flex-col gap-1 text-primarygray'>
+                                    <div className='flex flex-col gap-1 text-primarygray dark:text-slate-400'>
                                         <h1><i class="fa-regular fa-envelope mr-2"></i>{user.email}</h1>
                                         <h1><i class="fa-brands fa-whatsapp mr-2"></i>{user.phoneNumber}</h1>
                                     </div>
                                 </div>
                             </div>
                             <div className='flex items-center justify-end w-full p-5'>
-                                <button onClick={handleEditProfile} className='text-slate-400 hover:text-primaryblack'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
+                                <button onClick={handleEditProfile} className='text-slate-400 hover:text-primaryblack dark:hover:text-slate-200'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
                             </div>
                         </div>
                         <form onSubmit={handleUpdateUser} className={`flex flex-col items-center gap-4 p-5 justify-center w-full h-full ${editProfile === true ? '' : 'hidden'}`}>
@@ -110,17 +110,17 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                     <img src={profilePictureUrl === null ? user.profilePictureUrl : profilePictureUrl} className='object-cover w-full h-full'></img>
                                 </div>
                                 <div className='flex flex-col flex-1 w-full gap-4'>
-                                    <div class="bg-slate-200 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
-                                        <label htmlFor="profilePictureUrl" className="bg-slate-300 text-primaryblack w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
-                                        <span className={`px-4 overflow-hidden text-ellipsis ${profilePictureUrl ? 'text-primaryblack' : ''}`}>{profilePictureUrl === null ? 'No File Selected' : `${fileName}`}</span>
+                                    <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
+                                        <label htmlFor="profilePictureUrl" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
+                                        <span className={`px-4 overflow-hidden text-ellipsis ${profilePictureUrl ? 'text-primaryblack dark:text-slate-200' : ''}`}>{profilePictureUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                     </div>
                                     <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="hidden" />
-                                    <input type="text" name="name" id="name" placeholder="Full Name" defaultValue={user.name} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                                    <input type="text" name="name" id="name" placeholder="Full Name" defaultValue={user.name} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
                                 </div>
                             </div>
                             <div className='flex items-start justify-center w-full gap-4 h-fit'>
-                                <input type="email" name="email" id="email" placeholder="Email" defaultValue={user.email} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
-                                <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" defaultValue={user.phoneNumber} className="bg-slate-200 placeholder:text-slate-400 text-primaryblack py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
+                                <input type="email" name="email" id="email" placeholder="Email" defaultValue={user.email} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
+                                <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" defaultValue={user.phoneNumber} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg outline-none flex w-full" />
                             </div>
                             <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium">Save</button>
                         </form>
