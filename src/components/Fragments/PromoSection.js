@@ -38,8 +38,8 @@ const PromoSection = ({ handleShowDetailPromo }) => {
         <div className='relative z-20 flex flex-col w-full gap-10 -mt-6 h-fit'>
             <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue dark:bg-opacity-20 bg-opacity-10 rounded-full w-[500px] h-[400px] blur-3xl -top-5 -left-20'></div>
             <div className='relative flex justify-between w-full'>
-                <h1 className='flex text-3xl font-bold tracking-tight font-volkhov'>Special Promo!</h1>
-                <button onClick={() => router.push("/promos")} type="button" className="px-5 py-3 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                <h1 className='flex text-xl font-bold tracking-tight lg:text-2xl xl:text-3xl font-volkhov'>Special Promo!</h1>
+                <button onClick={() => router.push("/promos")} type="button" className="text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                     View All Offers
                 </button>
             </div>

@@ -44,7 +44,7 @@ const FacilitiesSection = () => {
             <h1 className='flex items-center justify-center w-full text-xl font-bold tracking-tight lg:text-2xl xl:text-3xl font-volkhov'>
                 Why Me Time Travel?
             </h1>
-            <div className='flex justify-start w-full gap-4 overflow-x-scroll no-scrollbar md:overflow-visible md:gap-0 md:justify-between rounded-2xl'>
+            <div className='flex justify-start w-full gap-2 overflow-x-scroll no-scrollbar md:overflow-visible md:gap-0 md:justify-between rounded-2xl'>
                 {keys.map((key, index) => (
                     <div className='relative'>
                         <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col w-40 h-48 mt-1 ml-4 duration-75 bg-white mb-14 lg:h-52 xl:h-64 lg:w-44 xl:w-52 dark:bg-primaryblack hover:shadow-card dark:shadow-slate-700 hover:scale-103 rounded-2xl'>

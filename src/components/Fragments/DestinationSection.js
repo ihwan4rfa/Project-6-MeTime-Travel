@@ -118,7 +118,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                         ))}
                     </div>
                 </div>
-                <button onClick={() => router.push("/destinations")} type="button" className="px-5 py-3 mt-2 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                <button onClick={() => router.push("/destinations")} type="button" className="text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 mt-2 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                     Explore All
                 </button>
             </div>
