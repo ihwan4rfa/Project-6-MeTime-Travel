@@ -18,6 +18,7 @@ const Navbar = () => {
     const [dropDownHidden, setDropDownHidden] = useState(true);
     const [showProfile, setShowProfile] = useState(false);
     const isDark = useSelector((state) => state.theme.isDark);
+    const [menuBarClicked, setMenuBarClicked] = useState(false);
 
     useEffect(() => {
         getUserLogged();
@@ -79,9 +80,10 @@ const Navbar = () => {
     const keys = Object.keys(modifiedLinkList);
 
     return (
-        <div className='font-poppins text-[10px] lg:text-[11px] xl:text-[13px]'>
-            <nav className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'lg:px-36 px-10'} ${showProfile || showModal || currentPath.startsWith('/dashboard') ? 'bg-opacity-100' : 'bg-opacity-[85%] backdrop-blur-lg dark:bg-opacity-[85%] dark:backdrop-blur-lg'} z-50 fixed flex items-center justify-between w-full h-12 md:h-14 xl:h-16 bg-white dark:bg-primaryblack shadow-navbar dark:shadow-slate-600 text-primaryblack`}>
+        <div className='font-poppins relative text-[10px] lg:text-[11px] xl:text-[13px]'>
+            <div className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'lg:px-36 sm:px-10 px-5'} ${showProfile || showModal || currentPath.startsWith('/dashboard') ? 'bg-opacity-100' : 'bg-opacity-[85%] backdrop-blur-lg dark:bg-opacity-[85%] dark:backdrop-blur-lg'} z-50 fixed flex items-center justify-between w-full h-12 md:h-14 xl:h-16 bg-white dark:bg-primaryblack shadow-navbar3 md:shadow-navbar2 xl:shadow-navbar dark:shadow-slate-600 text-primaryblack`}>
                 <button onClick={() => currentPath.startsWith("/dashboard") ? router.push("/dashboard/users") : router.push(linkList.Home)}><Image className='w-auto h-7 md:h-8 xl:h-9' src={isDark ? "/images/Logo-dark.png" : "/images/Logo.png"} width={500} height={500} /></button>
+                <button onClick={() => setMenuBarClicked(!menuBarClicked)} className='flex items-center justify-center text-lg sm:hidden'>{menuBarClicked ? <i class="fa-solid fa-xmark text-xl"></i> : <i class="fa-solid fa-bars"></i>}</button>
                 <div className="items-center hidden gap-12 font-medium sm:gap-12 lg:gap-16 sm:flex">
                     {keys.map((key, index) => (
                         <div key={index}>
@@ -134,7 +136,19 @@ const Navbar = () => {
                         </div>
                     )}
                 </div>
-            </nav >
+            </div >
+            <div className={`absolute ${menuBarClicked ? 'top-0' : '-top-56'} z-40 flex font-medium flex-col sm:hidden items-center w-full gap-5 px-5 pt-[70px] pb-7 duration-200 bg-white h-fit rounded-b-xl shadow-button dark:shadow-slate-600`}>
+                {keys.map((key, index) => (
+                    <div key={index}>
+                        <button
+                            onClick={() => router.push(modifiedLinkList[key])}
+                            className={`cursor-pointer dark:text-white hover:text-primaryred dark:hover:text-primaryyellow ${currentPath === modifiedLinkList[key] && currentPath === "/login_register" ? 'text-white bg-primaryred dark:bg-primaryyellow'
+                                : (currentPath === modifiedLinkList[key] ? 'text-primaryred dark:text-yellowprimary' : '')} ${key === "Login" ? "px-3 lg:px-4 py-[6px] lg:py-2 border hover:text-white dark:hover:text-white hover:bg-primaryred dark:hover:bg-primaryyellow rounded-lg border-primaryred dark:border-primaryyellow" : ""}`}>
+                            {key}
+                        </button>
+                    </div>
+                ))}
+            </div>
             <ModalProfile showProfile={showProfile} handleShowProfile={handleShowProfile} />
         </div>
     )

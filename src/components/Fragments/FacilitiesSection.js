@@ -40,23 +40,23 @@ const FacilitiesSection = () => {
     return (
         <div className='relative z-30 flex flex-col w-full gap-8 -mt-16 h-fit'>
             <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[300px] h-[300px] blur-3xl -top-24 -right-20'></div>
-            <Image src="/images/aksen.png" className='absolute w-24 -top-10 -left-20' width={500} height={500} alt='Line Decore' />
-            <h1 className='flex items-center justify-center w-full text-3xl font-bold tracking-tight font-volkhov'>
+            <Image src="/images/aksen.png" className='absolute w-16 -top-5 lg:w-20 xl:w-24 lg:-top-10 lg:-left-20' width={500} height={500} alt='Line Decore' />
+            <h1 className='flex items-center justify-center w-full text-xl font-bold tracking-tight lg:text-2xl xl:text-3xl font-volkhov'>
                 Why Me Time Travel?
             </h1>
-            <div className='flex justify-between w-full'>
+            <div className='flex justify-start w-full gap-4 overflow-x-scroll no-scrollbar md:overflow-visible md:gap-0 md:justify-between rounded-2xl'>
                 {keys.map((key, index) => (
                     <div className='relative'>
-                        <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col h-64 duration-75 bg-white dark:bg-primaryblack hover:shadow-card dark:shadow-slate-700 hover:scale-103 w-52 rounded-2xl'>
-                            <div className='flex items-end justify-center w-full h-2/5'>
-                                <Image src={isDark ? iconListDark[key] : iconList[key]} className='w-auto h-16' width={500} height={500} alt="Icon" />
+                        <div key={index} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)} className='relative z-10 flex flex-col w-40 h-48 mt-1 ml-4 duration-75 bg-white mb-14 lg:h-52 xl:h-64 lg:w-44 xl:w-52 dark:bg-primaryblack hover:shadow-card dark:shadow-slate-700 hover:scale-103 rounded-2xl'>
+                            <div className='flex items-end justify-center w-full h-[40%]'>
+                                <Image src={isDark ? iconListDark[key] : iconList[key]} className='w-auto h-12 lg:h-14 xl:h-16' width={500} height={500} alt="Icon" />
                             </div>
-                            <div className='flex flex-col items-center gap-4 py-6 h-3/5'>
-                                <h1 className='font-medium'>{titleList[index]}</h1>
-                                <h1 className='px-8 text-center text-primarygray dark:text-slate-400'>{descriptionList[index]}</h1>
+                            <div className='flex flex-col items-center gap-2 py-6 lg:gap-2 xl:gap-4 h-[60%]'>
+                                <h1 className='font-medium text-[10px] lg:text-[11px] xl:text-[13px]'>{titleList[index]}</h1>
+                                <h1 className='px-4 lg:px-6 xl:px-8 text-center text-[10px] lg:text-[11px] xl:text-[13px] text-primarygray dark:text-slate-400'>{descriptionList[index]}</h1>
                             </div>
                         </div>
-                        <div className={`${hoverIndex === index ? 'scale-100' : 'scale-0'} flex -bottom-6 duration-75 -left-6 absolute z-0 w-24 h-24 rounded-bl-[30px] rounded-2xl bg-primaryred dark:bg-primaryyellow`}></div>
+                        <div className={`${hoverIndex === index ? 'scale-100' : 'scale-0'} flex bottom-10 xl:bottom-8 duration-75 left-0 xl:-left-2 absolute z-0 w-24 h-24 rounded-bl-[25px] md:rounded-bl-[30px] rounded-xl md:rounded-2xl bg-primaryred dark:bg-primaryyellow`}></div>
                     </div>
                 ))}
             </div>

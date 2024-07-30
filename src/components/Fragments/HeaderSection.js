@@ -19,7 +19,7 @@ const HeaderSection = () => {
     }, []);
 
     return (
-        <div className='relative z-30 flex-wrap items-center w-full pt-20 sm:flex h-fit'>
+        <div className='relative z-30 flex-wrap items-center w-full pt-20 sm:pt-12 md:pt-14 lg:pt-16 xl:pt-20 sm:flex h-fit'>
             <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[300px] h-[300px] blur-3xl -top-28 -left-56'></div>
             <div className='absolute flex items-center bg-red-300 h-[150px] xl:h-[220px] overflow-hidden rounded-tl-[70px] xl:rounded-tl-[90px] rounded-br-[70px] xl:rounded-br-[90px] rounded-2xl xl:rounded-3xl top-48 xl:top-52 right-0'>
                 <AliceCarousel infinite autoPlay animationDuration={4000} disableButtonsControls disableDotsControls animationType='fadeout'>

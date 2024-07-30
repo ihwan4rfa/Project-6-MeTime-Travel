@@ -28,6 +28,8 @@ module.exports = {
         'card': '0 35px 50px -26px rgba(0, 0, 0, 0.1)',
         'dropdown': '0 10px 40px -15px rgba(0, 0, 0, 0.15)',
         'navbar': '0 20px 40px -26px rgba(0, 0, 0, 0.15)',
+        'navbar2': '0 20px 40px -23px rgba(0, 0, 0, 0.15)',
+        'navbar3': '0 20px 40px -20px rgba(0, 0, 0, 0.15)',
         'label': '0 5px 20px -8px rgba(0, 0, 0, 0.1)',
         'hoverlabel': '0 5px 20px -8px rgba(0, 0, 0, 0.15)',
         'button': '0 6px 25px -8px rgba(0, 0, 0, 0.1)',

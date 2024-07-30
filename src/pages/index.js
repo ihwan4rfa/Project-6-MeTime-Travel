@@ -19,7 +19,6 @@ const index = () => {
   const [selectedPromo, setSelectedPromo] = useState(null);
   const dispatch = useDispatch();
   const { getData } = useGetData();
-  console.log(showDetailPromo);
 
   const handleShowDetailDestination = async (destinationId) => {
     const getDestination = async () => {
