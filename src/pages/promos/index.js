@@ -53,18 +53,18 @@ const index = () => {
     }
 
     return (
-        <div className='flex relative w-full h-screen text-[13px] font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack'>
+        <div className='flex flex-col relative w-full h-screen text-[13px] font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack'>
             <Navbar />
             <div className='absolute z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl right-10 top-20'></div>
             <div className='absolute bottom-0 z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl left-10'></div>
-            <div className='relative w-full pt-24 px-36'>
+            <div className='relative flex flex-col w-full h-screen px-4 pt-20 overflow-y-scroll xl:pt-24 sm:px-10 dark:bg-primaryblack no-scrollbar lg:px-36'>
                 <div className='flex flex-col w-full h-full gap-7'>
-                    <div className='flex items-center justify-between h-14'>
-                        <div className='flex flex-col'>
-                            <h1 className='text-2xl font-bold tracking-tight font-volkhov'>Special Promo for You</h1>
-                            <h1 className='overflow-hidden text-2xl font-bold tracking-tight font-volkhov text-primaryred dark:text-primaryyellow whitespace-nowrap animate-typing'>Don't Miss Out!</h1>
+                    <div className='flex flex-col items-center justify-between sm:flex-row h-14'>
+                        <div className='flex flex-col text-lg text-center sm:text-left lg:text-xl xl:text-2xl'>
+                            <h1 className='font-bold tracking-tight font-volkhov'>Special Promo for You</h1>
+                            <h1 className='overflow-hidden font-bold tracking-tight font-volkhov text-primaryred dark:text-primaryyellow whitespace-nowrap sm:animate-typing'>Don't Miss Out!</h1>
                         </div>
-                        <div className='flex items-center my-2'>
+                        <div className='flex flex-col items-center gap-4 my-2 sm:flex-row'>
                             <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{promos.length}</b> {promos.length > 1 ? 'promos' : 'promo'} found</h1>
                             <div className='flex py-3 bg-white rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
