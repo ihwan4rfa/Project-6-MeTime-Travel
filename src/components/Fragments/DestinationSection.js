@@ -90,20 +90,20 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
     };
 
     return (
-        <div className='relative z-10 flex w-full h-fit'>
+        <div className='relative z-10 flex w-full h-fit text-[10px] lg:text-[11px] xl:text-[13px]'>
             <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[550px] h-[550px] blur-3xl -top-10 -right-20'></div>
             <div className='relative flex flex-col items-start justify-start w-1/3 h-full'>
                 <div className='mb-4'>
-                    <h1 className='w-full text-3xl font-bold leading-tight tracking-tight font-volkhov'>
+                    <h1 className='w-full text-xl lg:text-2xl xl:text-3xl font-bold leading-tight tracking-tight font-volkhov'>
                         Discover Your<br />Favorite Destination
                     </h1>
-                    <h1 className='overflow-hidden text-2xl font-bold tracking-tight whitespace-nowrap animate-typing text-primaryred dark:text-primaryyellow font-volkhov'>Find Yours Today!</h1>
+                    <h1 className='overflow-hidden text-lg lg:text-xl xl:text-2xl font-bold tracking-tight whitespace-nowrap animate-typing text-primaryred dark:text-primaryyellow font-volkhov'>Find Yours Today!</h1>
                 </div>
                 <h1 className='font-medium text-center capitalize dark:text-slate-200'>Category <i class="text-primaryred dark:text-primaryyellow fa-solid fa-chevron-right mx-2 text-[11px]"></i> {selectedCategoryName ? selectedCategoryName : 'All'}</h1>
-                <div className='flex w-full pl-2 pr-12 my-6 overflow-y-scroll h-52 no-scrollbar'>
+                <div className='flex w-full pl-2 pr-12 my-6 overflow-y-scroll h-52 no-scrollbar '>
                     <div className='flex flex-wrap gap-4 mb-4 w-fit h-fit'>
-                        <div onClick={handleChangeAllCategory} className='flex items-center p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
-                            <div className='w-12 h-12 overflow-hidden rounded-lg'>
+                        <div onClick={handleChangeAllCategory} className='flex items-center p-1 lg:p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
+                            <div className='w-8 h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 overflow-hidden rounded-lg'>
                                 <Image src="/images/all-category.jpg" className='object-cover w-full h-full' width={200} height={200} alt='All Category' />
                             </div>
                             <h1 className='px-2'>All</h1>
@@ -118,16 +118,16 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                         ))}
                     </div>
                 </div>
-                <button onClick={() => router.push("/destinations")} type="button" className="text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 mt-2 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                <button onClick={() => router.push("/destinations")} type="button" className="px-3 py-2 xl:px-5 xl:py-3 mt-2 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                     Explore All
                 </button>
             </div>
             <div className='relative flex flex-col items-end w-2/3 h-full gap-6 pt-7'>
                 <div className="flex items-end justify-between w-full">
                     <h1 className={`text-slate-400 ${search === "" && selectedCategoryId === null ? 'invisible' : 'visible'}`}><b>{destinations && destinations.length}</b> {destinations && destinations.length > 1 ? 'destinations' : 'destination'} found</h1>
-                    <div className='flex py-3 bg-white rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack'>
-                        <button className='px-4'><i class="fa-solid fa-magnifying-glass dark:text-slate-200"></i></button>
-                        <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
+                    <div className='flex py-3 bg-white w-40 lg:w-44 xl:w-48 rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
+                        <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 w-28 lg:w-32 xl:w-36 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                     </div>
                 </div>
                 <div className='flex h-[380px] overflow-y-scroll no-scrollbar w-full rounded-xl'>

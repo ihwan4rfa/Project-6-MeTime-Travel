@@ -64,11 +64,11 @@ const index = () => {
                             <h1 className='font-bold tracking-tight font-volkhov'>Special Promo for You</h1>
                             <h1 className='overflow-hidden font-bold tracking-tight font-volkhov text-primaryred dark:text-primaryyellow whitespace-nowrap sm:animate-typing'>Don't Miss Out!</h1>
                         </div>
-                        <div className='flex flex-col items-center gap-4 my-2 sm:flex-row'>
-                            <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{promos.length}</b> {promos.length > 1 ? 'promos' : 'promo'} found</h1>
-                            <div className='flex py-3 bg-white rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
+                        <div className='flex flex-wrap-reverse sm:flex-row items-center justify-center gap-4 my-2 text-[10px] lg:text-[11px] xl:text-[13px]'>
+                            <h1 className={`text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{promos.length}</b> {promos.length > 1 ? 'promos' : 'promo'} found</h1>
+                            <div className='flex py-3 bg-white w-40 lg:w-44 xl:w-48 rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
                                 <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input onChange={handleSearch} type="text" placeholder="Search Promo" className="pr-4 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500" />
+                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 w-28 lg:w-32 xl:w-36 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                             </div>
                         </div>
                     </div>
