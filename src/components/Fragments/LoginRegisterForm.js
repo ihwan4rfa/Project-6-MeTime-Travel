@@ -147,41 +147,43 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
     };
 
     return (
-        <div className="flex items-center justify-center w-full h-screen bg-slate-100 dark:bg-slate-700 font-poppins">
-            <div className={`flex flex-col text-center bg-white dark:bg-primaryblack rounded-[30px] translate-y-[4%] shadow-navbar relative overflow-hidden lg:w-[80%] md:w-2/3 w-3/4 max-w-full md:min-h-[400px] min-h-[550px] transition-all ease-in-out`}>
+        <div className="flex items-center justify-center w-full h-screen bg-slate-100 dark:bg-slate-700 font-poppins text-[10px] lg:text-[11px] xl:text-[13px]">
+            <div className={`flex flex-col text-center bg-white dark:bg-primaryblack rounded-3xl translate-y-[4%] shadow-navbar relative overflow-hidden lg:w-[80%] md:w-[93%] w-3/4 max-w-full md:min-h-[400px] ${loginClicked ? 'min-h-[60%]' : 'min-h-[85%]'} transition-all ease-in-out`}>
                 <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-2/3 w-full ${registerClicked ? 'z-20 md:translate-x-[50%] -translate-x-[0%]' : 'z-10 md:translate-x-[0%] translate-x-[100%]'}`}>
-                    <form onSubmit={handleSubmitRegister} className="flex flex-col items-center justify-center h-full px-10 bg-white dark:bg-primaryblack">
-                        <h1 className="text-2xl font-semibold text-primaryblack dark:text-slate-200">Create Account</h1>
-                        <span className="mb-2 text-[13px] text-primaryblack dark:text-slate-200">Use your details for registration</span>
-                        <div className="flex w-full gap-4">
-                            <input type="email" name="email" id="email" placeholder="Email" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
-                            <input type="text" name="name" id="name" placeholder="Full Name" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
+                    <form onSubmit={handleSubmitRegister} className="flex flex-col items-center justify-center h-full px-5 md:px-10 bg-white dark:bg-primaryblack gap-4 md:gap-6">
+                        <div>
+                            <h1 className="text-lg lg:text-xl xl:text-2xl font-semibold text-primaryblack dark:text-slate-200">Create Account</h1>
+                            <span className="text-primaryblack dark:text-slate-200">Use your details for registration</span>
                         </div>
-                        <div className="w-full">
-                            <div className="relative flex gap-4">
-                                <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
-                                <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 my-2 px-4 text-[13px] text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
+                        <div className="w-full flex flex-col gap-2 md:gap-4">
+                            <div className="flex flex-col md:flex-row w-full gap-2 md:gap-4">
+                                <input type="email" name="email" id="email" placeholder="Email" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg w-full outline-none" />
+                                <input type="text" name="name" id="name" placeholder="Full Name" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg w-full outline-none" />
+                            </div>
+                            <div className="relative flex flex-col md:flex-row gap-2 md:gap-4">
+                                <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg w-full outline-none" />
+                                <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
                                     <label htmlFor="profilePictureUrl" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${profilePictureUrl ? 'text-primaryblack dark:text-slate-200' : ''}`}>{profilePictureUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="hidden" />
                             </div>
-                        </div>
-                        <div className="relative w-full">
-                            <div className="flex gap-4">
-                                <DropDownRole selectedRole={selectedRole} setSelectedRole={setSelectedRole} selectedRole2={selectedRole2} setSelectedRole2={setSelectedRole2} />
-                                <div className="flex bg-slate-200 dark:bg-slate-700 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                    <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" value={password} onChange={handleChangePassword} className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
-                                    <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                            <div className="relative w-full">
+                                <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+                                    <DropDownRole selectedRole={selectedRole} setSelectedRole={setSelectedRole} selectedRole2={selectedRole2} setSelectedRole2={setSelectedRole2} />
+                                    <div className="flex bg-slate-200 dark:bg-slate-700 py-[10px] px-4 rounded-lg w-full">
+                                        <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" value={password} onChange={handleChangePassword} className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
+                                        <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                    </div>
+                                    <div className="flex bg-slate-200 dark:bg-slate-700 py-[10px] px-4 rounded-lg w-full">
+                                        <input type={seeRepeatPassword ? 'text' : 'password'} name="passwordRepeat" id="passwordRepeat" placeholder="Repeat Password" value={passwordRepeat} onChange={handleChangePasswordRepeat} className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
+                                        <button type="button" onClick={toggleSeeRepeatPassword}><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                    </div>
                                 </div>
-                                <div className="flex bg-slate-200 dark:bg-slate-700 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                                    <input type={seeRepeatPassword ? 'text' : 'password'} name="passwordRepeat" id="passwordRepeat" placeholder="Repeat Password" value={passwordRepeat} onChange={handleChangePasswordRepeat} className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
-                                    <button type="button" onClick={toggleSeeRepeatPassword}><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
-                                </div>
+                                <p className={`absolute text-[11px] w-full px-4 text-end ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
                             </div>
-                            <p className={`absolute text-[11px] w-full px-4 text-end ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
                         </div>
-                        <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Register</button>
+                        <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Register</button>
                     </form>
                     <div className={`text-[11px] text-left ${loginClicked ? 'invisible' : ''}`}>
                         <Toaster
@@ -212,16 +214,20 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         />
                     </div>
                 </div>
-                <div className={`absolute top-0 md:h-full h-2/3 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
-                    <form onSubmit={handleSubmitLogin} className="flex flex-col items-center justify-center h-full px-10 bg-white dark:bg-primaryblack dark:text-slate-200">
-                        <h1 className="text-2xl font-semibold text-primaryblack dark:text-slate-200">Login</h1>
-                        <span className="mb-2 text-[13px] text-primaryblack dark:text-slate-200">Enter your email and password</span>
-                        <input name="emailLogin" id="emailLogin" type="email" placeholder="Email" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full outline-none" />
-                        <div className="flex bg-slate-200 dark:bg-slate-700 my-2 py-[10px] px-4 text-[13px] rounded-lg w-full">
-                            <input name="passwordLogin" id="passwordLogin" type={seePassword ? 'text' : 'password'} placeholder="Password" className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
-                            <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                <div className={`absolute top-0 md:h-full h-1/2 transition-all duration-500 ease-in-out md:w-1/2 w-full ${loginClicked ? 'z-20 translate-x-[0%]' : 'z-10 md:translate-x-[100%] -translate-x-[100%]'}`}>
+                    <form onSubmit={handleSubmitLogin} className="flex flex-col items-center justify-center h-full px-5 md:px-10 bg-white dark:bg-primaryblack dark:text-slate-200 gap-4 md:gap-6">
+                        <div>
+                            <h1 className="text-lg lg:text-xl xl:text-2xl font-semibold text-primaryblack dark:text-slate-200">Login</h1>
+                            <span className="text-primaryblack dark:text-slate-200">Enter your email and password</span>
                         </div>
-                        <button className="bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium mt-4">Login</button>
+                        <div className="flex flex-col gap-2 md:gap-4 w-full">
+                            <input name="emailLogin" id="emailLogin" type="email" placeholder="Email" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg w-full outline-none" />
+                            <div className="flex bg-slate-200 dark:bg-slate-700 py-[10px] px-4 rounded-lg w-full">
+                                <input name="passwordLogin" id="passwordLogin" type={seePassword ? 'text' : 'password'} placeholder="Password" className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
+                                <button type="button" onClick={toggleSeePassword}><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                            </div>
+                        </div>
+                        <button className="bg-primaryred hover:bg-redhover text-white py-[10px] px-8 rounded-lg font-medium">Login</button>
                     </form>
                     <div className="text-[11px] text-left">
                         <Toaster
@@ -252,18 +258,18 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         />
                     </div>
                 </div>
-                <div className={`absolute md:top-0 top-1/2 ${loginClicked ? 'md:w-1/2 md:left-1/2' : 'md:w-1/3 md:left-1/3'}  left-0 w-full md:h-full h-1/3 overflow-hidden transition-all duration-500 ease-in-out z-30 md:translate-y-[0%] translate-y-[50%] rounded-t-[50px] ${btnClicked ? 'md:-translate-x-[100%] md:rounded-r-[100px] md:rounded-tl-[0px] rounded-r-[0px]' : 'md:translate-x-[0%] md:rounded-l-[100px] md:rounded-tr-[0px] rounded-l-[0px]'}`}>
+                <div className={`absolute md:top-0 top-1/2 ${loginClicked ? 'md:w-1/2 md:left-1/2' : 'md:w-1/3 md:left-1/3'}  left-0 w-full md:h-full ${loginClicked ? 'h-1/2 translate-y-[0%]' : 'h-1/3 translate-y-[50%]'} overflow-hidden transition-all duration-500 ease-in-out z-30 md:translate-y-[0%] rounded-t-[50px] ${btnClicked ? 'md:-translate-x-[100%] md:rounded-r-[100px] md:rounded-tl-[0px] rounded-r-[0px]' : 'md:translate-x-[0%] md:rounded-l-[100px] md:rounded-tr-[0px] rounded-l-[0px]'}`}>
                     <div className={`bg-black h-full text-white relative -left-[100%] w-[200%] transition-all duration-500 ${btnClicked ? 'translate-x-[50%]' : 'translate-x-[0%]'}`}>
                         <Image src="/images/hagia-shopia.jpg" className='object-cover w-full h-full opacity-40' width={1000} height={1000} />
-                        <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[0%]`}>
-                            <h1 className="text-xl font-medium md:text-2xl">Welcome Back!</h1>
-                            <p className="md:text-sm text-[13px] md:my-5 my-1 mx-[25px]">Log in with email and password to start your travel adventure!</p>
-                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryred">Login</button>
+                        <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[0%] gap-2`}>
+                            <h1 className="font-medium text-lg lg:text-xl xl:text-2xl">Welcome Back!</h1>
+                            <p className="xl:mx-[40px] mx-[10px]">Log in with email and password to start your travel adventure!</p>
+                            <button onClick={toggleButton} className="text-white py-[10px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryred">Login</button>
                         </div>
-                        <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[100%]`}>
-                            <h1 className="text-xl font-medium md:text-2xl">New here?</h1>
-                            <p className="md:text-sm text-[13px] md:my-5 my-1 md:mx-[80px] mx-[25px]">Register now and connect with fellow travelers to explore new horizons!</p>
-                            <button onClick={toggleButton} className="text-white md:text-[13px] text-[10px] md:py-[10px] py-[8px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
+                        <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[100%] gap-2`}>
+                            <h1 className="font-medium text-lg lg:text-xl xl:text-2xl">New here?</h1>
+                            <p className="xl:mx-[80px] lg:mx-[60px] mx-[10px]">Register now and connect with fellow travelers to explore new horizons!</p>
+                            <button onClick={toggleButton} className="text-white py-[10px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
                         </div>
                     </div>
                 </div>
