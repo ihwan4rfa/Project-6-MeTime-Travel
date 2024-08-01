@@ -91,7 +91,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
 
     return (
         <div className='relative z-10 flex w-full h-fit text-[10px] lg:text-[11px] xl:text-[13px]'>
-            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[550px] h-[550px] blur-3xl -top-10 -right-20'></div>
+            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[250px] h-[250px] lg:w-[550px] lg:h-[550px] blur-3xl -top-10 right-0 lg:-right-20'></div>
             <div className='relative flex flex-col items-start justify-start w-1/3 h-full'>
                 <div className='mb-4'>
                     <h1 className='w-full text-xl lg:text-2xl xl:text-3xl font-bold leading-tight tracking-tight font-volkhov'>

@@ -38,8 +38,8 @@ const FacilitiesSection = () => {
     const [hoverIndex, setHoverIndex] = useState(null);
 
     return (
-        <div className='relative z-30 flex flex-col w-full gap-8 -mt-16 h-fit'>
-            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[300px] h-[300px] blur-3xl -top-24 -right-20'></div>
+        <div className='relative z-30 flex flex-col w-full gap-8 -mt-8 sm:-mt-12 lg:-mt-16 h-fit'>
+            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] blur-3xl -top-12 lg:-top-24 right-0 lg:-right-20'></div>
             <Image src="/images/aksen.png" className='absolute w-16 -top-5 lg:w-20 xl:w-24 lg:-top-10 lg:-left-20' width={500} height={500} alt='Line Decore' />
             <h1 className='flex items-center justify-center w-full text-xl font-bold tracking-tight lg:text-2xl xl:text-3xl font-volkhov'>
                 Why Me Time Travel?

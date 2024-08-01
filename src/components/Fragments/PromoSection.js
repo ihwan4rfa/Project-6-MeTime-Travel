@@ -21,22 +21,25 @@ const PromoSection = ({ handleShowDetailPromo }) => {
 
     const responsive = {
         500: {
-            items: 1,
-        },
-        900: {
             items: 2,
         },
-        1200: {
+        850: {
             items: 3,
         },
-        1500: {
+        1024: {
+            items: 2,
+        },
+        1120: {
+            items: 3,
+        },
+        1350: {
             items: 4,
         }
     };
 
     return (
         <div className='relative z-20 flex flex-col w-full gap-10 -mt-6 h-fit'>
-            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue dark:bg-opacity-20 bg-opacity-10 rounded-full w-[500px] h-[400px] blur-3xl -top-5 -left-20'></div>
+            <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue dark:bg-opacity-20 bg-opacity-10 rounded-full w-[250px] h-[250px] lg:w-[500px] lg:h-[400px] blur-3xl -top-5 -left-20'></div>
             <div className='relative flex justify-between w-full'>
                 <h1 className='flex text-xl font-bold tracking-tight lg:text-2xl xl:text-3xl font-volkhov'>Special Promo!</h1>
                 <button onClick={() => router.push("/promos")} type="button" className="text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
@@ -44,7 +47,7 @@ const PromoSection = ({ handleShowDetailPromo }) => {
                 </button>
             </div>
             <div className='relative w-full overflow-x-hidden rounded-xl'>
-                <AliceCarousel mouseTracking paddingRight={160} infinite autoPlay animationDuration={2000} disableButtonsControls disableDotsControls responsive={responsive}>
+                <AliceCarousel mouseTracking paddingRight={50} infinite autoPlay animationDuration={2000} disableButtonsControls disableDotsControls responsive={responsive}>
                     {promos.map((promo, index) => (
                         <div key={index} onClick={() => handleShowDetailPromo(promo.id)} onDragStart={handleDragStart} className='w-[95%] h-60 overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred cursor-pointer text-primaryblack rounded-xl'>
                             {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
