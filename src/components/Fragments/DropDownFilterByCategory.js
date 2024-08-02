@@ -50,7 +50,7 @@ const DropDownFilterByCategory = ({ selectedCategoryId, setSelectedCategoryId, c
                 <h1 className='capitalize dark:text-slate-200'>{selectedCategoryName ? selectedCategoryName : 'All Category'}</h1>
                 <h1><i class={`fa-solid dark:text-slate-200 ${dropDownHidden ? 'fa-caret-down' : 'fa-caret-up'}`}></i></h1>
             </a>
-            <div className={`${dropDownUser === true ? 'mt-12' : 'mt-10'} absolute w-full z-10 h-fit max-h-[166px] overflow-y-scroll no-scrollbar bg-white dark:bg-primaryblack shadow-dropdown dark:shadow-primarygray text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
+            <div className={`${dropDownUser === true ? 'mt-11 xl:mt-12' : 'mt-10'} absolute w-full z-10 h-fit max-h-[166px] overflow-y-scroll no-scrollbar bg-white dark:bg-primaryblack shadow-dropdown dark:shadow-primarygray text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                 <div className="px-2">
                     <button onClick={handleChangeAllCategory} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 ${categoryAllSelected === true ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
                         <h1 className='text-left dark:text-slate-200'>All Category</h1>
