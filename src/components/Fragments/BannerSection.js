@@ -15,7 +15,7 @@ const BannerSection = () => {
     return (
         <div className='relative flex flex-col w-full gap-10 h-fit text-[10px] lg:text-[11px] xl:text-[13px]'>
             <div className='absolute z-0 bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 rounded-full w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] blur-3xl -top-20 -left-10'></div>
-            <div className='relative flex items-center w-full h-full overflow-x-hidden rounded-tr-[80px] rounded-bl-[80px] rounded-2xl'>
+            <div className='relative flex items-center w-full h-full overflow-x-hidden rounded-tr-[60px] rounded-bl-[60px] lg:rounded-tr-[70px] lg:rounded-bl-[70px] xl:rounded-tr-[80px] xl:rounded-bl-[80px] rounded-2xl'>
                 <div className='flex flex-col items-center sm:items-start px-[20%] sm:px-0 absolute z-20 w-full sm:w-[40%] sm:left-[10%]'>
                     <h1 className='overflow-hidden text-lg lg:text-xl xl:text-2xl font-bold tracking-tight left-[20%] font-volkhov whitespace-nowrap sm:animate-typing text-primaryyellow'>It's Time for Me Time!</h1>
                     <h1 className='text-white text-center sm:text-left'>
