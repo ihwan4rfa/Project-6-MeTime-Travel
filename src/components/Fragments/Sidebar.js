@@ -7,18 +7,18 @@ const Sidebar = () => {
 
     const linkList = {
         Users: "/dashboard/users",
-        Banners: "/dashboard/banners",
-        Promos: "/dashboard/promos",
         Categories: "/dashboard/categories",
-        Destinations: "/dashboard/destinations"
+        Destinations: "/dashboard/destinations",
+        Promos: "/dashboard/promos",
+        Banners: "/dashboard/banners"
     }
 
     const iconList = {
         Users: "fa-users",
-        Banners: "fa-flag",
-        Promos: "fa-percent",
         Categories: "fa-tag",
-        Destinations: "fa-location-dot"
+        Destinations: "fa-location-dot",
+        Promos: "fa-percent",
+        Banners: "fa-flag"
     }
 
     const keys = Object.keys(linkList);

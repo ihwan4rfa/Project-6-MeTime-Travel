@@ -88,7 +88,7 @@ const Navbar = () => {
 
     return (
         <div className='text-[10px] lg:text-[11px] xl:text-[13px]'>
-            <div className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'lg:px-36 sm:px-10 px-5'} ${showProfile || showModal || currentPath.startsWith('/dashboard') ? 'bg-opacity-100' : 'bg-opacity-[85%] backdrop-blur-lg dark:bg-opacity-[85%] dark:backdrop-blur-lg'} z-50 fixed flex items-center justify-between w-full h-12 md:h-14 xl:h-16 bg-white dark:bg-primaryblack shadow-navbar3 md:shadow-navbar2 xl:shadow-navbar dark:shadow-slate-600 text-primaryblack`}>
+            <div className={`${currentPath.startsWith('/dashboard') ? 'px-10' : 'lg:px-36 sm:px-10 px-5'} ${showProfile || showModal || currentPath.startsWith('/dashboard') ? 'bg-opacity-100' : 'bg-opacity-[85%] backdrop-blur-lg dark:bg-opacity-[85%] dark:backdrop-blur-lg'} z-[51] fixed flex items-center justify-between w-full h-12 md:h-14 xl:h-16 bg-white dark:bg-primaryblack shadow-navbar3 md:shadow-navbar2 xl:shadow-navbar dark:shadow-slate-600 text-primaryblack`}>
                 <button onClick={() => currentPath.startsWith("/dashboard") ? router.push("/dashboard/users") : router.push(linkList.Home)}><Image className='w-auto h-7 md:h-8 xl:h-9' src={isDark ? "/images/Logo-dark.png" : "/images/Logo.png"} width={500} height={500} /></button>
                 <button onClick={handleMenuBarToggle} className='flex items-center justify-center text-lg sm:hidden dark:text-white'>{menuBarClicked ? <i class="fa-solid fa-xmark text-xl"></i> : <i class="fa-solid fa-bars"></i>}</button>
                 <div className="items-center hidden font-medium gap-10 lg:gap-14 xl:gap-16 sm:flex">
@@ -144,7 +144,7 @@ const Navbar = () => {
                     )}
                 </div>
             </div >
-            <div className={`absolute ${menuBarClicked ? 'top-0' : '-top-56'} z-40 flex font-medium sm:hidden items-left w-full px-5 pt-[70px] pb-7 duration-300 ease-in-out bg-white dark:bg-primaryblack rounded-b-xl shadow-button dark:shadow-slate-600`}>
+            <div className={`absolute ${menuBarClicked ? 'top-0' : '-top-56'} z-50 flex font-medium sm:hidden items-left w-full px-5 pt-[70px] pb-7 duration-300 ease-in-out bg-white dark:bg-primaryblack rounded-b-xl shadow-button dark:shadow-slate-600`}>
                 <div className='flex flex-col gap-5'>
                     {keys.map((key, index) => (
                         <div key={index}>
