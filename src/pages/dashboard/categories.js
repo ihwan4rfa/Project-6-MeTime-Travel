@@ -19,9 +19,13 @@ const Categories = () => {
     const showModal = useSelector((state) => state.showModal.modal);
     const [showDeleteCategory, setShowDeleteCategory] = useState(false);
     const [search, setSearch] = useState("");
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
 
     useEffect(() => {
         getData("categories", (res) => setCategories(res.data.data));
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
     }, [showDeleteCategory, showEditCategory, showAddCategory]);
 
     const handleShowAddCategory = () => {
@@ -120,7 +124,7 @@ const Categories = () => {
             <ModalConfirmDeleteCategory showDeleteCategory={showDeleteCategory} setShowDeleteCategory={setShowDeleteCategory} selectedCategory={selectedCategory} />
             <ModalEditCategory showEditCategory={showEditCategory} setShowEditCategory={setShowEditCategory} selectedCategory={selectedCategory} />
             <ModalAddCategory showAddCategory={showAddCategory} setShowAddCategory={setShowAddCategory} />
-            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
                     toastOptions={{

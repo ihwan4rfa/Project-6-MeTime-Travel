@@ -19,9 +19,13 @@ const Promos = () => {
     const showModal = useSelector((state) => state.showModal.modal);
     const [showAddPromo, setShowAddPromo] = useState(false);
     const [search, setSearch] = useState("");
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
 
     useEffect(() => {
         getData("promos", (res) => setPromos(res.data.data));
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
     }, [showDeletePromo, showEditPromo, showAddPromo]);
 
     const handleShowAddPromo = () => {
@@ -120,7 +124,7 @@ const Promos = () => {
             <ModalConfirmDeletePromo showDeletePromo={showDeletePromo} setShowDeletePromo={setShowDeletePromo} selectedPromo={selectedPromo} />
             <ModalEditPromo showEditPromo={showEditPromo} setShowEditPromo={setShowEditPromo} selectedPromo={selectedPromo} />
             <ModalAddPromo showAddPromo={showAddPromo} setShowAddPromo={setShowAddPromo} />
-            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
                     toastOptions={{

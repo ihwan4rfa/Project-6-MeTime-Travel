@@ -19,9 +19,13 @@ const Banners = () => {
     const showModal = useSelector((state) => state.showModal.modal);
     const [showDeleteBanner, setShowDeleteBanner] = useState(false);
     const [search, setSearch] = useState("");
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
 
     useEffect(() => {
         getData("banners", (res) => setBanners(res.data.data));
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
     }, [showEditBanner, showDeleteBanner, showAddBanner]);
 
     const handleShowAddBanner = () => {
@@ -120,7 +124,7 @@ const Banners = () => {
             <ModalConfirmDeleteBanner showDeleteBanner={showDeleteBanner} setShowDeleteBanner={setShowDeleteBanner} selectedBanner={selectedBanner} />
             <ModalEditBanner showEditBanner={showEditBanner} setShowEditBanner={setShowEditBanner} selectedBanner={selectedBanner} />
             <ModalAddBanner showAddBanner={showAddBanner} setShowAddBanner={setShowAddBanner} />
-            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
                     toastOptions={{

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import useUpload from "../../Hooks/useUpload";
 import DropDownRole from "./DropDownRole";
 import toast, { Toaster } from "react-hot-toast";
@@ -9,6 +9,12 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
+    }, []);
 
     // Resgister
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
@@ -185,7 +191,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         </div>
                         <button type="submit" className="bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Register</button>
                     </form>
-                    <div className={`text-[11px] text-left ${loginClicked ? 'invisible' : ''}`}>
+                    <div className={`text-[11px] text-left ${loginClicked || !isPageLoaded ? 'invisible' : ''}`}>
                         <Toaster
                             position="top-right"
                             toastOptions={{
@@ -229,7 +235,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         </div>
                         <button className="bg-primaryred hover:bg-redhover text-white py-[10px] px-8 rounded-lg font-medium">Login</button>
                     </form>
-                    <div className="text-[11px] text-left">
+                    <div className={`text-[11px] text-left ${!isPageLoaded ? 'invisible' : ''}`}>
                         <Toaster
                             position="top-left"
                             toastOptions={{

@@ -20,6 +20,7 @@ const Users = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const { update } = useUpdate();
     const showModal = useSelector((state) => state.showModal.modal);
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
 
     // Display first 15 users from API in initial load
     useEffect(() => {
@@ -28,6 +29,9 @@ const Users = () => {
             setDisplayedUser(data.slice(0, displayedUserPerBatch));
             setCurrentUserBatchIndex(displayedUserPerBatch);
         });
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
     }, []);
 
     // Handle scroll
@@ -163,7 +167,7 @@ const Users = () => {
                                 </div>
                             </div>
                         ))}
-                        <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+                        <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
                             <Toaster
                                 position="top-center"
                                 toastOptions={{

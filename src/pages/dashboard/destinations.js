@@ -22,6 +22,7 @@ const Destinations = () => {
     const [search, setSearch] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
     const [categoryAllSelected, setCategoryAllSelected] = useState(true);
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
 
     useEffect(() => {
         if (selectedCategoryId === null) {
@@ -41,6 +42,10 @@ const Destinations = () => {
         } else {
             getData("activities", (res) => setDestinations(res.data.data));
         }
+
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
     }, [showDeleteDestination, showEditDestination, showAddDestination]);
 
     const handleShowAddDestination = () => {
@@ -168,7 +173,7 @@ const Destinations = () => {
             <ModalConfirmDeleteDestination showDeleteDestination={showDeleteDestination} setShowDeleteDestination={setShowDeleteDestination} selectedDestination={selectedDestination} />
             <ModalEditDestination showEditDestination={showEditDestination} setShowEditDestination={setShowEditDestination} selectedDestination={selectedDestination} />
             <ModalAddDestination showAddDestination={showAddDestination} setShowAddDestination={setShowAddDestination} />
-            <div className={`${showModal === true ? 'invisible' : ''} text-[11px] text-left`}>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
                     toastOptions={{

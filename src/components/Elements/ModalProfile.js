@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/redux/slice/userLoggedSlice';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
@@ -16,6 +16,13 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
     const { userLog } = useAuth();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.userLogged.user);
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsPageLoaded(true);
+        }, 2000);
+    }, []);
 
     const handleEditProfile = () => {
         setEditProfile(!editProfile);
@@ -124,7 +131,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                             </div>
                             <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Save</button>
                         </form>
-                        <div className={`${showProfile === true ? '' : 'invisible'} text-[11px] text-left`}>
+                        <div className={`${showProfile || isPageLoaded ? '' : 'invisible'} text-[11px] text-left`}>
                             <Toaster
                                 position="bottom-center"
                                 toastOptions={{
