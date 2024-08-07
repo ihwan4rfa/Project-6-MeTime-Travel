@@ -105,7 +105,7 @@ const index = () => {
             <Navbar />
             <div className='absolute z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl right-10 top-20'></div>
             <div className='absolute bottom-0 z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl left-10'></div>
-            <div className='relative flex flex-col w-full h-screen px-4 pt-20 overflow-y-scroll xl:pt-24 sm:px-10 dark:bg-primaryblack no-scrollbar lg:px-36'>
+            <div className='relative flex flex-col w-full h-screen px-4 pt-20 overflow-y-scroll xl:pt-24 sm:px-10 no-scrollbar lg:px-36'>
                 <div className='flex flex-col w-full h-full gap-20 xs:gap-16 sm:gap-4 xl:gap-7'>
                     <div className='flex flex-col items-center justify-between sm:flex-row h-14'>
                         <div className='flex flex-col text-xl text-center sm:text-left sm:text-base lg:text-xl xl:text-2xl'>
