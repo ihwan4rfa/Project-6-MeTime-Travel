@@ -93,7 +93,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                     <div className='flex flex-col w-[280px] xs:w-[290px] md:w-[300px] lg:w-[330px] xl:w-[380px] h-[98px] md:h-[143px] lg:h-[155px] xl:h-[160px] gap-2 overflow-y-scroll no-scrollbar'>
                                         <div className='flex w-auto gap-8 ml-3'>
                                             <h1 className='w-[30%] text-primarygray dark:text-slate-400'>Description</h1>
-                                            <h1 className='w-[70%]'>{selectedDestination.description} kjdb figbd f eibfv efvei fv e dfvie fv efv iefveif v eui fhvehfvei fvef hveif</h1>
+                                            <h1 className='w-[70%]'>{selectedDestination.description}</h1>
                                         </div>
                                         <div className='flex w-auto gap-8 ml-3'>
                                             <h1 className='w-[30%] text-primarygray dark:text-slate-400'>Facilities</h1>
