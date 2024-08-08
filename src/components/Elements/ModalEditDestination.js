@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
-import DropDownCategory from '../Fragments/DropDownCategory';
+import DropDownCategory from './DropDownCategory';
 import Image from 'next/image'
 
 const ModalEditDestination = ({ showEditDestination, setShowEditDestination, selectedDestination }) => {

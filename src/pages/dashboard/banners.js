@@ -1,6 +1,6 @@
 import moment from 'moment/moment'
 import Navbar from '@/components/Fragments/Navbar'
-import Sidebar from '@/components/Fragments/Sidebar'
+import Sidebar from '@/components/Elements/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import ModalEditBanner from '@/components/Elements/ModalEditBanner'
@@ -124,7 +124,7 @@ const Banners = () => {
             <ModalConfirmDeleteBanner showDeleteBanner={showDeleteBanner} setShowDeleteBanner={setShowDeleteBanner} selectedBanner={selectedBanner} />
             <ModalEditBanner showEditBanner={showEditBanner} setShowEditBanner={setShowEditBanner} selectedBanner={selectedBanner} />
             <ModalAddBanner showAddBanner={showAddBanner} setShowAddBanner={setShowAddBanner} />
-            <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : 'visible dark:invisible'} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
                     toastOptions={{
@@ -132,7 +132,35 @@ const Banners = () => {
                         success: {
                             style: {
                                 background: 'white',
-                                color: 'black'
+                                color: '#212832'
+                            },
+                            iconTheme: {
+                                primary: '#10b981',
+                                secondary: 'white'
+                            }
+                        },
+                        error: {
+                            style: {
+                                background: '#DF6951',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: 'white',
+                                secondary: '#DF6951'
+                            }
+                        }
+                    }}
+                />
+            </div>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : 'invisible dark:visible'} text-[11px] text-left`}>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        success: {
+                            style: {
+                                background: '#334155',
+                                color: 'white'
                             },
                             iconTheme: {
                                 primary: '#10b981',

@@ -2,7 +2,7 @@ import Navbar from '@/components/Fragments/Navbar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import Image from 'next/image'
-import DropDownFilterByCategory from '@/components/Fragments/DropDownFilterByCategory'
+import DropDownFilterByCategory from '@/components/Elements/DropDownFilterByCategory'
 import ModalDetailDestination from '@/components/Elements/ModalDetailDestination'
 import { useDispatch } from 'react-redux';
 import { setShowModal } from '@/redux/slice/showModalSlice';

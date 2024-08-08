@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/redux/slice/userLoggedSlice';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import useUpload from '@/Hooks/useUpload';
 import useUpdate from '@/Hooks/useUpdate';
@@ -16,13 +16,6 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
     const { userLog } = useAuth();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.userLogged.user);
-    const [isPageLoaded, setIsPageLoaded] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsPageLoaded(true);
-        }, 2000);
-    }, []);
 
     const handleEditProfile = () => {
         setEditProfile(!editProfile);
@@ -131,7 +124,35 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                             </div>
                             <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Save</button>
                         </form>
-                        <div className={`${showProfile || isPageLoaded ? '' : 'invisible'} text-[11px] text-left`}>
+                        <div className={`${showProfile ? 'invisible dark:visible' : 'invisible'} text-[11px] text-left`}>
+                            <Toaster
+                                position="bottom-center"
+                                toastOptions={{
+                                    duration: 3000,
+                                    success: {
+                                        style: {
+                                            background: '#212832',
+                                            color: 'white'
+                                        },
+                                        iconTheme: {
+                                            primary: '#10b981',
+                                            secondary: 'white'
+                                        }
+                                    },
+                                    error: {
+                                        style: {
+                                            background: '#212832',
+                                            color: 'white',
+                                        },
+                                        iconTheme: {
+                                            primary: '#DF6951',
+                                            secondary: 'white'
+                                        }
+                                    }
+                                }}
+                            />
+                        </div>
+                        <div className={`${showProfile ? 'visible dark:invisible' : 'invisible'} text-[11px] text-left`}>
                             <Toaster
                                 position="bottom-center"
                                 toastOptions={{
@@ -139,7 +160,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                     success: {
                                         style: {
                                             background: 'white',
-                                            color: 'black'
+                                            color: '#212832'
                                         },
                                         iconTheme: {
                                             primary: '#10b981',
@@ -149,7 +170,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                     error: {
                                         style: {
                                             background: 'white',
-                                            color: 'black',
+                                            color: '#212832',
                                         },
                                         iconTheme: {
                                             primary: '#DF6951',

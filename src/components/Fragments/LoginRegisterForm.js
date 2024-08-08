@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import useUpload from "../../Hooks/useUpload";
-import DropDownRole from "./DropDownRole";
+import DropDownRole from "../Elements/DropDownRole";
 import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useDispatch } from "react-redux";

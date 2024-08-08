@@ -1,6 +1,6 @@
 import moment from 'moment/moment'
 import Navbar from '@/components/Fragments/Navbar'
-import Sidebar from '@/components/Fragments/Sidebar'
+import Sidebar from '@/components/Elements/Sidebar'
 import React, { useEffect, useState } from 'react'
 import useGetData from '@/Hooks/useGetData'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ import ModalConfirmDeleteDestination from '@/components/Elements/ModalConfirmDel
 import ModalEditDestination from '@/components/Elements/ModalEditDestination'
 import ModalAddDestination from '@/components/Elements/ModalAddDestination'
 import Image from 'next/image'
-import DropDownFilterByCategory from '@/components/Fragments/DropDownFilterByCategory'
+import DropDownFilterByCategory from '@/components/Elements/DropDownFilterByCategory'
 
 const Destinations = () => {
     const [destinations, setDestinations] = useState([]);
@@ -173,7 +173,7 @@ const Destinations = () => {
             <ModalConfirmDeleteDestination showDeleteDestination={showDeleteDestination} setShowDeleteDestination={setShowDeleteDestination} selectedDestination={selectedDestination} />
             <ModalEditDestination showEditDestination={showEditDestination} setShowEditDestination={setShowEditDestination} selectedDestination={selectedDestination} />
             <ModalAddDestination showAddDestination={showAddDestination} setShowAddDestination={setShowAddDestination} />
-            <div className={`${showModal || !isPageLoaded ? 'invisible' : ''} text-[11px] text-left`}>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : 'visible dark:invisible'} text-[11px] text-left`}>
                 <Toaster
                     position="top-center"
                     toastOptions={{
@@ -181,7 +181,35 @@ const Destinations = () => {
                         success: {
                             style: {
                                 background: 'white',
-                                color: 'black'
+                                color: '#212832'
+                            },
+                            iconTheme: {
+                                primary: '#10b981',
+                                secondary: 'white'
+                            }
+                        },
+                        error: {
+                            style: {
+                                background: '#DF6951',
+                                color: 'white',
+                            },
+                            iconTheme: {
+                                primary: 'white',
+                                secondary: '#DF6951'
+                            }
+                        }
+                    }}
+                />
+            </div>
+            <div className={`${showModal || !isPageLoaded ? 'invisible' : 'invisible dark:visible'} text-[11px] text-left`}>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        success: {
+                            style: {
+                                background: '#334155',
+                                color: 'white'
                             },
                             iconTheme: {
                                 primary: '#10b981',
