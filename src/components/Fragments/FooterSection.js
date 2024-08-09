@@ -48,9 +48,7 @@ const FooterSection = () => {
                 </div>
             </div>
             <h1 className='text-gray-400 dark:text-slate-500 text-[9px] lg:text-[10px] xl:text-[12px] text-center'>
-                <i class="fa-regular fa-copyright mr-1"></i>2024 MeTime Travel
-                <span className='mx-2'>|</span>
-                All rights reserved
+                <i class="fa-regular fa-copyright mr-1"></i>2024 MeTime Travel. All Rights Reserved
                 <span className='mx-2'>|</span>
                 <span className='py-2 cursor-pointer hover:text-primaryblue'>
                     <a href='https://github.com/ihwan4rfa' target='_blank'><i class="fa-brands fa-github mr-1"></i>ihwan4rfa</a>
