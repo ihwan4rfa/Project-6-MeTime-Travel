@@ -21,12 +21,12 @@ const FooterSection = () => {
                     <div className='flex flex-col gap-3 lg:gap-4 xl:gap-6'>
                         <h1 className='font-medium text-center sm:text-left'>Company</h1>
                         <div className='flex flex-col items-center gap-2 sm:items-start xl:gap-3 text-primarygray dark:text-slate-400'>
-                            <button className='hover:text-primaryred dark:hover:text-primaryyellow'>About</button>
+                            <button className='cursor-scale hover:text-primaryred dark:hover:text-primaryyellow'>About</button>
                             <div className='flex gap-2 lg:gap-3 xl:gap-4 text-[13px] lg:text-[14px] xl:text-[16px]'>
-                                <a href='https://www.instagram.com/ihwanarfa' target='_blank'><i class="fa-brands fa-instagram hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
-                                <a href='https://web.facebook.com/ihwan.arifandi.5' target='_blank'><i class="fa-brands fa-facebook-f hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
-                                <a href='https://www.x.com/ihwanarfa' target='_blank'><i class="fa-brands fa-x-twitter hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
-                                <a href='https://www.tiktok.com/@ihwanarfa' target='_blank'><i class="fa-brands fa-tiktok hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
+                                <a className='cursor-scale' href='https://www.instagram.com/ihwanarfa' target='_blank'><i class="fa-brands fa-instagram hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
+                                <a className='cursor-scale' href='https://web.facebook.com/ihwan.arifandi.5' target='_blank'><i class="fa-brands fa-facebook-f hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
+                                <a className='cursor-scale' href='https://www.x.com/ihwanarfa' target='_blank'><i class="fa-brands fa-x-twitter hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
+                                <a className='cursor-scale' href='https://www.tiktok.com/@ihwanarfa' target='_blank'><i class="fa-brands fa-tiktok hover:text-primaryred dark:hover:text-primaryyellow"></i></a>
                             </div>
                         </div>
                     </div>
@@ -41,8 +41,8 @@ const FooterSection = () => {
                     <div className='flex flex-col gap-3 lg:gap-4 xl:gap-6'>
                         <h1 className='font-medium text-center sm:text-left'>Quick links</h1>
                         <div className='flex flex-col items-center gap-2 xl:gap-3 text-primarygray dark:text-slate-400 sm:items-start'>
-                            <button onClick={() => router.push("/destinations")} className='hover:text-primaryred dark:hover:text-primaryyellow'>Destinations</button>
-                            <button onClick={() => router.push("/promos")} className='hover:text-primaryred dark:hover:text-primaryyellow'>Promos</button>
+                            <button onClick={() => router.push("/destinations")} className='cursor-scale hover:text-primaryred dark:hover:text-primaryyellow'>Destinations</button>
+                            <button onClick={() => router.push("/promos")} className='cursor-scale hover:text-primaryred dark:hover:text-primaryyellow'>Promos</button>
                         </div>
                     </div>
                 </div>
@@ -50,8 +50,8 @@ const FooterSection = () => {
             <h1 className='text-gray-400 dark:text-slate-500 text-[9px] lg:text-[10px] xl:text-[12px] text-center'>
                 <i class="fa-regular fa-copyright mr-1"></i>2024 MeTime Travel. All Rights Reserved
                 <span className='mx-2'>|</span>
-                <span className='py-2 cursor-pointer hover:text-primaryblue'>
-                    <a href='https://github.com/ihwan4rfa' target='_blank'><i class="fa-brands fa-github mr-1"></i>ihwan4rfa</a>
+                <span className='py-2 cursor-pointer cursor-scale hover:text-primaryblue'>
+                    <a className='cursor-scale' href='https://github.com/ihwan4rfa' target='_blank'><i class="fa-brands fa-github mr-1"></i>ihwan4rfa</a>
                 </span>
             </h1>
         </div>

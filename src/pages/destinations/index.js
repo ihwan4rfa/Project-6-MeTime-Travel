@@ -112,12 +112,12 @@ const index = () => {
                             <h1 className='font-bold tracking-tight font-volkhov'>Explore Destinations</h1>
                             <h1 className='overflow-hidden font-bold tracking-tight font-volkhov text-primaryred dark:text-primaryyellow whitespace-nowrap sm:animate-typing'>Find Yours!</h1>
                         </div>
-                        <div className='flex flex-wrap-reverse sm:flex-row items-center justify-center sm:justify-end gap-2 md:gap-3 xl:gap-4 my-2'>
+                        <div className='flex flex-wrap-reverse items-center justify-center gap-2 my-2 sm:flex-row sm:justify-end md:gap-3 xl:gap-4'>
                             <h1 className={`text-slate-400 ${search === "" && selectedCategoryId === null ? 'hidden' : ''}`}><b>{destinations.length}</b> {destinations.length > 1 ? 'destinations' : 'destination'} found</h1>
                             <div className='flex items-center gap-2 md:gap-3 xl:gap-4'>
-                                <div className='flex py-3 bg-white w-40 lg:w-44 xl:w-48 rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
-                                    <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                    <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 w-28 lg:w-32 xl:w-36 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
+                                <div className='flex w-40 py-3 bg-white rounded-lg lg:w-44 xl:w-48 dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
+                                    <div className='px-4'><i class="fa-solid fa-magnifying-glass"></i></div>
+                                    <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none w-28 lg:w-32 xl:w-36 placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                                 </div>
                                 <DropDownFilterByCategory dropDownUser={dropDownUser} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} categoryAllSelected={categoryAllSelected} setCategoryAllSelected={setCategoryAllSelected} setDestinations={setDestinations} />
                             </div>
@@ -126,7 +126,7 @@ const index = () => {
                     <div className='flex flex-1 overflow-y-scroll rounded-t-xl no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations && destinations.map((destination, index) => (
-                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='w-full xs:w-[49%] md:w-[32%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-52 xl:h-64'>
+                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='cursor-scale w-full xs:w-[49%] md:w-[32%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-52 xl:h-64'>
                                     <div className='flex text-[8px] lg:text-[9px] xl:text-[11px] items-center z-10 absolute bg-white dark:bg-primaryblack h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
                                         <i className="mr-1 fa-solid fa-star text-primaryyellow"></i>
                                         <h1 className='text-primarygray dark:text-slate-400 pt-[1px]'>{destination.rating}</h1>

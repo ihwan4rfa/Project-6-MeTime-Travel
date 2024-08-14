@@ -150,7 +150,7 @@ const Navbar = () => {
                         <div key={index}>
                             <button
                                 onClick={() => router.push(modifiedLinkList[key])}
-                                className={`cursor-pointer dark:text-white hover:text-primaryred dark:hover:text-primaryyellow ${currentPath === modifiedLinkList[key] && currentPath === "/login_register" ? 'text-white bg-primaryred dark:bg-primaryyellow'
+                                className={`cursor-scale dark:text-white hover:text-primaryred dark:hover:text-primaryyellow ${currentPath === modifiedLinkList[key] && currentPath === "/login_register" ? 'text-white bg-primaryred dark:bg-primaryyellow'
                                     : (currentPath === modifiedLinkList[key] ? 'text-primaryred dark:text-yellowprimary' : '')} ${key === "Login" ? "px-3 lg:px-4 py-[6px] lg:py-2 border hover:text-white dark:hover:text-white hover:bg-primaryred dark:hover:bg-primaryyellow rounded-lg border-primaryred dark:border-primaryyellow" : ""}`}>
                                 {key}
                             </button>
@@ -159,7 +159,7 @@ const Navbar = () => {
                 </div>
                 {user && (
                     <div className='relative flex items-start justify-end w-full'>
-                        <button onClick={handleDropDownToggle} className='flex items-center w-fit'>
+                        <button onClick={handleDropDownToggle} className='flex items-center w-fit cursor-scale'>
                             <div className='mr-2 overflow-hidden rounded-md w-7 h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10 xl:mr-3 xl:rounded-lg'>
                                 <img src={user.profilePictureUrl} className='object-cover w-full h-full'></img>
                             </div>
@@ -174,22 +174,22 @@ const Navbar = () => {
                         <div className={`absolute w-32 z-10 mt-10 bg-white dark:bg-primaryblack dark:text-slate-200 shadow-dropdown dark:shadow-slate-600 text-primaryblack rounded-lg ${dropDownHidden ? 'hidden' : ''}`}>
                             <div className="px-2">
                                 <button
-                                    onClick={handleShowProfile} className='flex items-center justify-between w-full px-2 py-1 my-2 rounded-md xl:px-4 hover:bg-slate-200 dark:hover:bg-slate-700'>
+                                    onClick={handleShowProfile} className='flex items-center justify-between w-full px-2 py-1 my-2 rounded-md cursor-scale xl:px-4 hover:bg-slate-200 dark:hover:bg-slate-700'>
                                     <h1>Profile</h1>
                                     <h1 className={`text-[8px] lg:text-[9px] xl:text-[11px] ${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'}`}><i class={`fa-solid ${user?.role === "admin" ? 'fa-user-plus' : 'fa-user'}`}></i></h1>
                                 </button>
                                 <button
-                                    onClick={currentPath.startsWith("/dashboard") ? () => router.push("/") : () => router.push("dashboard/users")} className={`${user.role === "admin" ? '' : 'hidden'} flex items-center w-full justify-between px-2 xl:px-4 py-1 my-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700`}>
+                                    onClick={currentPath.startsWith("/dashboard") ? () => router.push("/") : () => router.push("dashboard/users")} className={`${user.role === "admin" ? '' : 'hidden'} cursor-scale flex items-center w-full justify-between px-2 xl:px-4 py-1 my-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700`}>
                                     <h1>{currentPath.startsWith("/dashboard") ? "Preview" : "Dashboard"}</h1>
                                     <h1 className={`text-[8px] lg:text-[9px] xl:text-[11px] ${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'}`}><i class={`fa-solid ${currentPath.startsWith("/dashboard") ? 'fa-globe' : 'fa-table-columns'}`}></i></h1>
                                 </button>
                                 <button
-                                    onClick={handleTheme} className='flex items-center justify-between w-full px-2 py-1 my-2 rounded-md xl:px-4 hover:bg-slate-200 dark:hover:bg-slate-700'>
+                                    onClick={handleTheme} className='flex items-center justify-between w-full px-2 py-1 my-2 rounded-md cursor-scale xl:px-4 hover:bg-slate-200 dark:hover:bg-slate-700'>
                                     <h1>{isDark ? 'Light' : 'Dark'}</h1>
                                     <h1 className={`text-[8px] lg:text-[9px] xl:text-[11px] ${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'}`}><i class={`fa-solid ${isDark ? 'fa-sun' : 'fa-moon mr-[2px]'}`}></i></h1>
                                 </button>
                                 <button
-                                    onClick={logout} className='flex items-center justify-between w-full px-2 py-1 my-2 rounded-md xl:px-4 hover:bg-slate-200 dark:hover:bg-slate-700'>
+                                    onClick={logout} className='flex items-center justify-between w-full px-2 py-1 my-2 rounded-md cursor-scale xl:px-4 hover:bg-slate-200 dark:hover:bg-slate-700'>
                                     <h1>Logout</h1>
                                     <h1 className={`text-[8px] lg:text-[9px] xl:text-[11px] ${user.role === 'admin' ? 'text-primaryblue' : 'text-primaryred'}`}><i class="fa-solid fa-right-from-bracket"></i></h1>
                                 </button>

@@ -7,8 +7,8 @@ document.addEventListener('mousemove', (e) => {
 // Event listener untuk efek scale
 document.addEventListener('mouseover', (e) => {
     if (e.target.matches('.cursor-scale, .cursor-scale *')) {
-        cursor.style.width = '24px';
-        cursor.style.height = '24px';
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
     }
 });
 

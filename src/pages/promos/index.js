@@ -64,18 +64,18 @@ const index = () => {
                             <h1 className='font-bold tracking-tight font-volkhov'>Special Promo for You</h1>
                             <h1 className='overflow-hidden font-bold tracking-tight font-volkhov text-primaryred dark:text-primaryyellow whitespace-nowrap sm:animate-typing'>Don't Miss Out!</h1>
                         </div>
-                        <div className='flex flex-wrap-reverse sm:flex-row items-center justify-center gap-2 md:gap-3 xl:gap-4 my-2'>
+                        <div className='flex flex-wrap-reverse items-center justify-center gap-2 my-2 sm:flex-row md:gap-3 xl:gap-4'>
                             <h1 className={`text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{promos.length}</b> {promos.length > 1 ? 'promos' : 'promo'} found</h1>
-                            <div className='flex py-3 bg-white w-40 lg:w-44 xl:w-48 rounded-lg dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
-                                <button className='px-4'><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 w-28 lg:w-32 xl:w-36 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
+                            <div className='flex w-40 py-3 bg-white rounded-lg lg:w-44 xl:w-48 dark:bg-primaryblack shadow-label dark:shadow-primarygray text-primaryblack dark:text-slate-200'>
+                                <div className='px-4'><i class="fa-solid fa-magnifying-glass"></i></div>
+                                <input onChange={handleSearch} type="text" placeholder="Search Destination" className="pr-4 bg-transparent outline-none w-28 lg:w-32 xl:w-36 placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                             </div>
                         </div>
                     </div>
                     <div className='flex flex-1 overflow-y-scroll rounded-t-xl no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {promos.map((promo, index) => (
-                                <button onClick={() => handleShowDetailPromo(promo.id)} key={index} className='w-full xs:w-[49%] sm:w-[32%] xl:w-[23.5%] mb-[1.5%] overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack dark:text-slate-200 rounded-xl h-48 xl:h-56'>
+                                <button onClick={() => handleShowDetailPromo(promo.id)} key={index} className='cursor-scale w-full xs:w-[49%] sm:w-[32%] xl:w-[23.5%] mb-[1.5%] overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack dark:text-slate-200 rounded-xl h-48 xl:h-56'>
                                     {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                         <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />

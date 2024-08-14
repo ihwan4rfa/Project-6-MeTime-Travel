@@ -45,13 +45,13 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
             <div className={`${showDetailDestination === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[10px] lg:text-[11px] xl:text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-fit`}>
                     <div className='absolute flex items-center justify-end w-full p-2'>
-                        <button onClick={handleCloseDetailDestination} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseDetailDestination} className='w-8 h-8 text-xl rounded-lg cursor-scale hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <div className={`flex flex-col items-center justify-center w-fit h-fit p-5`}>
-                        <div className='flex flex-col items-start justify-center w-fit gap-4 h-fit'>
+                        <div className='flex flex-col items-start justify-center gap-4 w-fit h-fit'>
                             <div className={`flex flex-col sm:flex-row w-full gap-4 ${viewMap ? 'hidden' : ''}`}>
-                                <div className='flex sm:hidden items-center gap-2 -mb-2'>
-                                    <h1 className='text-lg lg:text-xl xl:text-2xl font-semibold capitalize'>{selectedDestination.title}</h1>
+                                <div className='flex items-center gap-2 -mb-2 sm:hidden'>
+                                    <h1 className='text-lg font-semibold capitalize lg:text-xl xl:text-2xl'>{selectedDestination.title}</h1>
                                     <h1 className='px-1 capitalize rounded-sm bg-slate-100 dark:bg-slate-700'>{selectedDestination.category.name}</h1>
                                 </div>
                                 <div className='flex flex-col -mb-2 sm:mb-0 w-[280px] xs:w-[290px] sm:w-[260px] md:w-[300px] lg:w-[340px] xl:w-[380px] overflow-scroll no-scrollbar gap-3 rounded-lg h-[194px] md:h-[240px] lg:h-[260px] xl:h-[280px]'>
@@ -64,9 +64,9 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                         </div>
                                     ))}
                                 </div>
-                                <div className='flex flex-col w-fit gap-1 text-primaryblack dark:text-slate-200'>
+                                <div className='flex flex-col gap-1 w-fit text-primaryblack dark:text-slate-200'>
                                     <div className='hidden sm:flex items-center gap-2 md:gap-[10px] xl:gap-3'>
-                                        <h1 className='text-lg lg:text-xl xl:text-2xl font-semibold capitalize'>{selectedDestination.title}</h1>
+                                        <h1 className='text-lg font-semibold capitalize lg:text-xl xl:text-2xl'>{selectedDestination.title}</h1>
                                         <h1 className='px-1 capitalize rounded-sm bg-slate-100 dark:bg-slate-700'>{selectedDestination.category.name}</h1>
                                     </div>
                                     <div className='flex w-[280px] xs:w-full items-center gap-2'>
@@ -87,7 +87,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                             <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
                                             <h1 className='relative text-primarygray dark:text-slate-400'>{formatNumber(selectedDestination.price)}</h1>
                                         </div>
-                                        <h1 className='text-lg lg:text-xl xl:text-2xl font-semibold text-primaryblue'>{formatNumber(selectedDestination.price_discount)}</h1>
+                                        <h1 className='text-lg font-semibold lg:text-xl xl:text-2xl text-primaryblue'>{formatNumber(selectedDestination.price_discount)}</h1>
                                         <h1 className='text-[8px] lg:text-[9px] xl:text-[11px] font-semibold text-white bg-primaryred px-1 rounded-sm'>{percent(selectedDestination.price, selectedDestination.price_discount)}</h1>
                                     </div>
                                     <div className='flex flex-col w-[280px] xs:w-[290px] md:w-[300px] lg:w-[330px] xl:w-[380px] h-[98px] md:h-[143px] lg:h-[155px] xl:h-[160px] gap-2 overflow-y-scroll no-scrollbar'>
@@ -103,7 +103,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                             <h1 className='w-[30%] text-primarygray dark:text-slate-400'>Address</h1>
                                             <div className='w-[70%] flex flex-col gap-1 items-start'>
                                                 <h1>{selectedDestination.address}</h1>
-                                                <button onClick={handleViewMap} className='font-medium text-primaryred hover:text-redhover dark:text-primaryyellow dark:hover:text-yellowhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
+                                                <button onClick={handleViewMap} className='font-medium cursor-scale text-primaryred hover:text-redhover dark:text-primaryyellow dark:hover:text-yellowhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
                                             </div>
                                         </div>
                                     </div>
