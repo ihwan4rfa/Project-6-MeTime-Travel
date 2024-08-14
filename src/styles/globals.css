@@ -18,3 +18,28 @@ input[type="number"]::-webkit-inner-spin-button {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+.cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    z-index: 333;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transition: width 0.1s, height 0.1s;
+}
+
+html, body {
+    cursor: none;
+}
+
+.cursor-scale {
+    cursor: none;
+}
+
+.cursor-scale:hover {
+    cursor: none;
+}

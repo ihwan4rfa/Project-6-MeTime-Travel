@@ -38,7 +38,7 @@ const HeaderSection = () => {
                 <h1 className='leading-tight text-white text-[9px] lg:text-[10px] xl:text-[13px]'>Destinations<br />Await</h1>
             </div>
             <div className='relative flex flex-col items-center justify-center w-full sm:items-start h-fit sm:w-1/2'>
-                <h1 className='overflow-hidden font-bold tracking-tight text-lg lg:text-xl xl:text-2xl font-volkhov w-fit whitespace-nowrap sm:animate-typing text-primaryred dark:text-primaryyellow'>It's Time for Me Time!</h1>
+                <h1 className='overflow-hidden text-lg font-bold tracking-tight lg:text-xl xl:text-2xl font-volkhov w-fit whitespace-nowrap sm:animate-typing text-primaryred dark:text-primaryyellow'>It's Time for Me Time!</h1>
                 <h1 className='relative overflow-hidden w-full text-center sm:text-left text-[30px] lg:text-[35px] xl:text-[50px] font-bold font-volkhov leading-tight tracking-tight mb-3 xl:mb-5'>
                     Adventure Awaits!<br />Make Time with<br />Me Time Travel
                     <Image src={isDark ? "/images/line-decore-dark.png" : "/images/line-decore.png"} className='absolute top-[30px] lg:top-[35px] xl:top-[50px] left-[20%] xs:left-[28%] sm:left-[10%] opacity-70 w-[280px] lg:w-[330px] xl:w-[450px]' width={450} height={10} alt='Line Decore' />
@@ -46,7 +46,7 @@ const HeaderSection = () => {
                 <h1 className='font-medium w-[85%] xs:w-[50%] sm:w-2/3 text-primarygray text-center sm:text-left dark:text-slate-400 text-[10px] lg:text-[11px] xl:text-[13px]'>
                     Explore breathtaking destinations, create unforgettable memories, and discover new horizons with our personalized travel experiences
                 </h1>
-                <button onClick={() => router.push("/destinations")} type="button" className="text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 mt-5 xl:mt-8 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                <button onClick={() => router.push("/destinations")} type="button" className="cursor-scale text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 mt-5 xl:mt-8 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                     Explore Now
                 </button>
             </div>
