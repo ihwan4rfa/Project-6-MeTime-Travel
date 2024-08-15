@@ -46,7 +46,7 @@ const HeaderSection = () => {
                 <h1 className='font-medium w-[85%] xs:w-[50%] sm:w-2/3 text-primarygray text-center sm:text-left dark:text-slate-400 text-[10px] lg:text-[11px] xl:text-[13px]'>
                     Explore breathtaking destinations, create unforgettable memories, and discover new horizons with our personalized travel experiences
                 </h1>
-                <button onClick={() => router.push("/destinations")} type="button" className="cursor-scale text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 mt-5 xl:mt-8 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                <button onClick={() => router.push("/destinations")} type="button" className="cursor-default cursor-scale lg:cursor-none text-[10px] lg:text-[11px] xl:text-[13px] px-3 py-2 xl:px-5 xl:py-3 mt-5 xl:mt-8 font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                     Explore Now
                 </button>
             </div>

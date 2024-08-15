@@ -80,7 +80,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                 <div className={`${showProfile === true ? '' : 'hidden'} absolute z-40 flex items-center justify-center w-full h-full`}>
                     <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg flex justify-center relative text-primaryblack dark:text-slate-200 ${editProfile === true ? 'h-fit w-[85%] xs:w-[400px] lg:w-[500px] xl:w-[600px]' : 'h-fit w-fit'}`}>
                         <div className='absolute flex justify-end w-full p-2'>
-                            <button onClick={editProfile === true ? handleEditProfile : handleShowProfile} className='w-8 h-8 text-base rounded-lg cursor-scale lg:text-lg xl:text-xl hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                            <button onClick={editProfile === true ? handleEditProfile : handleShowProfile} className='w-8 h-8 text-base rounded-lg cursor-default cursor-scale lg:cursor-none lg:text-lg xl:text-xl hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                         </div>
                         <div className={`flex flex-col items-center justify-center w-full h-full ${editProfile === true ? "hidden" : ''}`}>
                             <h1 className='z-10 pt-5 pb-3 font-medium lg:pb-4'>My Profile</h1>
@@ -100,7 +100,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                 </div>
                             </div>
                             <div className='flex items-center justify-end w-full p-5'>
-                                <button onClick={handleEditProfile} className='cursor-scale text-slate-400 hover:text-primaryblack dark:hover:text-slate-200'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
+                                <button onClick={handleEditProfile} className='cursor-default cursor-scale lg:cursor-none text-slate-400 hover:text-primaryblack dark:hover:text-slate-200'><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
                             </div>
                         </div>
                         <form onSubmit={handleUpdateUser} className={`flex flex-col items-center gap-3 lg:gap-4 p-5 justify-center w-full h-full ${editProfile === true ? '' : 'hidden'}`}>
@@ -111,7 +111,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                 </div>
                                 <div className='flex flex-col flex-1 w-full gap-3 xs:w-1/3 lg:gap-4'>
                                     <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
-                                        <label htmlFor="profilePictureUrl" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-scale cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
+                                        <label htmlFor="profilePictureUrl" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-scale lg:cursor-none cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
                                         <span className={`px-4 overflow-hidden text-ellipsis ${profilePictureUrl ? 'text-primaryblack dark:text-slate-200' : ''}`}>{profilePictureUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                     </div>
                                     <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="hidden" />
@@ -122,7 +122,7 @@ const ModalProfile = ({ showProfile, handleShowProfile }) => {
                                 <input type="email" name="email" id="email" placeholder="Email" defaultValue={user.email} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg outline-none flex w-full" />
                                 <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" defaultValue={user.phoneNumber} className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg outline-none flex w-full" />
                             </div>
-                            <button type="submit" className="cursor-scale bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Save</button>
+                            <button type="submit" className="cursor-default cursor-scale lg:cursor-none bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Save</button>
                         </form>
                         <div className={`${showProfile ? 'invisible dark:visible' : 'invisible'} text-[11px] text-left`}>
                             <Toaster

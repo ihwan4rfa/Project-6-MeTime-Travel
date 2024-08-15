@@ -111,7 +111,7 @@ const Users = () => {
     };
 
     return (
-        <div className='flex w-full h-screen bg-slate-100 dark:bg-slate-700 font-poppins text-primaryblack dark:text-slate-200'>
+        <div className='flex w-full h-screen cursor-default lg:cursor-none bg-slate-100 dark:bg-slate-700 font-poppins text-primaryblack dark:text-slate-200'>
             <Navbar />
             <Sidebar />
             <div className='w-5/6 px-10 pt-20'>
@@ -121,7 +121,7 @@ const Users = () => {
                         <div className='flex items-center text-[13px] my-2'>
                             <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{users.length}</b> users found</h1>
                             <div className='flex py-2 bg-white rounded-lg dark:bg-primaryblack text-primaryblack'>
-                                <button className='px-4'><i class="fa-solid fa-magnifying-glass dark:text-slate-200"></i></button>
+                                <div className='px-4'><i class="fa-solid fa-magnifying-glass dark:text-slate-200"></i></div>
                                 <input onChange={handleSearch} type="text" placeholder="Search User" className="pr-4 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                             </div>
                         </div>
@@ -145,19 +145,19 @@ const Users = () => {
                                         </div>
                                     </div>
                                     <div className='relative flex justify-end w-full mr-4 text-[11px]'>
-                                        <button onClick={() => handleDropDownToggle(index)} className={`flex capitalize ${user.role === "admin" ? "text-primaryblue" : "text-primaryred"}`}>
+                                        <button onClick={() => handleDropDownToggle(index)} className={`cursor-default cursor-scale lg:cursor-none flex capitalize ${user.role === "admin" ? "text-primaryblue" : "text-primaryred"}`}>
                                             <h1>{user.role}</h1>
                                             <h1 className='ml-2'><i class="fa-solid fa-pen-to-square"></i></h1>
                                         </button>
                                         <div className={`absolute right-0 w-36 z-10 mt-6 bg-white dark:bg-primaryblack shadow-dropdown dark:shadow-slate-600 text-primaryblack dark:text-slate-200 rounded-lg ${activeIndex === index ? '' : 'hidden'}`}>
                                             <div className="px-2">
                                                 <button
-                                                    onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-700 ${user.role === 'admin' ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
+                                                    onClick={() => handleUpdateRole(user, 'admin')} type="button" className={`cursor-default cursor-scale lg:cursor-none flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-700 ${user.role === 'admin' ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
                                                     <h1>admin</h1>
                                                     <h1 className={'text-primaryblue'}><i class="fa-solid fa-user-plus"></i></h1>
                                                 </button>
                                                 <button
-                                                    onClick={() => handleUpdateRole(user, 'user')} type="button" className={`flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-700 ${user.role === 'user' ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
+                                                    onClick={() => handleUpdateRole(user, 'user')} type="button" className={`cursor-default cursor-scale lg:cursor-none flex items-center justify-between w-full px-4 py-1 my-2 rounded-md capitalize hover:bg-slate-200 dark:hover:bg-slate-700 ${user.role === 'user' ? 'bg-slate-200 dark:bg-slate-700' : ''}`}>
                                                     <h1>user</h1>
                                                     <h1 className='text-primaryred'><i class="fa-solid fa-user"></i></h1>
                                                 </button>

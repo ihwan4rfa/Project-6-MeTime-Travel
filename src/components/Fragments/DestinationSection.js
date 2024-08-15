@@ -100,21 +100,21 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                         </h1>
                         <h1 className='overflow-hidden text-lg font-bold tracking-tight lg:text-xl xl:text-2xl whitespace-nowrap animate-typing text-primaryred dark:text-primaryyellow font-volkhov'>Find Yours Today!</h1>
                     </div>
-                    <button onClick={() => router.push("/destinations")} type="button" className="cursor-scale flex sm:hidden px-3 py-2 mb-[6px] font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                    <button onClick={() => router.push("/destinations")} type="button" className="cursor-default cursor-scale lg:cursor-none flex sm:hidden px-3 py-2 mb-[6px] font-medium text-white rounded-lg w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                         Explore All
                     </button>
                 </div>
                 <h1 className='font-medium text-center capitalize dark:text-slate-200'>Category <i class="text-primaryred dark:text-primaryyellow fa-solid fa-chevron-right mx-2 text-[8px] lg:text-[9px] xl:text-[11px]"></i> {selectedCategoryName ? selectedCategoryName : 'All'}</h1>
                 <div className='flex w-full h-16 pl-2 pr-8 my-4 overflow-y-scroll lg:pr-10 xl:pr-12 lg:my-6 sm:overflow-y-scroll sm:h-52 no-scrollbar'>
                     <div className='flex gap-2 mb-4 sm:flex-wrap lg:gap-3 xl:gap-4 w-fit h-fit'>
-                        <div onClick={handleChangeAllCategory} className='cursor-scale flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
+                        <div onClick={handleChangeAllCategory} className='cursor-default cursor-scale lg:cursor-none flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
                             <div className='w-8 h-8 overflow-hidden rounded-lg lg:w-10 lg:h-10 xl:w-12 xl:h-12'>
                                 <Image src="/images/all-category.jpg" className='object-cover w-full h-full' width={200} height={200} alt='All Category' />
                             </div>
                             <h1 className='px-2'>All</h1>
                         </div>
                         {categories && categories.map((category, index) => (
-                            <div key={index} onClick={() => handleOptionChange(category.id, category.name)} className='cursor-scale flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
+                            <div key={index} onClick={() => handleOptionChange(category.id, category.name)} className='cursor-default cursor-scale lg:cursor-none flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
                                 <div className='w-8 h-8 overflow-hidden rounded-lg lg:w-10 lg:h-10 xl:w-12 xl:h-12'>
                                     <img src={category.imageUrl} className='object-cover w-full h-full'></img>
                                 </div>
@@ -123,7 +123,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                         ))}
                     </div>
                 </div>
-                <button onClick={() => router.push("/destinations")} type="button" className="hidden px-3 py-2 mt-2 font-medium text-white rounded-lg cursor-scale sm:flex xl:px-5 xl:py-3 w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
+                <button onClick={() => router.push("/destinations")} type="button" className="hidden px-3 py-2 mt-2 font-medium text-white rounded-lg cursor-default cursor-scale lg:cursor-none sm:flex xl:px-5 xl:py-3 w-fit bg-primaryyellow hover:bg-yellowhover dark:bg-primaryred dark:hover:bg-redhover">
                     Explore All
                 </button>
             </div>
@@ -138,7 +138,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                 <div className='flex h-[380px] overflow-y-scroll no-scrollbar w-full rounded-xl'>
                     <div className='flex flex-wrap justify-end rounded-xl w-full gap-[3%] h-fit'>
                         {destinations && destinations.map((destination, index) => (
-                            <button key={index} onClick={() => handleShowDetailDestination(destination.id)} onDragStart={handleDragStart} className='cursor-scale w-full xs:w-[48.5%] sm:w-full md:w-[48.5%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-52 xl:h-64'>
+                            <button key={index} onClick={() => handleShowDetailDestination(destination.id)} onDragStart={handleDragStart} className='cursor-default cursor-scale lg:cursor-none w-full xs:w-[48.5%] sm:w-full md:w-[48.5%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-52 xl:h-64'>
                                 <div className='flex text-[8px] lg:text-[9px] xl:text-[11px] items-center z-10 absolute bg-white dark:bg-primaryblack h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
                                     <i className="mr-1 fa-solid fa-star text-primaryyellow"></i>
                                     <h1 className='text-primarygray dark:text-slate-400 pt-[1px]'>{destination.rating}</h1>

@@ -32,7 +32,7 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
             <div className={`${showDetailPromo === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[10px] lg:text-[11px] xl:text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-fit`}>
                     <div className='absolute flex justify-end w-full p-2'>
-                        <button onClick={handleCloseEditPromo} className='w-8 h-8 text-base rounded-lg cursor-scale lg:text-lg xl:text-xl hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseEditPromo} className='w-8 h-8 text-base rounded-lg cursor-default cursor-scale lg:cursor-none lg:text-lg xl:text-xl hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <div className={`flex flex-col items-center justify-center w-full h-full pt-4 sm:pt-5 p-5`}>
                         <div className='flex flex-col items-start justify-center w-full h-fit'>
@@ -59,8 +59,8 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
                                         </div>
                                         <div className='flex flex-col items-start justify-between gap-1 xs:items-end xs:gap-0'>
                                             <h1 className='text-[8px] lg:text-[9px] xl:text-[11px]'>Promo Code</h1>
-                                            <div className='px-3 py-1 rounded-md cursor-scale h-fit bg-primaryblue hover:bg-bluehover'>
-                                                <button onClick={() => handleCopy(selectedPromo.promo_code)} className={`cursor-scale text-white ${promoCopied ? '' : 'uppercase'}`}><i class={`fa-solid mr-2 ${promoCopied ? 'fa-check' : 'fa-clone'}`}></i>{promoCopied ? 'Copied' : selectedPromo.promo_code}</button>
+                                            <div className='px-3 py-1 rounded-md cursor-default cursor-scale lg:cursor-none h-fit bg-primaryblue hover:bg-bluehover'>
+                                                <button onClick={() => handleCopy(selectedPromo.promo_code)} className={`cursor-default cursor-scale lg:cursor-none text-white ${promoCopied ? '' : 'uppercase'}`}><i class={`fa-solid mr-2 ${promoCopied ? 'fa-check' : 'fa-clone'}`}></i>{promoCopied ? 'Copied' : selectedPromo.promo_code}</button>
                                             </div>
                                         </div>
                                     </div>

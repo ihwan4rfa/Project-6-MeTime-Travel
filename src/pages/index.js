@@ -53,7 +53,7 @@ const index = () => {
   }
 
   return (
-    <div className='relative flex flex-col font-poppins text-[13px] text-primaryblack dark:text-slate-200'>
+    <div className='relative cursor-default lg:cursor-none flex flex-col font-poppins text-[13px] text-primaryblack dark:text-slate-200'>
       <Navbar />
       <div className='relative flex flex-col h-screen gap-12 px-4 overflow-y-scroll bg-white sm:gap-16 xl:gap-20 sm:px-10 dark:bg-primaryblack no-scrollbar lg:px-36'>
         <HeaderSection />

@@ -81,7 +81,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
             <div className={`${showAddPromo === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-[850px]`}>
                     <div className='absolute flex justify-end w-full p-2'>
-                        <button onClick={handleCloseAddPromo} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseAddPromo} className='w-8 h-8 text-xl rounded-lg cursor-default cursor-scale lg:cursor-none hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <form ref={formRef} onSubmit={handleAddPromo} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <h1 className='z-10 pb-4 font-medium'>Add Promo</h1>
@@ -104,7 +104,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
                             </div>
                             <div className='flex w-full gap-4'>
                                 <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="addPromoImageUrl" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
+                                    <label htmlFor="addPromoImageUrl" className="cursor-scale lg:cursor-none bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${addPromoImageUrl ? 'text-primaryblack dark:text-slate-200' : ''}`}>{addPromoImageUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input onChange={handleUpload} type="file" name="addPromoImageUrl" id="addPromoImageUrl" className="hidden" />
@@ -114,7 +114,7 @@ const ModalAddPromo = ({ showAddPromo, setShowAddPromo }) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className=" bg-primaryyellow hover:bg-yellowhover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Submit</button>
+                        <button type="submit" className="cursor-default cursor-scale lg:cursor-none bg-primaryyellow hover:bg-yellowhover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Submit</button>
                     </form>
                 </div>
             </div>

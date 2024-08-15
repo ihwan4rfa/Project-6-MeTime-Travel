@@ -17,7 +17,7 @@ const index = () => {
   }
 
   return (
-    <div>
+    <div className='cursor-default lg:cursor-none'>
       <Navbar />
       <LoginRegisterForm onSubmitRegister={onSubmitRegister} onSubmitLogin={onSubmitLogin} />
     </div>

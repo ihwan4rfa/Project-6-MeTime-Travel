@@ -137,7 +137,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
             <div className={`${showAddDestination === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-[900px]`}>
                     <div className='absolute flex justify-end w-full p-2'>
-                        <button onClick={handleCloseAddDestination} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseAddDestination} className='w-8 h-8 text-xl rounded-lg cursor-default cursor-scale lg:cursor-none hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <form ref={formRef} onSubmit={handleAddDestination} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <h1 className='z-10 pb-2 font-medium'>Add Destination</h1>
@@ -151,7 +151,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
                                 <div className='flex flex-col w-2/5 overflow-scroll no-scrollbar rounded-lg h-[207px] gap-3'>
                                     {addImageUrls !== null && addImageUrls.map((imageUrl, index) => (
                                         <div key={index} className={`flex relative w-full ${addImageUrls.length === 1 ? 'h-full' : 'h-[75%]'}`}>
-                                            <button onClick={() => handleRemoveImage(index)} type='button' className={`${addImageUrls[0] === '' ? 'hidden' : ''} absolute flex items-center justify-center m-2 bg-white rounded-full hover:bg-primaryred w-7 h-7 text-primaryred hover:text-white`}><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleRemoveImage(index)} type='button' className={`${addImageUrls[0] === '' ? 'hidden' : ''} cursor-default cursor-scale lg:cursor-none absolute flex items-center justify-center m-2 bg-white rounded-full hover:bg-primaryred w-7 h-7 text-primaryred hover:text-white`}><i class="fa-regular fa-trash-can"></i></button>
                                             {imageUrl.startsWith("https://") && (imageUrl.includes(".jpg") || imageUrl.includes(".png") || imageUrl.includes("images")) ?
                                                 <img src={imageUrl} className='object-cover w-full h-full rounded-lg'></img>
                                                 : <Image src="/images/no-image.png" className='object-cover w-full h-full rounded-lg' width={500} height={500} alt='Unknown Profile' />
@@ -185,7 +185,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
                             </div>
                             <div className='flex w-full gap-4'>
                                 <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="addImageUrls" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Add Image</label>
+                                    <label htmlFor="addImageUrls" className="cursor-scale lg:cursor-none bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Add Image</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${addImageUrls ? 'text-primaryblack dark:text-slate-200' : ''}`}>{fileName === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input onChange={handleUpload} type="file" name="addImageUrls" id="addImageUrls" className="hidden" />
@@ -211,9 +211,9 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
                             </div>
                         </div>
                         <div className='flex gap-4'>
-                            <button onClick={handleNextStep} type="button" className={`${showNextStep === true ? '' : 'hidden'} bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium`}>Back</button>
-                            <button onClick={handleNextStep} type="button" className={`${showNextStep === true ? 'hidden' : ''} bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium`}>Next Step</button>
-                            <button type="submit" className={`${showNextStep === true ? '' : 'hidden'} bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium`}>Save</button>
+                            <button onClick={handleNextStep} type="button" className={`${showNextStep === true ? '' : 'hidden'} cursor-default cursor-scale lg:cursor-none bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium`}>Back</button>
+                            <button onClick={handleNextStep} type="button" className={`${showNextStep === true ? 'hidden' : ''} cursor-default cursor-scale lg:cursor-none bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium`}>Next Step</button>
+                            <button type="submit" className={`${showNextStep === true ? '' : 'hidden'} cursor-default cursor-scale lg:cursor-none bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium`}>Save</button>
                         </div>
                     </form>
                 </div>

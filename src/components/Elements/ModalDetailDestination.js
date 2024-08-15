@@ -45,7 +45,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
             <div className={`${showDetailDestination === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[10px] lg:text-[11px] xl:text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-fit`}>
                     <div className='absolute flex items-center justify-end w-full p-2'>
-                        <button onClick={handleCloseDetailDestination} className='w-8 h-8 text-xl rounded-lg cursor-scale hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseDetailDestination} className='w-8 h-8 text-xl rounded-lg cursor-default cursor-scale lg:cursor-none hover:text-primaryred dark:hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <div className={`flex flex-col items-center justify-center w-fit h-fit p-5`}>
                         <div className='flex flex-col items-start justify-center gap-4 w-fit h-fit'>
@@ -103,7 +103,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                                             <h1 className='w-[30%] text-primarygray dark:text-slate-400'>Address</h1>
                                             <div className='w-[70%] flex flex-col gap-1 items-start'>
                                                 <h1>{selectedDestination.address}</h1>
-                                                <button onClick={handleViewMap} className='font-medium cursor-scale text-primaryred hover:text-redhover dark:text-primaryyellow dark:hover:text-yellowhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
+                                                <button onClick={handleViewMap} className='font-medium cursor-default cursor-scale lg:cursor-none text-primaryred hover:text-redhover dark:text-primaryyellow dark:hover:text-yellowhover'>View Map<i class="fa-solid fa-chevron-right mx-2 text-[11px]"></i></button>
                                             </div>
                                         </div>
                                     </div>

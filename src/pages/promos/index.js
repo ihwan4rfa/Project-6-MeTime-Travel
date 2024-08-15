@@ -53,7 +53,7 @@ const index = () => {
     }
 
     return (
-        <div className='flex flex-col relative w-full h-screen text-[10px] lg:text-[11px] xl:text-[13px] font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack'>
+        <div className='cursor-default lg:cursor-none flex flex-col relative w-full h-screen text-[10px] lg:text-[11px] xl:text-[13px] font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack'>
             <Navbar />
             <div className='absolute z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl right-10 top-20'></div>
             <div className='absolute bottom-0 z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl left-10'></div>
@@ -75,7 +75,7 @@ const index = () => {
                     <div className='flex flex-1 overflow-y-scroll rounded-t-xl no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {promos.map((promo, index) => (
-                                <button onClick={() => handleShowDetailPromo(promo.id)} key={index} className='cursor-scale w-full xs:w-[49%] sm:w-[32%] xl:w-[23.5%] mb-[1.5%] overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack dark:text-slate-200 rounded-xl h-48 xl:h-56'>
+                                <button onClick={() => handleShowDetailPromo(promo.id)} key={index} className='cursor-default lg:cursor-none cursor-scale w-full xs:w-[49%] sm:w-[32%] xl:w-[23.5%] mb-[1.5%] overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack dark:text-slate-200 rounded-xl h-48 xl:h-56'>
                                     {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                         <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                         : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />

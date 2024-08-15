@@ -81,7 +81,7 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
             <div className={`${showEditPromo === true ? '' : 'hidden'} absolute z-30 flex items-center justify-center w-full h-full`}>
                 <div className={`bg-white dark:bg-primaryblack shadow-lg rounded-lg text-[13px] flex justify-center relative text-primaryblack dark:text-slate-200 h-fit w-[850px]`}>
                     <div className='absolute flex justify-end w-full p-2'>
-                        <button onClick={handleCloseEditPromo} className='w-8 h-8 text-xl rounded-lg hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
+                        <button onClick={handleCloseEditPromo} className='w-8 h-8 text-xl rounded-lg cursor-default cursor-scale lg:cursor-none hover:text-primaryred'><i class=" fa-solid fa-xmark"></i></button>
                     </div>
                     <form ref={formRef} onSubmit={handleUpdatePromo} className={`flex flex-col items-center justify-center w-full h-full p-5`}>
                         <h1 className='z-10 pb-4 font-medium'>Edit Promo</h1>
@@ -108,7 +108,7 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
                             </div>
                             <div className='flex w-full gap-4'>
                                 <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-[13px] text-start rounded-lg w-2/5 flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="promoImageUrl" className="bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
+                                    <label htmlFor="promoImageUrl" className="cursor-pointer cursor-scale lg:cursor-none bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit py-[10px] -ml-4 px-4 rounded-l-lg">Choose Image</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${promoImageUrl ? 'text-primaryblack dark:text-slate-200' : ''}`}>{promoImageUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input onChange={handleUpload} type="file" name="promoImageUrl" id="promoImageUrl" className="hidden" />
@@ -118,7 +118,7 @@ const ModalEditPromo = ({ showEditPromo, setShowEditPromo, selectedPromo }) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className=" bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Save</button>
+                        <button type="submit" className="cursor-default cursor-scale lg:cursor-none bg-primaryblue hover:bg-bluehover text-white text-[13px] py-[10px] mt-4 px-8 rounded-lg font-medium">Save</button>
                     </form>
                 </div>
             </div>

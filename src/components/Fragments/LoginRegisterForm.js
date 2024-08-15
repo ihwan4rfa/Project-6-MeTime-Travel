@@ -169,7 +169,7 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                             <div className="relative flex flex-col gap-2 md:flex-row md:gap-4">
                                 <input type="number" name="phoneNumber" id="phone" placeholder="Phone Number" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg w-full outline-none" />
                                 <div class="bg-slate-200 dark:bg-slate-700 text-slate-400 px-4 text-start rounded-lg w-full flex items-center overflow-hidden whitespace-nowrap">
-                                    <label htmlFor="profilePictureUrl" className="cursor-scale bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit cursor-pointer py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
+                                    <label htmlFor="profilePictureUrl" className="cursor-default cursor-scale lg:cursor-none bg-slate-300 dark:bg-slate-600 text-primaryblack dark:text-slate-200 w-fit py-[10px] -ml-4 px-4 rounded-l-lg">Choose Profile</label>
                                     <span className={`px-4 overflow-hidden text-ellipsis ${profilePictureUrl ? 'text-primaryblack dark:text-slate-200' : ''}`}>{profilePictureUrl === null ? 'No File Selected' : `${fileName}`}</span>
                                 </div>
                                 <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="hidden" />
@@ -179,17 +179,17 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                                     <DropDownRole selectedRole={selectedRole} setSelectedRole={setSelectedRole} selectedRole2={selectedRole2} setSelectedRole2={setSelectedRole2} />
                                     <div className="flex bg-slate-200 dark:bg-slate-700 py-[10px] px-4 rounded-lg w-full">
                                         <input type={seePassword ? 'text' : 'password'} name="password" id="password" placeholder="Password" value={password} onChange={handleChangePassword} className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
-                                        <button type="button" onClick={toggleSeePassword} className="cursor-scale"><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                        <button type="button" onClick={toggleSeePassword} className="cursor-default cursor-scale lg:cursor-none"><i className={`text-slate-400 pl-3 fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                     </div>
                                     <div className="flex bg-slate-200 dark:bg-slate-700 py-[10px] px-4 rounded-lg w-full">
                                         <input type={seeRepeatPassword ? 'text' : 'password'} name="passwordRepeat" id="passwordRepeat" placeholder="Repeat Password" value={passwordRepeat} onChange={handleChangePasswordRepeat} className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
-                                        <button type="button" onClick={toggleSeeRepeatPassword} className="cursor-scale"><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                        <button type="button" onClick={toggleSeeRepeatPassword} className="cursor-default cursor-scale lg:cursor-none"><i className={`text-slate-400 pl-3 fa-solid ${seeRepeatPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                                     </div>
                                 </div>
                                 <p className={`absolute text-[11px] w-full px-4 text-end ${passwordRepeat === '' ? 'invisible' : 'visible'} ${password === passwordRepeat ? 'text-primarygreen' : 'text-primaryred'}`}><i class={`fa-solid mr-1 ${password === passwordRepeat ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>{password === passwordRepeat ? "Passwords match" : "Passwords didn't match"}</p>
                             </div>
                         </div>
-                        <button type="submit" className="cursor-scale bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Register</button>
+                        <button type="submit" className="cursor-default cursor-scale lg:cursor-none bg-primaryblue hover:bg-bluehover text-white py-[10px] px-8 rounded-lg font-medium">Register</button>
                     </form>
                     <div className={`text-[11px] text-left ${loginClicked || !isPageLoaded ? 'invisible' : ''}`}>
                         <Toaster
@@ -230,10 +230,10 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                             <input name="emailLogin" id="emailLogin" type="email" placeholder="Email" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 rounded-lg w-full outline-none" />
                             <div className="flex bg-slate-200 dark:bg-slate-700 py-[10px] px-4 rounded-lg w-full">
                                 <input name="passwordLogin" id="passwordLogin" type={seePassword ? 'text' : 'password'} placeholder="Password" className="w-full outline-none bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200" />
-                                <button type="button" onClick={toggleSeePassword} className="cursor-scale"><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
+                                <button type="button" onClick={toggleSeePassword} className="cursor-default cursor-scale lg:cursor-none"><i className={`text-slate-400  fa-solid ${seePassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></button>
                             </div>
                         </div>
-                        <button className="cursor-scale bg-primaryred hover:bg-redhover text-white py-[10px] px-8 rounded-lg font-medium">Login</button>
+                        <button className="cursor-default cursor-scale lg:cursor-none bg-primaryred hover:bg-redhover text-white py-[10px] px-8 rounded-lg font-medium">Login</button>
                     </form>
                     <div className={`text-[11px] text-left ${!isPageLoaded ? 'invisible' : ''}`}>
                         <Toaster
@@ -270,12 +270,12 @@ const LoginRegisterForm = ({ onSubmitRegister, onSubmitLogin }) => {
                         <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[0%] gap-2`}>
                             <h1 className="text-lg font-medium lg:text-xl xl:text-2xl">Welcome Back!</h1>
                             <p className="xl:mx-[40px] mx-[10px]">Log in with email and password to start your travel adventure!</p>
-                            <button onClick={toggleButton} className="cursor-scale text-white py-[10px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryred">Login</button>
+                            <button onClick={toggleButton} className="cursor-default cursor-scale lg:cursor-none text-white py-[10px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryred">Login</button>
                         </div>
                         <div className={`absolute w-1/2 h-full flex flex-col items-center justify-center px-[30px] text-center top-0 transition-all duration-500 ease-in-out translate-x-[100%] gap-2`}>
                             <h1 className="text-lg font-medium lg:text-xl xl:text-2xl">New here?</h1>
                             <p className="xl:mx-[80px] lg:mx-[60px] mx-[10px]">Register now and connect with fellow travelers to explore new horizons!</p>
-                            <button onClick={toggleButton} className="cursor-scale text-white py-[10px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
+                            <button onClick={toggleButton} className="cursor-default cursor-scale lg:cursor-none text-white py-[10px] px-8 rounded-lg font-medium mt-3 border hover:bg-white hover:text-primaryblue">Register</button>
                         </div>
                     </div>
                 </div>

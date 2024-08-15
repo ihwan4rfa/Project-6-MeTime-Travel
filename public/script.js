@@ -14,7 +14,7 @@ document.addEventListener('mouseover', (e) => {
 
 document.addEventListener('mouseout', (e) => {
     if (e.target.matches('.cursor-scale, .cursor-scale *')) {
-        cursor.style.width = '12px';
-        cursor.style.height = '12px';
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
     }
 });

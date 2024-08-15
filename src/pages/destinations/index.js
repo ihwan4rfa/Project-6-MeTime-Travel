@@ -101,7 +101,7 @@ const index = () => {
     }
 
     return (
-        <div className='flex flex-col relative w-full h-screen font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack text-[10px] lg:text-[11px] xl:text-[13px]'>
+        <div className='cursor-default lg:cursor-none flex flex-col relative w-full h-screen font-poppins text-primaryblack dark:text-slate-200 bg-white dark:bg-primaryblack text-[10px] lg:text-[11px] xl:text-[13px]'>
             <Navbar />
             <div className='absolute z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl right-10 top-20'></div>
             <div className='absolute bottom-0 z-0 w-1/3 rounded-full bg-primaryyellow dark:bg-primaryblue bg-opacity-10 dark:bg-opacity-20 h-1/2 blur-3xl left-10'></div>
@@ -126,7 +126,7 @@ const index = () => {
                     <div className='flex flex-1 overflow-y-scroll rounded-t-xl no-scrollbar'>
                         <div className='flex flex-wrap h-fit w-full gap-[2%]'>
                             {destinations && destinations.map((destination, index) => (
-                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='cursor-scale w-full xs:w-[49%] md:w-[32%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-52 xl:h-64'>
+                                <button key={index} onClick={() => handleShowDetailDestination(destination.id)} className='cursor-scale cursor-default lg:cursor-none w-full xs:w-[49%] md:w-[32%] mb-[1.5%] relative overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred text-primaryblack rounded-xl h-52 xl:h-64'>
                                     <div className='flex text-[8px] lg:text-[9px] xl:text-[11px] items-center z-10 absolute bg-white dark:bg-primaryblack h-fit w-fit py-1 px-2 m-2 rounded-lg right-0'>
                                         <i className="mr-1 fa-solid fa-star text-primaryyellow"></i>
                                         <h1 className='text-primarygray dark:text-slate-400 pt-[1px]'>{destination.rating}</h1>

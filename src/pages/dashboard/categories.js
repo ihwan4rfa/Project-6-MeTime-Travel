@@ -77,7 +77,7 @@ const Categories = () => {
     }
 
     return (
-        <div className='flex w-full h-screen bg-slate-100 font-poppins dark:bg-slate-700 dark:text-slate-200 text-primaryblack'>
+        <div className='flex w-full h-screen cursor-default lg:cursor-none bg-slate-100 font-poppins dark:bg-slate-700 dark:text-slate-200 text-primaryblack'>
             <Navbar />
             <Sidebar />
             <div className='w-5/6 px-10 pt-20'>
@@ -87,10 +87,10 @@ const Categories = () => {
                         <div className='flex items-center text-[13px] my-2'>
                             <h1 className={`mr-4 text-slate-400 ${search === "" ? 'hidden' : ''}`}><b>{categories.length}</b> {categories.length > 1 ? 'categories' : 'category'} found</h1>
                             <div className='flex py-2 bg-white rounded-lg dark:bg-primaryblack text-primaryblack'>
-                                <button className='px-4'><i class="fa-solid fa-magnifying-glass dark:text-slate-200"></i></button>
+                                <div className='px-4'><i class="fa-solid fa-magnifying-glass dark:text-slate-200"></i></div>
                                 <input onChange={handleSearch} type="text" placeholder="Search Category" className="pr-4 bg-transparent outline-none placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:text-slate-200" />
                             </div>
-                            <button onClick={handleShowAddCategory} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg bg-primaryyellow hover:bg-yellowhover">
+                            <button onClick={handleShowAddCategory} type="button" className="px-4 py-2 ml-4 font-medium text-white rounded-lg cursor-default cursor-scale lg:cursor-none bg-primaryyellow hover:bg-yellowhover">
                                 <i class="fa-solid fa-plus mr-2" />
                                 New Category
                             </button>
@@ -111,8 +111,8 @@ const Categories = () => {
                                             <p><i class="fa-regular fa-calendar-check mr-2 text-primaryblue"></i>{moment(category.updatedAt).format("DD MMMM YYYY • HH:mm:ss")}</p>
                                         </div>
                                         <div className='absolute bottom-0 right-0 flex m-2'>
-                                            <button onClick={() => handleEditCategory(category.id)} className='w-8 h-8 rounded-lg text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button onClick={() => handleShowModalConfirmDelete(category.id)} className='w-8 h-8 rounded-lg text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
+                                            <button onClick={() => handleEditCategory(category.id)} className='w-8 h-8 rounded-lg cursor-default cursor-scale lg:cursor-none text-primaryblue hover:text-bluehover'><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button onClick={() => handleShowModalConfirmDelete(category.id)} className='w-8 h-8 rounded-lg cursor-default cursor-scale lg:cursor-none text-primaryred hover:text-redhover'><i class="fa-regular fa-trash-can"></i></button>
                                         </div>
                                     </div>
                                 </div>

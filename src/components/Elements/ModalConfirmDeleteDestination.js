@@ -26,8 +26,8 @@ const ModalConfirmDeleteDestination = ({ showDeleteDestination, setShowDeleteDes
                             <h1 className='z-10 w-full p-1 font-medium text-center rounded-md'>Delete <b>{selectedDestination.title}</b> destination?</h1>
                         </div>
                         <div className='flex items-center justify-center gap-4'>
-                            <button onClick={() => setShowDeleteDestination(false)} type="submit" className="hover:bg-slate-200 dark:hover:bg-slate-700 text-primaryblack dark:text-slate-200 text-[13px] py-[10px] px-8 rounded-lg font-medium">Keep it</button>
-                            <button onClick={() => handleDeleteDestination(selectedDestination.id)} type="submit" className=" bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium">Yes, Delete</button>
+                            <button onClick={() => setShowDeleteDestination(false)} type="submit" className="cursor-default cursor-scale lg:cursor-none hover:bg-slate-200 dark:hover:bg-slate-700 text-primaryblack dark:text-slate-200 text-[13px] py-[10px] px-8 rounded-lg font-medium">Keep it</button>
+                            <button onClick={() => handleDeleteDestination(selectedDestination.id)} type="submit" className="cursor-default cursor-scale lg:cursor-none bg-primaryred hover:bg-redhover text-white text-[13px] py-[10px] px-8 rounded-lg font-medium">Yes, Delete</button>
                         </div>
                     </div>
                 </div>
