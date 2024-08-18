@@ -206,7 +206,7 @@ const ModalAddDestination = ({ showAddDestination, setShowAddDestination }) => {
                                     <input onChange={handleLinkMap} type="text" name="location_maps" id="location_maps" placeholder="Location Maps" className="bg-slate-200 dark:bg-slate-700 placeholder:text-slate-400 text-primaryblack dark:text-slate-200 py-[10px] px-4 text-[13px] rounded-lg w-3/5 outline-none" />
                                 </div>
                                 {srcUrl &&
-                                    <iframe className='rounded-lg' src={srcUrl} width="100%" height="152"></iframe>
+                                    <iframe className='rounded-lg hide-custom-cursor' src={srcUrl} width="100%" height="152"></iframe>
                                 }
                             </div>
                         </div>

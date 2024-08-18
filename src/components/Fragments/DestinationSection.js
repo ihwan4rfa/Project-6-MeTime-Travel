@@ -107,14 +107,14 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                 <h1 className='font-medium text-center capitalize dark:text-slate-200'>Category <i class="text-primaryred dark:text-primaryyellow fa-solid fa-chevron-right mx-2 text-[8px] lg:text-[9px] xl:text-[11px]"></i> {selectedCategoryName ? selectedCategoryName : 'All'}</h1>
                 <div className='flex w-full h-16 pl-2 pr-8 my-4 overflow-y-scroll lg:pr-10 xl:pr-12 lg:my-6 sm:overflow-y-scroll sm:h-52 no-scrollbar'>
                     <div className='flex gap-2 mb-4 sm:flex-wrap lg:gap-3 xl:gap-4 w-fit h-fit'>
-                        <div onClick={handleChangeAllCategory} className='cursor-default cursor-scale lg:cursor-none flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
+                        <div onClick={handleChangeAllCategory} className='cursor-scale lg:cursor-none flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
                             <div className='w-8 h-8 overflow-hidden rounded-lg lg:w-10 lg:h-10 xl:w-12 xl:h-12'>
                                 <Image src="/images/all-category.jpg" className='object-cover w-full h-full' width={200} height={200} alt='All Category' />
                             </div>
                             <h1 className='px-2'>All</h1>
                         </div>
                         {categories && categories.map((category, index) => (
-                            <div key={index} onClick={() => handleOptionChange(category.id, category.name)} className='cursor-default cursor-scale lg:cursor-none flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
+                            <div key={index} onClick={() => handleOptionChange(category.id, category.name)} className='cursor-scale lg:cursor-none flex items-center p-[6px] xl:p-2 font-medium bg-white cursor-pointer dark:bg-primaryblack shadow-label hover:shadow-hoverlabel dark:shadow-slate-700 hover:scale-103 rounded-xl'>
                                 <div className='w-8 h-8 overflow-hidden rounded-lg lg:w-10 lg:h-10 xl:w-12 xl:h-12'>
                                     <img src={category.imageUrl} className='object-cover w-full h-full'></img>
                                 </div>
@@ -157,7 +157,7 @@ const DestinationSection = ({ handleShowDetailDestination }) => {
                                     </div>
                                     <div className='flex flex-col items-end w-2/6 gap-[3px] xl:gap-1'>
                                         <div className='relative flex w-fit'>
-                                            <div className='absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
+                                            <div className=' absolute z-10 w-full h-[2px] bg-primaryred rounded-full -rotate-6 top-[40%]'></div>
                                             <h1 className='relative text-primarygray dark:text-slate-400 text-[8px] lg:text-[9px] xl:text-[11px]'>{formatNumber(destination.price)}</h1>
                                         </div>
                                         <h1 className='text-primaryblue'>{`${formatNumber(destination.price_discount)}`}</h1>

@@ -31,3 +31,11 @@ input[type="number"]::-webkit-inner-spin-button {
     mix-blend-mode: difference;
     transition: width 0.1s, height 0.1s;
 }
+
+.custom-cursor-hidden .cursor {
+    display: none;
+}
+
+.custom-cursor-hidden {
+    cursor: default;
+}

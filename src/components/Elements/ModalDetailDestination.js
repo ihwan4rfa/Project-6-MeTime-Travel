@@ -112,7 +112,7 @@ const ModalDetailDestination = ({ showDetailDestination, setShowDetailDestinatio
                             <div className={`flex flex-col w-[280px] xs:w-[290px] sm:w-[567px] md:w-[616px] lg:w-[686px] xl:w-[777px] h-[401px] sm:h-[195px] md:h-[240px] lg:h-[260px] xl:h-[280px] ${viewMap ? '' : 'hidden'}`}>
                                 <h1 className='pb-2 font-medium text-center capitalize'>{selectedDestination.title}</h1>
                                 {srcUrl &&
-                                    <iframe className='rounded-lg' src={srcUrl} width="100%" height="100%"></iframe>
+                                    <iframe className='rounded-lg hide-custom-cursor' src={srcUrl} width="100%" height="100%"></iframe>
                                 }
                             </div>
                         </div>
