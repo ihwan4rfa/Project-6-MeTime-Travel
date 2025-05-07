@@ -22,7 +22,7 @@ const ModalDetailPromo = ({ showDetailPromo, setShowDetailPromo, selectedPromo, 
     }
 
     const formatNumber = (number) => {
-        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+        return `Rp${number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     };
 
     return (
