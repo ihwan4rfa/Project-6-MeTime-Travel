@@ -49,7 +49,7 @@ const PromoSection = ({ handleShowDetailPromo }) => {
             <div className='relative w-full overflow-x-hidden rounded-xl'>
                 <AliceCarousel mouseTracking paddingRight={50} infinite autoPlay animationDuration={2000} disableButtonsControls disableDotsControls responsive={responsive}>
                     {promos.map((promo, index) => (
-                        <div key={index} onClick={() => handleShowDetailPromo(promo.id)} onDragStart={handleDragStart} className='w-[95%] cursor-scale cursor-default lg:cursor-none h-48 xl:h-60 overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred cursor-pointer text-primaryblack rounded-xl'>
+                        <div key={index} onClick={() => handleShowDetailPromo(promo.id)} onDragStart={handleDragStart} className='w-[95%] cursor-scale lg:cursor-none h-48 xl:h-60 overflow-hidden bg-white dark:bg-primaryblack border border-white dark:border-primaryblack hover:border-primaryred dark:hover:border-primaryred cursor-pointer text-primaryblack rounded-xl'>
                             {promo.imageUrl.startsWith("https://") && (promo.imageUrl.includes(".jpg") || promo.imageUrl.includes(".png") || promo.imageUrl.includes("images")) ?
                                 <img src={promo.imageUrl} className='object-cover w-full bg-slate-200 h-[80%]'></img>
                                 : <Image src="/images/no-image.png" className='object-cover w-full h-[80%]' width={500} height={500} alt='Unknown Profile' />
